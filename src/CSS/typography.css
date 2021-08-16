@@ -1,26 +1,67 @@
-@import '../src/CSS/style.css';
-@import '../src/CSS/responsive.css';
-@import '../src/CSS/bootstrap.min.css';
-@import '../src/CSS/dataTables.bootstrap4.min.css';
-@import "../src/CSS/variable.css";
-@import "../src/CSS/owl.carousel.min.css";
-@import '../../application/node_modules/@icon/dripicons/dripicons.css';
-@import "../../application/node_modules/remixicon/fonts/remixicon.css";
-@import "../../application/node_modules/font-awesome/css/font-awesome.css";
-@import "../../application/node_modules/line-awesome/dist/line-awesome/css/line-awesome.min.css";
-/* @import "../src/CSS/ionicons.min.css"; */
-@import "../src/CSS/slick.css";
-@import "../src/CSS/slick-theme.css"; 
-@import "../src/CSS/magnific-popup.css";
-@import "../src/CSS/dark.css";
-@import "../src/CSS/select2.min.css";
-@import "../src/CSS/select2-bootstrap4.min.css";
+/*
+Template: Streamit  - Responsive Bootstrap 4 Admin Dashboard Template
+Author: iqonicthemes.in
+Design and Developed by: iqonicthemes.in
+NOTE: This file contains the styling for responsive Template.
+*/
+
+/*================================================
+[  Table of contents  ]
+================================================
 
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
+:: Import Css
+:: Font
+:: General
+:: Input
+:: Loading
+:: Bootstrap override 
+:: Background Color
+:: Background Color Opacity
+:: Background Border Color
+:: Text Color
+:: Line Height
+:: Font Size
+:: Font Weight
+:: Avatar Size
+:: Margin Bottom
+:: Card
+:: Background overlay color
+:: Buttons
+:: Alert
+:: list Group
+:: Border
+:: Grid Boxes
 
+======================================
+[ End table content ]
+======================================*/
 
+/*---------------------------------------------------------------------
+import Css
+-----------------------------------------------------------------------*/
+@import url("../CSS/variable.css");
+@import url("../CSS/owl.carousel.min.css");
+@import url("../CSS/dripicons.css");
+@import url("../CSS/remixicon.css");
+@import url("../CSS/fontawesome.css");
+@import url("../CSS/line-awesome.min.css");
+@import url("../CSS/ionicons.min.css");
+@import url("../CSS/slick.css");
+@import url("../CSS/slick-theme.css");
+@import url("../CSS/magnific-popup.css");
+@import url("../CSS/dark.css");
+@import url("../CSS/select2.min.css");
+@import url("../CSS/select2-bootstrap4.min.css");
 
+/*---------------------------------------------------------------------
+Font
+-----------------------------------------------------------------------*/
+/*@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
+
+/*---------------------------------------------------------------------
+General
+-----------------------------------------------------------------------*/
 *::-moz-selection { background: var(--iq-primary); color: var(--iq-white); text-shadow: none; }
 ::-moz-selection { background: var(--iq-primary); color: var(--iq-white); text-shadow: none; }
 ::selection { background: var(--iq-primary); color: var(--iq-white); text-shadow: none; }
@@ -434,5 +475,4 @@ Grid Boxes
 .iq-card-block.iq-card-height-half { height: calc(50% - 30px); }
 .iq-card-block.iq-card-height { height: calc(100% - 30px); }
 .iq-card-block { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
-
 
