@@ -2,8 +2,8 @@
     <!-- Sidebar-->
     <div class="iq-sidebar">
        <div class="iq-sidebar-logo d-flex justify-content-between">
-          <a href="index.html" class="header-logo">
-             <img src="" class="img-fluid rounded-normal" alt="">
+          <a href="#" class="header-logo">
+             <img src="../favicon.ico" class="img-fluid rounded-normal" alt="logo">
              <div class="logo-title">
                 <span class="text-primary text-uppercase">InstaGames</span>
              </div>
@@ -19,7 +19,7 @@
        <div id="sidebar-scrollbar">
           <nav class="iq-sidebar-menu">
              <ul id="iq-sidebar-toggle" class="iq-menu">
-                <li><a href="index.html" class="text-primary"><i class="ri-arrow-right-line"></i><span>Visit site</span></a></li>
+                <li><a href="#" class="text-primary"><i class="ri-arrow-right-line"></i><span>Visit site</span></a></li>
                 <li class="active active-menu"><a href="index.html" class="iq-waves-effect"><i class="las la-home iq-arrow-left"></i><span>Dashboard</span></a></li>
                 <li><a href="rating.html" class="iq-waves-effect"><i class="las la-star-half-alt"></i><span>Rating </span></a></li>
                 <li><a href="comment.html" class="iq-waves-effect"><i class="las la-comments"></i><span>Comment</span></a></li>
@@ -28,14 +28,14 @@
                    <a href="#category" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-list-ul"></i><span>Category</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                    <ul id="category" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                       <li><a href="add-category.html"><i class="las la-user-plus"></i>Add Category</a></li>
-                      <li><a href="category-list.html"><i class="las la-eye"></i>Category List</a></li>
+                      <li><a routerLink="/Categories"><i class="las la-eye"></i>Category List</a></li>
                    </ul>
                 </li>
                 <li>
-                   <a href="#movie" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-film"></i><span>Movie</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                   <ul id="movie" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                      <li><a href="add-movie.html"><i class="las la-user-plus"></i>Add Movie</a></li>
-                      <li><a href="movie-list.html"><i class="las la-eye"></i>Movie List</a></li>
+                   <a href="#game" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-gamepad">&nbsp;</i><span>Game</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                   <ul id="game" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                      <li><a href="#"><i class="las la-user-plus">&nbsp;</i>Add Game</a></li>
+                      <li><a routerLink="/Games"><i class="las la-eye">&nbsp;</i>Game List</a></li>
                    </ul>
                 </li>
                 <li>

@@ -61,7 +61,7 @@ dl dd { margin-bottom: 15px; }
 dl dd:last-child { margin-bottom: 0px; }
 
 /* Table */
-th { }
+
 a:hover { text-decoration: none; }
 .dropdown-item { font-size: 14px; }
 .dropdown-menu { border-radius: 5px; }
