@@ -1,20 +1,22 @@
-@import '../src/CSS/style.css';
-@import '../src/CSS/responsive.css';
 @import '../src/CSS/bootstrap.min.css';
-@import '../src/CSS/developer.css';
-@import '../src/CSS/dataTables.bootstrap4.min.css';
-@import "../src/CSS/variable.css";
-@import "../src/CSS/owl.carousel.min.css";
-@import '../src/CSS/dripicons.css';
-@import "../src/CSS/remixicon.css";
-@import "../src/CSS/fontawesome.css";
-@import "../src/CSS/line-awesome.min.css"; 
-@import "../src/CSS/ionicons.min.css";
-@import "../src/CSS/slick.css";
-@import "../src/CSS/slick-theme.css"; 
-@import "../src/CSS/magnific-popup.css";
 @import "../src/CSS/dark.css";
+@import '../src/CSS/dataTables.bootstrap4.min.css';
+@import '../src/CSS/developer.css';
+@import '../src/CSS/dripicons.css';
+@import '../src/CSS/flatpickr.min.css';
+@import "../src/CSS/fontawesome.css";
+@import "../src/CSS/ionicons.min.css";
+@import "../src/CSS/line-awesome.min.css"; 
+@import "../src/CSS/magnific-popup.css";
+@import "../src/CSS/owl.carousel.min.css";
+@import "../src/CSS/remixicon.css";
+@import '../src/CSS/responsive.css';
 @import "../src/CSS/select2.min.css";
 @import "../src/CSS/select2-bootstrap4.min.css";
+@import "../src/CSS/slick.css";
+@import "../src/CSS/slick-theme.css"; 
+@import '../src/CSS/style.css';
 @import "../src/CSS/typography.css";
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
+@import "../src/CSS/variable.css";
+
+
