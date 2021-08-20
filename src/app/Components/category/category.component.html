@@ -1,1 +1,69 @@
-<p>category works!</p>
+<!-- Page Content  -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title">Category Lists</h4>
+                    </div>
+                    <div class="iq-card-header-toolbar d-flex align-items-center">
+                        <a href="add-category.html" class="btn btn-primary">Add Category</a>
+                    </div>
+                </div>
+                <div class="iq-card-body">
+                    <div class="table-view">
+                        <div class="iq-search-bar ml-auto mb-4">
+                            <div class="searchbox">
+                               <input type="text" class="text search-input" placeholder="Search Category..." name="Type" [(ngModel)]="Type" (ngModelChange)="Search()">
+                               <span class="search-link" href="#"><i class="ri-search-line"></i></span>
+                            </div>
+                         </div>
+
+                        <table class="table movie_table " style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th (click)="sort('Type')" style="width:20%;">Type&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                                    <th style="width:40%;">Description</th>
+                                    <th style="width:10%;">Games</th>
+                                    <th style="width:20%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let category of categories | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
+                                    <td>{{category.Type}}</td>
+                                    <td>
+                                        <p>
+                                            {{category.Description | summarizeText}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <ul *ngFor="let game of category.games">
+                                            <li>{{game.Title}}</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <div class="flex align-items-center list-user-action">
+                                            <a class="iq-bg-warning" data-toggle="tooltip" data-placement="top" title=""
+                                                data-original-title="View" href="#" (click) ="ReadCategory(category)"><i class="lar la-eye"></i></a>
+                                            <a class="iq-bg-success" data-toggle="tooltip" data-placement="top" title=""
+                                                data-original-title="Edit" href="#" (click) ="UpdateCategory(category)"><i class="ri-pencil-line"></i></a>
+                                            <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title=""
+                                                data-original-title="Delete" href="#" (click) ="DeleteCategory(category.id)"><i
+                                                    class="ri-delete-bin-line"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Wrapper END -->
