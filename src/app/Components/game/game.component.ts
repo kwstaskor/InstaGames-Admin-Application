@@ -34,6 +34,7 @@ export class GameComponent implements OnInit {
       this.ReadGames();
     }
   }
+  
 key:any;
 reverse:boolean = false;
   sort(key: any){

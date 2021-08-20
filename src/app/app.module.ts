@@ -29,9 +29,9 @@ import { SummarizeTextPipe } from './summarize-text.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgxPaginationModule,
-    OrderModule,
-    HttpClientModule
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
