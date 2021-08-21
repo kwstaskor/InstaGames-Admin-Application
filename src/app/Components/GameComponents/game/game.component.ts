@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RiKakaoTalkFill } from 'angular-remix-icon';
+import { GameDetailsComponent } from '../game-details/game-details.component';
 import { Game } from './game';
 import { GameService } from './game.service';
 
@@ -11,9 +14,11 @@ import { GameService } from './game.service';
 })
 export class GameComponent implements OnInit {
   p: number =1;
+  isDeleted:boolean = false
   games!:Game[];
   Title:any;
-  constructor(private GameService:GameService) {
+
+  constructor(private GameService:GameService, private router:Router) {
 
    }
 
@@ -25,6 +30,17 @@ export class GameComponent implements OnInit {
     this.GameService.getGames().subscribe(data => this.games = data);
   }
 
+  DeleteGame(game:Game){
+    this.GameService.deleteGame(game.GameId).subscribe(()=>{
+      this.isDeleted = true;
+      setTimeout(()=>{
+        this.isDeleted = false
+      },3000);
+      this.ReadGames();
+    });
+   
+  }
+
   Search(){
     if(this.Title){
       this.games = this.games.filter(g=>
@@ -34,6 +50,10 @@ export class GameComponent implements OnInit {
       this.ReadGames();
     }
   }
+
+  ViewGames(game:Game){
+    this.router.navigate(["/GameDetails" , game.GameId]);
+  }
   
 key:any;
 reverse:boolean = false;
@@ -42,3 +62,5 @@ this.key = key;
 this.reverse = !this.reverse;
   }
 }
+
+

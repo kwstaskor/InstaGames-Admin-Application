@@ -1,0 +1,29 @@
+<div class="container align-content-lg-center">
+    <div class="container-fluid">
+        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3">
+            <img src="https://localhost:44384/{{game.Photo}}" class="card-img-top" alt="">
+            <div class="iq-card-body">
+                <h4 class="card-title">{{game.Title}}</h4>
+                <p class="card-text">{{game.Description}} </p>
+                <p>It is a long established fact that a the readable content of a page when looking at its
+                    layout.</p>
+                <h6 class="card-title">Developed by:</h6>
+                <ul class="list-unstyled">
+                    <li *ngFor="let dev of game.Developers">{{dev.Name}}</li>
+                 </ul>
+                 <h6 class="card-title">Categories:</h6>
+                <ul class="list-unstyled">
+                    <li *ngFor="let category of game.Categories">{{category.Type}}</li>
+                 </ul>
+                 <h6 class="card-title">Rating:</h6>
+                 <div class="pull-left">
+                    <app-game-rating [Rating]='game.Rating'></app-game-rating>
+                 </div>
+                 <br>
+                 <br>
+                 <a routerLink='/Dashboard' class="card-link">Home</a>
+                 <a routerLink='/Games' class="card-link">Back</a>
+            </div>
+        </div>
+    </div>
+</div>

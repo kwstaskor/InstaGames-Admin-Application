@@ -1,0 +1,10 @@
+<div class="text-center" *ngIf="stars.length > 0; else unrated">
+    <i *ngFor="let item of stars" class="fa fa-star text-primary" aria-hidden="true"></i>
+</div>
+<ng-template #unrated>
+    <i class="fa fa-star-o text-primary" aria-hidden="true"></i>
+    <i class="fa fa-star-o text-primary" aria-hidden="true"></i>
+    <i class="fa fa-star-o text-primary" aria-hidden="true"></i>
+    <i class="fa fa-star-o text-primary" aria-hidden="true"></i>
+    <i class="fa fa-star-o text-primary" aria-hidden="true"></i>
+</ng-template>

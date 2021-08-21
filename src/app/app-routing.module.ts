@@ -4,7 +4,8 @@ import { CategoryComponent } from './Components/category/category.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { DeveloperComponent } from './Components/developer/developer.component';
 import { ErrorComponent } from './Components/error/error.component';
-import { GameComponent } from './Components/game/game.component';
+import { GameDetailsComponent } from './Components/GameComponents/game-details/game-details.component';
+import { GameComponent } from './Components/GameComponents/game/game.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: "Games", component: GameComponent },
   { path: "Categories", component: CategoryComponent },
   { path: "Developers", component: DeveloperComponent },
+  { path: "GameDetails/"+":id", component: GameDetailsComponent },
   { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
   { path: "**", component: ErrorComponent }
 ];
