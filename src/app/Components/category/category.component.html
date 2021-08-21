@@ -39,7 +39,7 @@
                                         </p>
                                     </td>
                                     <td>
-                                        <ul *ngFor="let game of category.games">
+                                        <ul *ngFor="let game of category.Games">
                                             <li>{{game.Title}}</li>
                                         </ul>
                                     </td>
@@ -55,15 +55,14 @@
                                         </div>
                                     </td>
                                 </tr>
-
                             </tbody>
                         </table>
+                        <div class="pull-right mt-5">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<!-- Wrapper END -->

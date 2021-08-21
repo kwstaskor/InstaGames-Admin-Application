@@ -1,11 +1,11 @@
 export interface Category {
     id:number;
-    type: string;
-    description:string;
+    Type: string;
+    Description:string;
 
-    games:Array<Game>;
+    Games:Array<Game>;
 }
 
 export interface Game{
-     title:string;
+     Title:string;
 }

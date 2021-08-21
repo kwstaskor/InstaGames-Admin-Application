@@ -23,15 +23,15 @@ export class CategoryComponent implements OnInit {
   Search() {
     if (this.Type) {
       this.categories = this.categories.filter(g =>
-        g.type.toUpperCase().includes(this.Type.toUpperCase())
+        g.Type.toUpperCase().includes(this.Type.toUpperCase())
       );
     } else {
       this.ReadCategories();
     }
   }
 
-  CreateCategory(type: string, description: string) {
-    this.CategoryService.createCategory({ type, description } as Category).subscribe(() => this.ReadCategories());
+  CreateCategory(Type: string, Description: string) {
+    this.CategoryService.createCategory({ Type, Description } as Category).subscribe(() => this.ReadCategories());
   }
 
   DeleteCategory(id: number) {
