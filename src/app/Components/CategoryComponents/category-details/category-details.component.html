@@ -1,0 +1,19 @@
+<div class="container align-content-lg-center">
+    <div class="container-fluid">
+        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3">
+            <div class="iq-card-body">
+                <h4 class="card-title">{{category.Type}}</h4>
+                <p class="card-text">{{category.Description}} </p>
+
+                <h6 class="card-title">Games:</h6>
+                <ul class="list-unstyled">
+                    <li *ngFor="let game of category.Games">{{game.Title}}</li>
+                </ul>
+                <br>
+                <br>
+                <a routerLink='/Dashboard' class="card-link">Home</a>
+                <a routerLink='/Category' class="card-link">Back</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,8 @@
 
                   <div class="iq-search-bar ml-auto mb-4">
                      <div class="searchbox">
-                        <input type="text" class="text search-input" placeholder="Search Game..." name="Title" [(ngModel)]="Title" (ngModelChange)="Search()">
+                        <input type="text" class="text search-input" placeholder="Search Game..." name="Title"
+                           [(ngModel)]="Title" (ngModelChange)="Search()">
                         <span class="search-link" href="#"><i class="ri-search-line"></i></span>
                      </div>
                   </div>
@@ -23,16 +24,19 @@
                   <div *ngIf="isDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
                      <strong>Success!&nbsp;</strong>Game deleted successfully.
                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                       <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                      </button>
-                   </div>
+                  </div>
 
                   <table class="table movie_table" style="width:100%">
                      <thead>
                         <tr>
-                           <th (click)="sort('Title')">Game&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                           <th (click)="sort('ReleaseDate')" >Release Date&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                           <th (click)="sort('Rating')" >Rating&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                           <th (click)="sort('Title')">Game&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i>
+                           </th>
+                           <th (click)="sort('ReleaseDate')">Release Date&nbsp;<i
+                                 class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                           <th (click)="sort('Rating')">Rating&nbsp;<i
+                                 class="btn-sm btn-outline-primary fa fa-sort"></i></th>
                            <th>Pegi</th>
                            <th>Categories</th>
                            <th>Tag</th>
@@ -40,7 +44,7 @@
                            <th>Action</th>
                         </tr>
                      </thead>
-                     <tbody  *ngIf="games && games.length ; else noData;">
+                     <tbody *ngIf="games && games.length ; else noData;">
                         <tr *ngFor="let game of games | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
                            <td>
                               <div class="media align-items-center">
@@ -60,8 +64,8 @@
                               <app-game-rating [Rating]='game.Rating'></app-game-rating>
                            </td>
                            <td>
-                           <img src="https://localhost:44384/{{game.Pegi}}"
-                           class="img-border-radius avatar-40 img-fluid" alt="">
+                              <img src="https://localhost:44384/{{game.Pegi}}"
+                                 class="img-border-radius avatar-40 img-fluid" alt="">
                            </td>
                            <td>
                               <ul class="list-unstyled">
@@ -75,15 +79,17 @@
                            </td>
                            <td>
                               <div class="flex align-items-center list-user-action">
-                                 <a (click)='ViewGames(game)' class="iq-bg-warning crudBtn" title="Info"><i class="lar la-eye"></i></a>
+                                 <a (click)='ViewGames(game)' class="iq-bg-warning crudBtn" title="Info"><i
+                                       class="lar la-eye"></i></a>
                                  <a class="iq-bg-success crudBtn" title="Edit Game"><i class="ri-pencil-line"></i></a>
-                                 <a (click)='DeleteGame(game)' class="iq-bg-primary crudBtn" title="Delete Game"><i class="ri-delete-bin-line"></i></a>
+                                 <a (click)='DeleteGame(game)' class="iq-bg-primary crudBtn" title="Delete Game"><i
+                                       class="ri-delete-bin-line"></i></a>
                               </div>
                            </td>
                         </tr>
                      </tbody>
                   </table>
-                 
+
                   <div class="pull-right mt-5">
                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
                   </div>
@@ -99,14 +105,14 @@
    <tbody>
       <tr>
          <td colspan="8">
-         No data availabe in this table
-      </td>
+            No data availabe in this table
+         </td>
       </tr>
    </tbody>
 </ng-template>
 
 <script>
-   viewGame= function () {
-  this.router.navigateByUrl('/GameDetails');
-};
+   viewGame = function () {
+      this.router.navigateByUrl('/GameDetails');
+   };
 </script>

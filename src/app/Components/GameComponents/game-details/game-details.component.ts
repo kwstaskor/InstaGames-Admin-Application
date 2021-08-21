@@ -13,12 +13,12 @@ export class GameDetailsComponent implements OnInit {
 
   gameId!: number;
   game!: Game;
+  
   constructor(private actRoute: ActivatedRoute, private GameService: GameService) {
     this.gameId = this.actRoute.snapshot.params['id'];
   }
 
   ngOnInit(): void {
-   
     this.readGame();
   }
 

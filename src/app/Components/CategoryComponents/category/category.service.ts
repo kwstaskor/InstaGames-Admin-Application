@@ -13,12 +13,17 @@ export class CategoryService {
   private URL = 'https://localhost:44369/api/category';
   constructor(private httpService: HttpClient) { }
 
+  httpOptions = {
+    headers:new HttpHeaders({'content-Type': 'application/json'})
+  }
+  
   getCategories(): Observable<Category[]> {
     return this.httpService.get<Category[]>(this.URL);
   }
-
-  httpOptions = {
-    headers:new HttpHeaders({'content-Type': 'application/json'})
+  
+  getCategory(id:number):Observable<Category>{
+    const url = `${this.URL}/${id}`;
+    return this.httpService.get<Category>(url, this.httpOptions);
   }
 
   createCategory(category:Category){
@@ -31,12 +36,9 @@ export class CategoryService {
   }
   
   updateCategory(category:Category){
-    const url = `${this.URL}/${category.id}`;
-    return this.httpService.put(this.URL, category, this.httpOptions);
+    const url = `${this.URL}/${category.CategoryId}`;
+    return this.httpService.put(url, category, this.httpOptions);
   }
   
-  readCategory(category:Category){
-    const url = `${this.URL}/${category.id}`;
-    return this.httpService.post(this.URL, category, this.httpOptions);
-  }
+
 }

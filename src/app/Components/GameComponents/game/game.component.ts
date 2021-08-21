@@ -12,6 +12,8 @@ import { GameService } from './game.service';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
+
+
 export class GameComponent implements OnInit {
   p: number =1;
   isDeleted:boolean = false
