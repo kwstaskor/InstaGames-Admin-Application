@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoryDetailsComponent } from './Components/CategoryComponents/category-details/category-details.component';
 import { CategoryComponent } from './Components/CategoryComponents/category/category.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { DeveloperComponent } from './Components/developer/developer.component';
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: "Categories", component: CategoryComponent },
   { path: "Developers", component: DeveloperComponent },
   { path: "GameDetails/" + ":id", component: GameDetailsComponent },
-  { path: "CategoryDetails/" + ":id", component: CategoryComponent },
+  { path: "CategoryDetails/" + ":id", component: CategoryDetailsComponent },
   { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
   { path: "**", component: ErrorComponent }
 ];

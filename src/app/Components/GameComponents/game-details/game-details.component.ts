@@ -13,7 +13,7 @@ export class GameDetailsComponent implements OnInit {
 
   gameId!: number;
   game!: Game;
-  
+
   constructor(private actRoute: ActivatedRoute, private GameService: GameService) {
     this.gameId = this.actRoute.snapshot.params['id'];
   }
@@ -24,6 +24,11 @@ export class GameDetailsComponent implements OnInit {
 
   readGame() {
     this.GameService.getGame(this.gameId).subscribe(data => this.game = data);
+  }
+
+  showTrailerField: boolean = false;
+  WatchTrailer() {
+    this.showTrailerField = !this.showTrailerField;
   }
 
 }

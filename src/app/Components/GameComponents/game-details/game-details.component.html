@@ -1,29 +1,44 @@
 <div class="container align-content-lg-center">
     <div class="container-fluid">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3">
+        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="game;else Loader">
             <img src="https://localhost:44384/{{game.Photo}}" class="card-img-top" alt="">
             <div class="iq-card-body">
                 <h4 class="card-title">{{game.Title}}</h4>
                 <p class="card-text">{{game.Description}} </p>
-                <p>It is a long established fact that a the readable content of a page when looking at its
-                    layout.</p>
-                <h6 class="card-title">Developed by:</h6>
+                <!--Trailer Div-->
+                <div *ngIf="game.Trailer">
+                    <a class="btn-link text-primary crudBtn" (click)='WatchTrailer()'>Watch Trailer&nbsp;<i class="las la-play"></i></a>
+                    <section *ngIf="showTrailerField" class="height-100-vh iq-main-slider">
+                        <video class="video d-block" width="100%" height="100%" controls>
+                            <source src="https://localhost:44384/{{game.Trailer}}" type="video/mp4">
+                        </video>
+                    </section>
+                </div>
+
+                <br>
+                <a class="card-link" routerLink="/Developers">Developed by:</a>
                 <ul class="list-unstyled">
                     <li *ngFor="let dev of game.Developers">{{dev.Name}}</li>
-                 </ul>
-                 <h6 class="card-title">Categories:</h6>
+                </ul>
+                <a class="card-link" routerLink="/Categories">Categories:</a>
                 <ul class="list-unstyled">
                     <li *ngFor="let category of game.Categories">{{category.Type}}</li>
-                 </ul>
-                 <h6 class="card-title">Rating:</h6>
-                 <div class="pull-left">
+                </ul>
+                <h6 class="card-title">Rating:</h6>
+                <div class="pull-left">
                     <app-game-rating [Rating]='game.Rating'></app-game-rating>
-                 </div>
-                 <br>
-                 <br>
-                 <a routerLink='/Dashboard' class="card-link">Home</a>
-                 <a routerLink='/Games' class="card-link">Back</a>
+                </div>
+                <br>
+                <br>
+                <div class="text-center">
+                    <a routerLink='/Dashboard' class="card-link">Home</a>
+                    <a routerLink='/Games' class="card-link">Back</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #Loader>
+    <img src="../../../../assets/Images/page-load-loader.gif">
+</ng-template>
