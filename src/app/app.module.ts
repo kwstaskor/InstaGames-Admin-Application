@@ -16,6 +16,7 @@ import { SummarizeTextPipe } from './summarize-text.pipe';
 import { GameRatingComponent } from './Components/GameComponents/game-rating/game-rating.component';
 import { GameDetailsComponent } from './Components/GameComponents/game-details/game-details.component';
 import { CategoryDetailsComponent } from './Components/CategoryComponents/category-details/category-details.component';
+import { GameCreateComponent } from './Components/GameComponents/game-create/game-create.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CategoryDetailsComponent } from './Components/CategoryComponents/catego
     SummarizeTextPipe,
     GameRatingComponent,
     GameDetailsComponent,
-    CategoryDetailsComponent
+    CategoryDetailsComponent,
+    GameCreateComponent
   ],
   imports: [
     BrowserModule,
