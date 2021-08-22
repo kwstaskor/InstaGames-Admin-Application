@@ -9,13 +9,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class GameService {
 
-  private URL = 'https://localhost:44369/api/game';
+  private URL = 'https://localhost:44369/api/Game';
   constructor(private httpService: HttpClient) { }
 
   httpOptions = {
-    headers: new HttpHeaders({
-      'content-Type': 'application/json'
-    })
+    headers:new HttpHeaders({'content-Type': 'application/json'})
   }
 
   getGames(): Observable<Game[]> {
@@ -36,7 +34,7 @@ export class GameService {
   }
 
   deleteGame(id: number) {
-    const url = `${this.URL}/${id}`;
+    const url = `${this.URL}?id=${id}`;
     return this.httpService.delete<Game>(url, this.httpOptions);
   }
 

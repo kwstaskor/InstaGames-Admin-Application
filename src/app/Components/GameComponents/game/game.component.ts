@@ -16,7 +16,7 @@ import { GameService } from './game.service';
 
 export class GameComponent implements OnInit {
   p: number =1;
-  isDeleted:boolean = false
+  isDeleted:boolean = false;
   games!:Game[];
   Title:any;
 
@@ -35,12 +35,13 @@ export class GameComponent implements OnInit {
   DeleteGame(game:Game){
     this.GameService.deleteGame(game.GameId).subscribe(()=>{
       this.isDeleted = true;
+
       setTimeout(()=>{
         this.isDeleted = false
       },3000);
+
       this.ReadGames();
-    });
-   
+    },(error)=>console.log(error));
   }
 
   Search(){
