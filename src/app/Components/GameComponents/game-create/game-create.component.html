@@ -8,37 +8,34 @@
                 </div>
              </div>
              <div class="iq-card-body">
-                <form action="movie-view.html">
+                <form (ngSubmit)='CreateGame(title.value,Photo.value,trailer.value,
+                Pegi.value,description.value,releaseDate.value,isReleased.value,isEarlyAccess.value,tag.value,gameCategories.value,gameDevelopers.value)'>
                    <div class="row">
                       <div class="col-lg-7">
                          <div class="row">
                             <div class="col-12 form-group">
-                               <input type="text" class="form-control" placeholder="Title">
+                               <input #title type="text" class="form-control" placeholder="Title">
                             </div>
                             <div class="col-12 form_gallery form-group">
                                <label id="gallery2" for="form_gallery-upload">Upload Image</label>
-                               <input data-name="#gallery2" id="form_gallery-upload" class="form_gallery-upload"
+                               <input #Photo data-name="#gallery2" id="form_gallery-upload" class="form_gallery-upload"
                                   type="file" accept=".png, .jpg, .jpeg">
                             </div>
                             <div class="col-md-6 form-group">
-                               <select class="form-control" id="exampleFormControlSelect1">
-                                  <option disabled="">Movie Category</option>
-                                  <option>Comedy</option>
-                                  <option>Crime</option>
-                                  <option>Drama</option>
-                                  <option>Horror</option>
-                                  <option>Romance</option>
+                               <select #gameCategories class="form-control" id="exampleFormControlSelect1">
+                                  <option disabled="">Game Category</option>
+                                  <option *ngFor="let cat of Categories">{{cat.Type}}</option>
                                </select>
                             </div>
                             <div class="col-sm-6 form-group">
                                <select class="form-control" id="exampleFormControlSelect2">
                                   <option disabled="">Choose Tag</option>
-                                  <option>Singleplayer</option>
-                                  <option>Multiplayer</option>
+                                  <option #tag>Singleplayer</option>
+                                  <option #tag>Multiplayer</option>
                                </select>
                             </div>
                             <div class="col-12 form-group">
-                               <textarea id="text" name="text" rows="5" class="form-control"
+                               <textarea #description id="text" name="text" rows="5" class="form-control"
                                   placeholder="Description"></textarea>
                             </div>
                          </div>
@@ -46,7 +43,7 @@
                       <div class="col-lg-5">
                          <div class="d-block position-relative">
                             <div class="form_video-upload">
-                               <input type="file" accept="video/mp4,video/x-m4v,video/*" multiple>
+                               <input #trailer type="file" accept="video/mp4" multiple>
                                <p>Upload video</p>
                             </div>
                          </div>
@@ -54,23 +51,27 @@
                    </div>
                    <div class="row">
                       <div class="col-sm-6 form-group">
-                         <input type="text" class="form-control" placeholder="Release year">
+                         <input #releaseDate type="date" class="form-control" placeholder="Release Date">
                       </div>
                       <div class="col-sm-6 form-group">
-                         <select class="form-control" id="exampleFormControlSelect3">
+                         <select #gameDevelopers class="form-control" id="exampleFormControlSelect3">
                             <option selected disabled="">Choose Developer</option>
-                            <option>Kostas</option>
-                            <option>Mixalis</option>
-                            <option>Kostantina</option>
-                            <option>Giorgos</option>
+                         
                          </select>
                       </div>
-                      <div class="col-sm-12 form-group">
-                         <input type="text" class="form-control" placeholder="Movie Duration">
+                      <div class="col-sm-6 form-group">
+                         <select #Pegi class="form-control" id="exampleFormControlSelect3">
+                            <option selected disabled="">PEGI</option>
+                            <option *ngFor="let pegi of Pegilist">{{pegi}}</option>
+                         </select>
+                      </div>
+                      <div class="col-sm-6 form-group">
+                         <input #isReleased type="checkbox" class="form-control" placeholder="Movie Duration">
+                         <input #isEarlyAccess type="checkbox" class="form-control" placeholder="Movie Duration">
                       </div>
                       <div class="col-12 form-group ">
-                         <button type="submit" class="btn btn-primary">Submit</button>
-                         <button type="reset" class="btn btn-danger">cancel</button>
+                         <button  type="submit" class="btn btn-primary">Submit</button>
+                         <button routerLink='/Game' class="btn btn-danger">Cancel</button>
                       </div>
                    </div>
                 </form>

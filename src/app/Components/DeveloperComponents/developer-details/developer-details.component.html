@@ -1,0 +1,26 @@
+<div class="container align-content-lg-center">
+    <div class="container-fluid">
+        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="developer;else Loader">
+           
+            <div class="iq-card-body">
+                <h4 class="card-title">{{developer.FirstName}}</h4>
+                <h4 class="card-text">{{developer.LastName}} </h4>
+                <br>
+                <a class="card-link" routerLink="/Games">Games Created</a>
+                <ul class="list-unstyled">
+                    <li *ngFor="let game of developer.DeveloperGames">{{game.Title}}</li>
+                </ul>
+                <br>
+                <br>
+                <div class="text-center">
+                    <a routerLink='/Dashboard' class="card-link">Home</a>
+                    <a routerLink='/Developers' class="card-link">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #Loader>
+    <img src="../../../../assets/Images/page-load-loader.gif">
+</ng-template>

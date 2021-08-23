@@ -1,4 +1,13 @@
-export interface Game {
+
+export interface Developer{
+    DeveloperId:number,
+    FirstName:string,
+    LastName:string,
+    IsInstaGamesDev:boolean,
+    DeveloperGames : DeveloperGames[]
+}
+
+ interface DeveloperGames{
     GameId:number,
     Title :string,
     Photo :string,
@@ -9,21 +18,13 @@ export interface Game {
     IsReleased :boolean,
     IsEarlyAccess :boolean,
     Rating:number,
-    Tag :string,
-    Categories:Category[],
-    Developers:Developer[]
+    Tag :string
 }
 
- interface Category{
-    Type:string
-}
-
- interface Developer{
-    Name:string
-}
-
-export interface Pegi{
+ interface Pegi{
     PegiId:number,
     PegiPhoto:string,
     PegiAge:number
 }
+
+

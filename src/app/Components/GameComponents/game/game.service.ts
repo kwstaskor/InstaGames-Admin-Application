@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Game } from './game';
+import { Game, Pegi } from './game';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -13,20 +13,25 @@ export class GameService {
   constructor(private httpService: HttpClient) { }
 
   httpOptions = {
-    headers:new HttpHeaders({'content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'content-Type': 'application/json' })
   }
 
   getGames(): Observable<Game[]> {
     return this.httpService.get<Game[]>(this.URL);
   }
 
-  getGame(id:number):Observable<Game>{
+  getPegi(): Observable<Pegi[]> {
+    const pegiUrl = 'https://localhost:44369/api/Pegi';
+    return this.httpService.get<Pegi[]>(pegiUrl);
+  }
+
+  getGame(id: number): Observable<Game> {
     const url = `${this.URL}/${id}`;
     return this.httpService.get<Game>(url, this.httpOptions);
   }
 
-  createGame(game: Game) {
-
+  createGame(game: Game):Observable<Game> {
+    return this.httpService.post<Game>(this.URL, game, this.httpOptions);
   }
 
   editGame() {
