@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Game, Category } from './category';
 import { CategoryService } from './category.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -11,11 +11,12 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class CategoryComponent implements OnInit {
+
   p: number = 1;
   isDeleted: boolean = false;
   categories!: Category[];
   Type: any;
-
+  isCreated: boolean = false;
 
 
   ReadCategories() {
@@ -33,7 +34,13 @@ export class CategoryComponent implements OnInit {
   }
 
   CreateCategory(Type: string, Description: string) {
-    this.CategoryService.createCategory({ Type, Description } as Category).subscribe(() => this.ReadCategories());
+    this.CategoryService.createCategory({ Type, Description } as Category).subscribe(() => {
+      this.isCreated = true;
+      setTimeout(() => {
+        this.isCreated = false
+      }, 3000);
+      this.ReadCategories();
+    });
   }
 
   DeleteCategory(category: Category) {
@@ -54,7 +61,7 @@ export class CategoryComponent implements OnInit {
     this.CategoryService.getCategory(id).subscribe(() => this.ReadCategories())
   }
 
-  ViewCategories(category:Category){
+  ViewCategories(category: Category) {
     this.router.navigate(["/CategoryDetails", category.CategoryId]);
   }
 
@@ -65,7 +72,7 @@ export class CategoryComponent implements OnInit {
     this.reverse = !this.reverse;
   }
 
-  constructor(private CategoryService: CategoryService, private router:Router) { }
+  constructor(private CategoryService: CategoryService, private router: Router) { }
 
   ngOnInit(): void {
     this.ReadCategories();

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Developer } from '../developer/developer';
+import { DeveloperService } from '../developer/developer.service';
 
 @Component({
   selector: 'app-developer-create',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeveloperCreateComponent implements OnInit {
 
-  constructor() { }
+  firstName!:string;
+  lastName!:string;
+  isInstagameDev!:boolean;
+
+  developer!:Developer;
+
+  constructor(private router:Router, private developerService: DeveloperService) { }
 
   ngOnInit(): void {
+  }
+
+  saveDeveloper():void{
+    let developer = <Developer>{};
+    developer.FirstName = this.firstName;
+    developer.LastName = this.lastName;
+    developer.IsInstaGamesDev = this.isInstagameDev;
+
+    this.developerService.createDeveloper(developer).subscribe(()=>{
+      this.router.navigate(['/Developers']);
+    });
   }
 
 }

@@ -13,6 +13,7 @@ export class CategoryService {
   private URL = 'https://localhost:44369/api/category';
   constructor(private httpService: HttpClient) { }
 
+
   httpOptions = {
     headers:new HttpHeaders({'content-Type': 'application/json'})
   }
@@ -27,7 +28,7 @@ export class CategoryService {
   }
 
   createCategory(category:Category){
-    return this.httpService.post<Category>(this.URL,category, this.httpOptions)
+    return this.httpService.post<Category>(this.URL,category,this.httpOptions)
   }
 
   deleteCategory(id: number) {
