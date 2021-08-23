@@ -17,6 +17,8 @@ import { GameRatingComponent } from './Components/GameComponents/game-rating/gam
 import { GameDetailsComponent } from './Components/GameComponents/game-details/game-details.component';
 import { CategoryDetailsComponent } from './Components/CategoryComponents/category-details/category-details.component';
 import { GameCreateComponent } from './Components/GameComponents/game-create/game-create.component';
+import { CategoryCreateComponent } from './Components/CategoryComponents/category-create/category-create.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { GameCreateComponent } from './Components/GameComponents/game-create/gam
     GameRatingComponent,
     GameDetailsComponent,
     CategoryDetailsComponent,
-    GameCreateComponent
+    GameCreateComponent,
+    CategoryCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { GameCreateComponent } from './Components/GameComponents/game-create/gam
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

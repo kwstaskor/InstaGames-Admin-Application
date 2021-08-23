@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryDetailsComponent } from './Components/CategoryComponents/category-details/category-details.component';
 import { CategoryComponent } from './Components/CategoryComponents/category/category.component';
+import { CategoryCreateComponent } from './Components/CategoryComponents/category-create/category-create.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { DeveloperComponent } from './Components/developer/developer.component';
 import { ErrorComponent } from './Components/error/error.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "Games", component: GameComponent },
   { path: "GameDetails/" + ":id", component: GameDetailsComponent },
   { path: "GameCreate", component: GameCreateComponent },
+  { path: "CategoryCreate", component: CategoryCreateComponent },
   { path: "Categories", component: CategoryComponent },
   { path: "CategoryDetails/" + ":id", component: CategoryDetailsComponent },
   { path: "Developers", component: DeveloperComponent },
