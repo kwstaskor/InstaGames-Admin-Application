@@ -8,13 +8,12 @@
                 </div>
              </div>
              <div class="iq-card-body">
-                <form (ngSubmit)='CreateGame(title.value,Photo.value,trailer.value,
-                Pegi.value,description.value,releaseDate.value,isReleased.value,isEarlyAccess.value,tag.value,gameCategories.value,gameDevelopers.value)'>
+                <form (ngSubmit)='CreateGame()'>
                    <div class="row">
                       <div class="col-lg-7">
                          <div class="row">
                             <div class="col-12 form-group">
-                               <input #title type="text" class="form-control" placeholder="Title">
+                               <input id="title" type="text" class="form-control" placeholder="Title"  [(ngModel)]="title" name="title">
                             </div>
                             <div class="col-12 form_gallery form-group">
                                <label id="gallery2" for="form_gallery-upload">Upload Image</label>
@@ -22,16 +21,16 @@
                                   type="file" accept=".png, .jpg, .jpeg">
                             </div>
                             <div class="col-md-6 form-group">
-                               <select #gameCategories class="form-control" id="exampleFormControlSelect1">
+                               <select #gameCategories class="form-control" id="exampleFormControlSelect1" multiple>
                                   <option disabled="">Game Category</option>
                                   <option *ngFor="let cat of Categories">{{cat.Type}}</option>
                                </select>
                             </div>
                             <div class="col-sm-6 form-group">
-                               <select class="form-control" id="exampleFormControlSelect2">
+                               <select [(ngModel)]="tag" name="tag" class="form-control" id="tag">
                                   <option disabled="">Choose Tag</option>
-                                  <option #tag>Singleplayer</option>
-                                  <option #tag>Multiplayer</option>
+                                  <option>Singleplayer</option>
+                                  <option>Multiplayer</option>
                                </select>
                             </div>
                             <div class="col-12 form-group">
@@ -54,20 +53,26 @@
                          <input #releaseDate type="date" class="form-control" placeholder="Release Date">
                       </div>
                       <div class="col-sm-6 form-group">
-                         <select #gameDevelopers class="form-control" id="exampleFormControlSelect3">
-                            <option selected disabled="">Choose Developer</option>
-                         
+                         <select #gameDevelopers class="form-control" id="exampleFormControlSelect3" multiple>
+                            <option disabled="">Choose Developer</option>
+                            <option *ngFor="let dev of Developers">{{dev.FirstName}}</option>
                          </select>
                       </div>
                       <div class="col-sm-6 form-group">
                          <select #Pegi class="form-control" id="exampleFormControlSelect3">
                             <option selected disabled="">PEGI</option>
-                            <option *ngFor="let pegi of Pegilist">{{pegi}}</option>
+                            <option *ngFor="let pegi of Pegilist">{{pegi.PegiAge}}</option>
                          </select>
                       </div>
                       <div class="col-sm-6 form-group">
-                         <input #isReleased type="checkbox" class="form-control" placeholder="Movie Duration">
-                         <input #isEarlyAccess type="checkbox" class="form-control" placeholder="Movie Duration">
+                        <div class="custom-control custom-checkbox d-inline-block">
+                        <input type="checkbox" class="custom-control-input" id="isReleased" [(ngModel)]="isReleased" name="isReleased">
+                        <label class="custom-control-label" for="isReleased"> Is game released?</label>
+                        </div>
+                        <div class="custom-control custom-checkbox d-inline-block ml-5">
+                        <input type="checkbox" class="custom-control-input" id="isEarlyAccess" [(ngModel)]="isEarlyAccess" name="isEarlyAccess">
+                        <label class="custom-control-label" for="isEarlyAccess"> Is game ealry access?</label>
+                        </div>
                       </div>
                       <div class="col-12 form-group ">
                          <button  type="submit" class="btn btn-primary">Submit</button>
