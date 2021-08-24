@@ -23,10 +23,11 @@
                             <div class="col-md-6 form-group">
                                <select #gameCategories class="form-control" id="exampleFormControlSelect1" multiple>
                                   <option disabled="">Game Category</option>
-                                  <option *ngFor="let cat of Categories">{{cat.Type}}</option>
+                                  <option id="{{cat.CategoryId}}" *ngFor="let cat of Categories">{{cat.Type}}</option>
                                </select>
                             </div>
                             <div class="col-sm-6 form-group">
+                              <label for="tag">Tag</label>
                                <select [(ngModel)]="tag" name="tag" class="form-control" id="tag">
                                   <option disabled="">Choose Tag</option>
                                   <option>Singleplayer</option>
@@ -34,7 +35,7 @@
                                </select>
                             </div>
                             <div class="col-12 form-group">
-                               <textarea #description id="text" name="text" rows="5" class="form-control"
+                               <textarea [(ngModel)]="description" id="description" name="description" rows="5" class="form-control"
                                   placeholder="Description"></textarea>
                             </div>
                          </div>
@@ -42,7 +43,7 @@
                       <div class="col-lg-5">
                          <div class="d-block position-relative">
                             <div class="form_video-upload">
-                               <input #trailer type="file" accept="video/mp4" multiple>
+                               <input [(ngModel)]="trailer" type="file" name="trailer" accept="video/mp4" multiple>
                                <p>Upload video</p>
                             </div>
                          </div>
@@ -50,19 +51,22 @@
                    </div>
                    <div class="row">
                       <div class="col-sm-6 form-group">
-                         <input #releaseDate type="date" class="form-control" placeholder="Release Date">
+                        <label for="releaseDate">Release Date</label>
+                         <input [(ngModel)]="releaseDate" type="date" name="releaseDate" id="releaseDate" class="form-control" placeholder="Release Date">
                       </div>
                       <div class="col-sm-6 form-group">
-                         <select #gameDevelopers class="form-control" id="exampleFormControlSelect3" multiple>
-                            <option disabled="">Choose Developer</option>
-                            <option *ngFor="let dev of Developers">{{dev.FirstName}}</option>
-                         </select>
+                        <label for="pegiId">PEGI</label>
+                        <select [(ngModel)]="pegiId" class="form-control" id="pegiId" name="pegiId">
+                           <option selected disabled="">PEGI</option>
+                           <option [ngValue]="pegi.PegiId" *ngFor="let pegi of Pegilist">{{pegi.PegiAge}}</option>
+                        </select>
+                        
                       </div>
                       <div class="col-sm-6 form-group">
-                         <select #Pegi class="form-control" id="exampleFormControlSelect3">
-                            <option selected disabled="">PEGI</option>
-                            <option *ngFor="let pegi of Pegilist">{{pegi.PegiAge}}</option>
-                         </select>
+                        <select #gameDevelopers class="form-control" id="exampleFormControlSelect3" multiple>
+                           <option disabled="">Choose Developer</option>
+                           <option id="{{dev.DeveloperId}}" *ngFor="let dev of Developers">{{dev.FirstName}}</option>
+                        </select>
                       </div>
                       <div class="col-sm-6 form-group">
                         <div class="custom-control custom-checkbox d-inline-block">

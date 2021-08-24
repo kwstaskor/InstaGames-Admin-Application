@@ -20,6 +20,7 @@ import { GameCreateComponent } from './Components/GameComponents/game-create/gam
 import { CategoryCreateComponent } from './Components/CategoryComponents/category-create/category-create.component';
 import { DeveloperDetailsComponent } from './Components/DeveloperComponents/developer-details/developer-details.component';
 import { DeveloperCreateComponent } from './Components/DeveloperComponents/developer-create/developer-create.component';
+import { MessageComponent } from './Components/MessageComponets/message/message.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { DeveloperCreateComponent } from './Components/DeveloperComponents/devel
     GameCreateComponent,
     CategoryCreateComponent,
     DeveloperDetailsComponent,
-    DeveloperCreateComponent
+    DeveloperCreateComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

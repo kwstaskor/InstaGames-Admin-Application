@@ -19,7 +19,7 @@ export class GameCreateComponent implements OnInit {
   trailer!: string;
   tag!: string;
   releaseDate!: Date;
-  pegi!: number;
+  pegiId!: any;
   isReleased!: boolean;
   isEarlyAccess!: boolean;
   gameCategories!: Array<number>;
@@ -51,17 +51,18 @@ export class GameCreateComponent implements OnInit {
 
   CreateGame() {
     this.isSubmitted = true;
-    let game = <Game>{}
+    let game = <Game>{};
     game.Title = this.title
     game.Description = this.description;
     game.Photo = this.photo;
+    game.ReleaseDate = this.releaseDate;
     game.Trailer = this.trailer;
     game.IsEarlyAccess = this.isEarlyAccess;
     game.IsReleased = this.isReleased;
     game.Tag = this.tag;
     game.GameDevelopers = this.gameDevelopers;
     game.GameCategories = this.gameCategories;
-    game.Pegi = this.pegi;
+    game.Pegi = <Pegi>{PegiId:this.pegiId};
 
     this.GameService.createGame(game).subscribe(() => {
       this.router.navigate(["/Game"]);

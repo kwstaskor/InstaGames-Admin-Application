@@ -11,6 +11,7 @@ import { GameDetailsComponent } from './Components/GameComponents/game-details/g
 import { GameComponent } from './Components/GameComponents/game/game.component';
 import { DeveloperDetailsComponent } from './Components/DeveloperComponents/developer-details/developer-details.component';
 import { DeveloperCreateComponent } from './Components/DeveloperComponents/developer-create/developer-create.component';
+import { MessageComponent } from './Components/MessageComponets/message/message.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: "Developers", component: DeveloperComponent },
   { path: "DeveloperDetails/" + ":id", component: DeveloperDetailsComponent },
   { path: "DeveloperCreate", component: DeveloperCreateComponent },
+  { path: "Messages", component: MessageComponent },
   { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
   { path: "**", component: ErrorComponent }
 ];
