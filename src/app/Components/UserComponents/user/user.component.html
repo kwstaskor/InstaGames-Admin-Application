@@ -1,0 +1,77 @@
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="iq-card">
+            <div class="iq-card-header d-flex justify-content-between">
+               <div class="iq-header-title">
+                  <h4 class="card-title">User Lists</h4>
+               </div>
+            </div>
+            <div class="iq-card-body">
+               <div class="table-view">
+
+                  <div class="iq-search-bar ml-auto mb-4">
+                     <div class="searchbox">
+                        <input type="text" class="text search-input" placeholder="Search User..." name="UserName"
+                           [(ngModel)]="UserName" (ngModelChange)="Search()">
+                        <span class="search-link" href="#"><i class="ri-search-line"></i></span>
+                     </div>
+                  </div>
+
+                  <!--Delete Alert-->
+                  <div *ngIf="isDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
+                     <strong>Success!&nbsp;</strong>User deleted successfully.
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+
+                  <table class="table movie_table" style="width:100%">
+                     <thead>
+                        <tr>
+                           <th (click)="sort('UserName')">Username&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i>
+                           </th>
+                           <th (click)="sort('Name')">Name&nbsp;<i
+                              class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                           <th>Email</th>
+                           <th>Status</th>
+                           <th (click)="sort('RegistrationDate')">Join Date&nbsp;<i
+                              class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody *ngIf="users && users.length ; else noData">
+                        <tr *ngFor="let user of users | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
+                           <td>{{user.UserName}}</td>
+                           <td>{{user.FirstName}} {{user.LastName}}</td>
+                           <td>{{user.Email}}</td>
+                           <td><span class="badge iq-bg-success">Active</span></td>
+                           <td>{{user.RegistrationDate | date : 'short'}}</td>
+                           <td>
+                              <div class="flex align-items-center list-user-action">
+                                 <a class="iq-bg-success" data-toggle="tooltip" data-placement="top" title=""
+                                    data-original-title="Edit" href="#"><i class="ri-pencil-line"></i></a>
+                                 <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title=""
+                                    data-original-title="Delete" href="#"><i class="ri-delete-bin-line"></i></a>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!--IF no Data-->
+<ng-template #noData>
+   <tbody>
+      <tr>
+         <td colspan="8">
+            No data availabe in this table
+         </td>
+      </tr>
+   </tbody>
+</ng-template>

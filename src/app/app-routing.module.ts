@@ -12,7 +12,7 @@ import { GameComponent } from './Components/GameComponents/game/game.component';
 import { DeveloperDetailsComponent } from './Components/DeveloperComponents/developer-details/developer-details.component';
 import { DeveloperCreateComponent } from './Components/DeveloperComponents/developer-create/developer-create.component';
 import { MessageComponent } from './Components/MessageComponets/message/message.component';
-
+import { UserComponent } from './Components/UserComponents/user/user.component';
 
 const routes: Routes = [
   { path: "Dashboard", component: DashboardComponent },
@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: "DeveloperDetails/" + ":id", component: DeveloperDetailsComponent },
   { path: "DeveloperCreate", component: DeveloperCreateComponent },
   { path: "Messages", component: MessageComponent },
+  { path: "Users", component: UserComponent },
   { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
   { path: "**", component: ErrorComponent }
 ];

@@ -21,6 +21,7 @@ import { CategoryCreateComponent } from './Components/CategoryComponents/categor
 import { DeveloperDetailsComponent } from './Components/DeveloperComponents/developer-details/developer-details.component';
 import { DeveloperCreateComponent } from './Components/DeveloperComponents/developer-create/developer-create.component';
 import { MessageComponent } from './Components/MessageComponets/message/message.component';
+import { UserComponent } from './Components/UserComponents/user/user.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { MessageComponent } from './Components/MessageComponets/message/message.
     CategoryCreateComponent,
     DeveloperDetailsComponent,
     DeveloperCreateComponent,
-    MessageComponent
+    MessageComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
