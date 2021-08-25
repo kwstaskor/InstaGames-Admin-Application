@@ -9,52 +9,52 @@ import { Message } from './message';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  p: number =1;
-  isDeleted:boolean = false;
-  messages!:Message[];
-  CreatorUserName:any;
+  p: number = 1;
+  isDeleted: boolean = false;
+  messages!: Message[];
+  CreatorUserName: any;
 
-  constructor(private MessageService:MessageService, private router:Router) {
-   }
+  constructor(private MessageService: MessageService, private router: Router) {
+  }
 
   ngOnInit(): void {
-  this.ReadMessages();
+    this.ReadMessages();
   }
 
-  ReadMessages(){
-    this.MessageService.getMessages().subscribe(data => this.messages = data);
+  ReadMessages() {
+    this.MessageService.getMessages().subscribe((data) => this.messages = data);
   }
 
-  DeleteGame(message:Message){
-    this.MessageService.deleteMessage(message.MessageId).subscribe(()=>{
+  DeleteMessage(message: Message) {
+    this.MessageService.deleteMessage(message.MessageId).subscribe(() => {
       this.isDeleted = true;
 
-      setTimeout(()=>{
+      setTimeout(() => {
         this.isDeleted = false
-      },3000);
+      }, 3000);
 
       this.ReadMessages();
-    },(error)=>console.log(error));
+    }, (error) => console.log(error));
   }
 
-  Search(){
-    if(this.CreatorUserName){
-      this.messages = this.messages.filter(m=>
-       m.Creator.UserName.toUpperCase().includes(this.CreatorUserName.toUpperCase())
+  Search() {
+    if (this.CreatorUserName) {
+      this.messages = this.messages.filter(m =>
+        m.Creator.UserName.toUpperCase().includes(this.CreatorUserName.toUpperCase())
       );
-    }else{
+    } else {
       this.ReadMessages();
     }
   }
 
-  ViewGames(message:Message){
-    this.router.navigate(["/MessageDetails" , message.MessageId]);
+  ViewMessage(message: Message) {
+    this.router.navigate(["/MessageDetails", message.MessageId]);
   }
-  
-key:any;
-reverse:boolean = false;
-  sort(key: any){
-this.key = key;
-this.reverse = !this.reverse;
+
+  key: any;
+  reverse: boolean = false;
+  sort(key: any) {
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 }

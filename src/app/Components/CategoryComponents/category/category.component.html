@@ -50,7 +50,7 @@
                                 <tr *ngFor="let category of categories | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
                                     <td>{{category.CategoryId}}</td>
                                     <td>{{category.Type}}</td>
-                                    <td>
+                                    <td title="{{category.Description}}">
                                         <p>
                                             {{category.Description | summarizeText}}
                                         </p>

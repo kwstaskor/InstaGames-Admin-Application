@@ -24,8 +24,9 @@ export class MessageService {
     return this.httpService.get<Message>(url, this.httpOptions);
   }
 
-  editMessage() {
-
+  editMessage(message:Message):Observable<Message> {
+    const url = `${this.URL}/${message.MessageId}`;
+    return this.httpService.put<Message>(url,message,this.httpOptions);
   }
 
   deleteMessage(id: number) {

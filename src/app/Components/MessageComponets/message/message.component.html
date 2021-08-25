@@ -19,7 +19,7 @@
 
                   <!--Delete Alert-->
                   <div *ngIf="isDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <strong>Success!&nbsp;</strong>Game deleted successfully.
+                    <strong>Success!&nbsp;</strong>Message deleted successfully.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                        <span aria-hidden="true">&times;</span>
                     </button>
@@ -37,6 +37,7 @@
                                     class="btn-sm btn-outline-primary fa fa-sort"></i></th>
                             <th (click)="sort('SubmitDate')">Date Created&nbsp;<i
                                 class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                            <th style="width: 10%;">Status</th>
                             <th style="width: 10%;">Action</th>
                          </tr>
                       </thead>
@@ -50,14 +51,18 @@
                             <td>
                               {{message.SubmitDate | date}}
                             </td>                                       
+                            <td *ngIf="!message.Answered else Replied;">
+                              <span class="badge iq-bg-primary">Unanswered</span>
+                            </td>  
+                            <ng-template #Replied>
+                              <td>
+                                 <span class="badge iq-bg-success">Answered</span>
+                               </td>
+                            </ng-template>                                     
                             <td>
                                <div class="flex align-items-center list-user-action">
-                                  <a class="iq-bg-warning" data-toggle="tooltip" data-placement="top" title=""
-                                  data-original-title="View" href="#"><i class="lar la-eye"></i></a>
-                                  <a class="iq-bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i
-                                        class="ri-pencil-line"></i></a>
-                                  <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i
-                                        class="ri-delete-bin-line"></i></a>
+                                  <a (click)="ViewMessage(message) " class="iq-bg-success crudBtn" data-placement="top" title="Reply"><i class="ri-message-line"></i></a>
+                                  <a class="iq-bg-primary crudBtn" title="Delete"><i class="ri-delete-bin-line"></i></a>
                                </div>
                             </td>
                          </tr>

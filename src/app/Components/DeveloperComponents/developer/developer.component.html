@@ -32,21 +32,29 @@
                    <table class="table movie_table" style="width:100%">
                       <thead>
                          <tr>
-                            <th (click)="sort('FirstName')">First Name&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i>
-                            </th>
+                            <th (click)="sort('DeveloperId')">No&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                            <th (click)="sort('FirstName')">First Name&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i></th>
                             <th (click)="sort('LastName')">Last Name&nbsp;<i
                                   class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                            <th>IsInstaGamesDev</th>
+                            <th>Works At</th>
                             <th>Action</th>
                          </tr>
                       </thead>
                       <tbody *ngIf="developers && developers.length ; else noData;">
                          <tr *ngFor="let dev of developers | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
+                            <td>{{dev.DeveloperId}}</td>
                             <td>{{dev.FirstName}}</td>
                             <td>
                               {{dev.LastName}}
                             </td>
-                            <td>{{dev.IsInstaGamesDev}}</td>
+                            <td *ngIf="dev.IsInstaGamesDev else externalDev">
+                             <i title="InstaGames" class="las la-gamepad text-primary"></i>
+                            </td>
+                            <ng-template #externalDev>
+                              <td>
+                                 <i title="External Partner" class="las la-laptop-code text-primary"></i>
+                                </td>
+                            </ng-template>
                             <td>
                                <div class="flex align-items-center list-user-action">
                                   <a (click)='ViewDevs(dev)' class="iq-bg-warning crudBtn" title="Info"><i

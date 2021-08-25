@@ -2,13 +2,18 @@
     <div class="container-fluid">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="developer;else Loader">
            
-            <div class="iq-card-body">
+            <div class="iq-card-body text-center">
                 <h4 class="card-title">{{developer.FirstName}}</h4>
                 <h4 class="card-text">{{developer.LastName}} </h4>
                 <br>
-                <a class="card-link" routerLink="/Games">Games Created</a>
+                <a class="card-link" routerLink="/Games">Games Created:</a>
+                <br>
+                <br>
                 <ul class="list-unstyled">
-                    <li *ngFor="let game of developer.DeveloperGames">{{game.Title}}</li>
+                    <li *ngFor="let game of developer.DeveloperGames">{{game.Title}}&nbsp; 
+                        <small class="text-primary">Released : </small>&nbsp;{{game.ReleaseDate|date}}
+                        <br>
+                    </li>
                 </ul>
                 <br>
                 <br>

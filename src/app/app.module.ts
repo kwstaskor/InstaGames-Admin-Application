@@ -22,6 +22,7 @@ import { DeveloperDetailsComponent } from './Components/DeveloperComponents/deve
 import { DeveloperCreateComponent } from './Components/DeveloperComponents/developer-create/developer-create.component';
 import { MessageComponent } from './Components/MessageComponets/message/message.component';
 import { UserComponent } from './Components/UserComponents/user/user.component';
+import { MessageDetailsComponent } from './Components/MessageComponets/message-details/message-details.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { UserComponent } from './Components/UserComponents/user/user.component';
     DeveloperDetailsComponent,
     DeveloperCreateComponent,
     MessageComponent,
-    UserComponent
+    UserComponent,
+    MessageDetailsComponent
   ],
   imports: [
     BrowserModule,
