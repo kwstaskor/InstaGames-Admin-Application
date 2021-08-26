@@ -13,6 +13,7 @@ import { DeveloperDetailsComponent } from './Components/DeveloperComponents/deve
 import { DeveloperCreateComponent } from './Components/DeveloperComponents/developer-create/developer-create.component';
 import { MessageComponent } from './Components/MessageComponets/message/message.component';
 import { UserComponent } from './Components/UserComponents/user/user.component';
+import { UserDetailsComponent } from './Components/UserComponents/user-details/user-details.component';
 import { MessageDetailsComponent } from './Components/MessageComponets/message-details/message-details.component';
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: "Messages", component: MessageComponent },
   { path: "MessageDetails/"+":id", component: MessageDetailsComponent },
   { path: "Users", component: UserComponent },
+  { path: "Users/" + ":id", component: UserDetailsComponent },
   { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
   { path: "**", component: ErrorComponent }
 ];

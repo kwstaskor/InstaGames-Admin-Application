@@ -37,8 +37,20 @@ export class UserComponent implements OnInit {
     }
   }
 
+  DeleteUser(user:User){
+    this.userService.deleteUser(user.Id).subscribe(()=>{
+      this.isDeleted = true;
+
+      setTimeout(()=>{
+        this.isDeleted = false
+      },3000);
+
+      this.ReadUsers();
+    },(error)=>console.log(error));
+  }
+
   ViewUsers(user:User){
-    this.router.navigate(["/UserDetails", user.Id]);
+    this.router.navigate(["/Users", user.Id]);
   }
 
   key:any;

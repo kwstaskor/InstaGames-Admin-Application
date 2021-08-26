@@ -1,0 +1,49 @@
+<div class="container align-content-lg-center">
+    <div class="container-fluid">
+        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="user;else Loader">
+            <img *ngIf="user.PhotoUrl" src="https://localhost:44384/{{user.PhotoUrl}}" class="align-self-center card-img-top" alt="">
+            <img *ngIf="!user.PhotoUrl" src="https://localhost:44384/Content/images/user/user.jpg" class="align-self-center card-img-top" alt="">
+            <div class="iq-card-body text-center">
+                <h4 class="card-title">{{user.FirstName}}</h4>
+                <h4 class="card-text">{{user.LastName}} </h4>
+                <br>
+
+                <span class="text-primary">Email: </span>
+                <span>{{user.Email}}</span>
+                <br>
+
+                <span class="text-primary">Authorization: </span>
+                <span *ngIf="user.Role == 'Admin'" class="badge iq-bg-warning">{{user.Role}}</span>
+                <span *ngIf="user.Role == 'Subscriber'" class="badge iq-bg-success">{{user.Role}}</span>
+                <span *ngIf="user.Role == 'Unsubscribed'" class="badge iq-bg-primary">{{user.Role}}</span>
+                <br>               
+
+                <span class="text-primary">Registration Date: </span>
+                <span>{{user.RegistrationDate | date : 'short'}}</span>
+                <br>
+
+                <span class="text-primary">Subscription Plan: </span>
+                <span *ngIf="!user.SubscribePlan">No active plan</span>
+                <span *ngIf="user.SubscribePlan">{{user.SubscribePlan}}</span>
+                <br>
+
+                <span *ngIf="user.SubscriptionDay" class="text-primary">Subscription Date: </span>
+                <span *ngIf="user.SubscriptionDay">{{user.SubscriptionDay | date : 'short'}}</span>
+                <br>
+
+                <span *ngIf="user.ExpireDate" class="text-primary">Subscription Expiration: </span>
+                <span *ngIf="user.ExpireDate">{{user.ExpireDate | date : 'short'}}</span>
+                
+                <div class="text-center">
+                    <a routerLink='/Dashboard' class="card-link">Home</a>
+                    <a routerLink='/Users' class="card-link">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #Loader>
+    <img src="../../../../assets/Images/page-load-loader.gif">
+</ng-template>
+

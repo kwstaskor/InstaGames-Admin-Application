@@ -8,6 +8,7 @@ import { DeveloperService } from './developer.service';
   templateUrl: './developer.component.html',
   styleUrls: ['./developer.component.css']
 })
+
 export class DeveloperComponent implements OnInit {
   p: number =1;
   isDeleted:boolean = false;

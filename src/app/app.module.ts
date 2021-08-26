@@ -23,6 +23,7 @@ import { DeveloperCreateComponent } from './Components/DeveloperComponents/devel
 import { MessageComponent } from './Components/MessageComponets/message/message.component';
 import { UserComponent } from './Components/UserComponents/user/user.component';
 import { MessageDetailsComponent } from './Components/MessageComponets/message-details/message-details.component';
+import { UserDetailsComponent } from './Components/UserComponents/user-details/user-details.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MessageDetailsComponent } from './Components/MessageComponets/message-d
     DeveloperCreateComponent,
     MessageComponent,
     UserComponent,
-    MessageDetailsComponent
+    MessageDetailsComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
