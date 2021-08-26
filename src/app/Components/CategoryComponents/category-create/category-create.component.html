@@ -2,41 +2,46 @@
    <div class="row">
       <div class="col-sm-12">
          <div class="iq-card">
+
             <div class="iq-card-header d-flex justify-content-between">
                <div class="iq-header-title">
                   <h4 class="card-title">Add Category</h4>
                </div>
             </div>
+
             <div class="iq-card-body">
-               <form action="movie-view.html" (ngSubmit)="saveCategory()" #createCategory="ngForm" >
+               <form (ngSubmit)="saveCategory()">
+
                   <div class="row">
                      <div class="col-lg-12">
+
                         <div class="row">
-                           <div class="col-12 form-group">
-                              <input type="text" class="form-control" placeholder="Type" id="type" [(ngModel)]="type"
-                                 name="type" required >
-                                 <!-- <div *ngIf="form.get('type').hasError('required') && createCategory.submitted" class='alert alert-danger'>Type is required</div> -->
-                                 <div *ngIf="createCategory.touched">
-                                    <div *ngIf="!createCategory.valid" class="text-primary  col-lg-12">
-                                       Type is Required
-                                    </div>
-                                 </div>
-                           </div>
-                           <div class="col-12 form-group">
-                              <textarea name="description" rows="5" class="form-control" placeholder="Description"
-                                 [(ngModel)]="description" id="description"></textarea>
+                           <div class="col-6 form-group">
+                              <app-input PlaceHolder='Type' [Control]="categoryForm.get('type')">
+                              </app-input>
                            </div>
                         </div>
-                     </div>
 
+                        <div class="row">
+                           <div class="col-6 form-group">
+                             <app-text-area PlaceHolder='Description' [Control]="categoryForm.get('description')" ></app-text-area>
+                           </div>
+                        </div>
+
+                     </div>
                   </div>
+
+
                   <div class="row">
                      <div class="col-12 form-group ">
-                        <button type="submit" class="btn btn-primary m-2">Submit</button>
-                        <button routerLink='/Categories' type="reset"
-                           class="btn btn-danger m-2 card-link">cancel</button>
+                        <button [disabled]='categoryForm.invalid' type="submit"
+                           [ngClass]="{'btn-danger':categoryForm.invalid}" class="btn btn-primary m-2">Create Category
+                        </button>
+                        <button routerLink='/Developers' type="button"
+                           class="btn btn-danger m-2 card-link">Cancel</button>
                      </div>
                   </div>
+
                </form>
             </div>
          </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Developer } from './developer';
 import { DeveloperService } from './developer.service';
 
@@ -10,53 +10,65 @@ import { DeveloperService } from './developer.service';
 })
 
 export class DeveloperComponent implements OnInit {
-  p: number =1;
-  isDeleted:boolean = false;
-  developers!:Developer[];
-  FirstName:any;
+  p: number = 1;
+  isDeleted: boolean = false;
+  isCreated: boolean = false;
+  developers!: Developer[];
+  FirstName: any;
 
 
-  constructor(private DeveloperService:DeveloperService, private router:Router) {
+  constructor(private actRoute: ActivatedRoute, private DeveloperService: DeveloperService, private router: Router) {
+    this.CreateAlert();
   }
 
   ngOnInit(): void {
     this.ReadDevelopers();
-    }
-  
-    ReadDevelopers(){
-      this.DeveloperService.getDevelopers().subscribe(data => this.developers = data);
-    }
-    
-    DeleteDev(developer:Developer){
-      this.DeveloperService.deleteDeveloper(developer.DeveloperId).subscribe(()=>{
-        this.isDeleted = true;
-  
-        setTimeout(()=>{
-          this.isDeleted = false
-        },3000);
-  
-        this.ReadDevelopers();
-      },(error)=>console.log(error));
-    }
-  
-    Search(){
-      if(this.FirstName){
-        this.developers = this.developers.filter(d=>
-         d.FirstName.toUpperCase().includes(this.FirstName.toUpperCase())
-        );
-      }else{
-        this.ReadDevelopers();
-      }
-    }
-  
-    ViewDevs(developer:Developer){
-      this.router.navigate(["/DeveloperDetails" , developer.DeveloperId]);
-    }
-    
-  key:any;
-  reverse:boolean = false;
-    sort(key: any){
-  this.key = key;
-  this.reverse = !this.reverse;
+  }
+
+  ReadDevelopers() {
+    this.DeveloperService.getDevelopers().subscribe(data => this.developers = data);
+  }
+
+  ViewDevs(developer: Developer) {
+    this.router.navigate(["/DeveloperDetails", developer.DeveloperId]);
+  }
+
+  DeleteDev(developer: Developer) {
+    this.DeveloperService.deleteDeveloper(developer.DeveloperId).subscribe(() => {
+      this.DeleteAlert();
+      this.ReadDevelopers();
+    },
+      (error) => console.log(error));
+  }
+
+  Search() {
+    if (this.FirstName) {
+      this.developers = this.developers.filter(d =>
+        d.FirstName.toUpperCase().includes(this.FirstName.toUpperCase())
+      );
+    } else {
+      this.ReadDevelopers();
     }
   }
+
+  key: any;
+  reverse: boolean = false;
+  sort(key: any) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  CreateAlert() {
+    this.isCreated = this.actRoute.snapshot.params['isCreated'];
+    setTimeout(() => {
+      this.isCreated = false
+    }, 3000);
+  }
+
+  DeleteAlert() {
+    this.isDeleted = true;
+    setTimeout(() => {
+      this.isDeleted = false
+    }, 3000);
+  }
+}

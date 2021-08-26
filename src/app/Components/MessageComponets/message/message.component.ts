@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from '../message.service';
 import { Message } from './message';
 
@@ -13,9 +13,12 @@ export class MessageComponent implements OnInit {
   isDeleted: boolean = false;
   messages!: Message[];
   CreatorUserName: any;
+  isReplied: boolean = false;
 
-  constructor(private MessageService: MessageService, private router: Router) {
+  constructor(private actRoute: ActivatedRoute, private MessageService: MessageService, private router: Router) {
+    this.ReplyAlert();
   }
+
 
   ngOnInit(): void {
     this.ReadMessages();
@@ -27,12 +30,7 @@ export class MessageComponent implements OnInit {
 
   DeleteMessage(message: Message) {
     this.MessageService.deleteMessage(message.MessageId).subscribe(() => {
-      this.isDeleted = true;
-
-      setTimeout(() => {
-        this.isDeleted = false
-      }, 3000);
-
+      this.DeleteAlert();
       this.ReadMessages();
     }, (error) => console.log(error));
   }
@@ -57,4 +55,20 @@ export class MessageComponent implements OnInit {
     this.key = key;
     this.reverse = !this.reverse;
   }
+
+  ReplyAlert() {
+    this.isReplied = this.actRoute.snapshot.params['isReplied'];
+    setTimeout(() => {
+      this.isReplied = false
+    }, 3000);
+  }
+
+  DeleteAlert() {
+    this.isDeleted = true;
+
+    setTimeout(() => {
+      this.isDeleted = false
+    }, 3000);
+  }
+
 }

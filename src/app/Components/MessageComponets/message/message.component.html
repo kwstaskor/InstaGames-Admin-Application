@@ -11,7 +11,7 @@
 
                 <div class="iq-search-bar ml-auto mb-4">
                     <div class="searchbox">
-                       <input type="text" class="text search-input" placeholder="Search Username..." name="Title"
+                       <input type="text" class="text search-input" placeholder="Search Creator..." name="Title"
                           [(ngModel)]="CreatorUserName" (ngModelChange)="Search()">
                        <span class="search-link" href="#"><i class="ri-search-line"></i></span>
                     </div>
@@ -25,19 +25,27 @@
                     </button>
                  </div>
 
+                  <!--Reply Alert-->
+                  <div *ngIf="isReplied" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!&nbsp;</strong>Reply successfully sent.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                    </button>
+                 </div>
+
                 <div class="table-responsive">
                    <table class="table movie_table" style="width:100%">
                       <thead>
                          <tr>
                             <th (click)="sort('MessageId')">No&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i>
                             </th>
-                            <th (click)="sort('Creator.FirstName')">Creator&nbsp;<i
+                            <th (click)="sort('Creator.UserName')">Creator&nbsp;<i
                                 class="btn-sm btn-outline-primary fa fa-sort"></i></th>
                                 <th (click)="sort('Text')">Text&nbsp;<i
                                     class="btn-sm btn-outline-primary fa fa-sort"></i></th>
                             <th (click)="sort('SubmitDate')">Date Created&nbsp;<i
                                 class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                            <th style="width: 10%;">Status</th>
+                                <th (click)="sort('Answered')">Status&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i>
                             <th style="width: 10%;">Action</th>
                          </tr>
                       </thead>
@@ -62,7 +70,7 @@
                             <td>
                                <div class="flex align-items-center list-user-action">
                                   <a (click)="ViewMessage(message) " class="iq-bg-success crudBtn" data-placement="top" title="Reply"><i class="ri-message-line"></i></a>
-                                  <a class="iq-bg-primary crudBtn" title="Delete"><i class="ri-delete-bin-line"></i></a>
+                                  <a (click)="DeleteMessage(message)" class="iq-bg-primary crudBtn" title="Delete"><i class="ri-delete-bin-line"></i></a>
                                </div>
                             </td>
                          </tr>

@@ -2,6 +2,7 @@ export interface Message {
     MessageId: number,
     SubmitDate: Date,
     Text: string,
+    Reply: string,
     Creator: Creator,
     Answered: boolean
 }

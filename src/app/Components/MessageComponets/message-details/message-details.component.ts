@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NamesFormControl } from '../../SharedComponents/input/custom-formControls';
 import { MessageService } from '../message.service';
 import { Message } from '../message/message';
 
@@ -10,10 +12,19 @@ import { Message } from '../message/message';
 })
 export class MessageDetailsComponent implements OnInit {
 
+  messageForm = new FormGroup({
+    reply!: new NamesFormControl('',
+      [
+        Validators.required, Validators.minLength(2),
+        Validators.maxLength(10000)
+      ])
+  });
+
   messageId!: number;
   message!: Message;
+  isReplied:boolean=true
 
-  constructor(private actRoute: ActivatedRoute, private MessageService: MessageService) {
+  constructor(private router:Router ,private actRoute: ActivatedRoute, private MessageService: MessageService) {
     this.messageId = this.actRoute.snapshot.params['id'];
   }
 
@@ -26,8 +37,9 @@ export class MessageDetailsComponent implements OnInit {
   }
 
   setMessageStatusToAnswered(message:Message){
+    message.Reply = this.messageForm.controls.reply.value;
     message.Answered = true;
-    this.MessageService.editMessage(message).subscribe((data)=>console.log(data));
+    this.MessageService.editMessage(message).subscribe( ()=> this.router.navigate(['/Messages',this.isReplied]));
   }
 
 }

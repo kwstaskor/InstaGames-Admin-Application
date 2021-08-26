@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'
+import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderModule } from 'ngx-order-pipe';
+import { SummarizeTextPipe } from './summarize-text.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameComponent } from './Components/GameComponents/game/game.component';
 import { CategoryComponent } from './Components/CategoryComponents/category/category.component';
-import { ErrorComponent } from './Components/error/error.component';
-import { NavbarComponent } from './Components/navbar/navbar.component';
+import { ErrorComponent } from './Components/SharedComponents/error/error.component';
+import { NavbarComponent } from './Components/SharedComponents/navbar/navbar.component';
 import { DeveloperComponent } from './Components/DeveloperComponents/developer/developer.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
-import {HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { OrderModule } from 'ngx-order-pipe';
-import { SummarizeTextPipe } from './summarize-text.pipe';
 import { GameRatingComponent } from './Components/GameComponents/game-rating/game-rating.component';
 import { GameDetailsComponent } from './Components/GameComponents/game-details/game-details.component';
 import { CategoryDetailsComponent } from './Components/CategoryComponents/category-details/category-details.component';
@@ -24,6 +25,8 @@ import { MessageComponent } from './Components/MessageComponets/message/message.
 import { UserComponent } from './Components/UserComponents/user/user.component';
 import { MessageDetailsComponent } from './Components/MessageComponets/message-details/message-details.component';
 import { UserDetailsComponent } from './Components/UserComponents/user-details/user-details.component';
+import { InputComponent } from './Components/SharedComponents/input/input.component';
+import { TextAreaComponent } from './Components/SharedComponents/text-area/text-area.component';
 
 
 @NgModule({
@@ -47,15 +50,18 @@ import { UserDetailsComponent } from './Components/UserComponents/user-details/u
     UserComponent,
     MessageDetailsComponent,
     UserDetailsComponent
+    InputComponent,
+    TextAreaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgxPaginationModule,
-    OrderModule,
-    FormsModule
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
