@@ -6,11 +6,12 @@ export interface User{
     FirstName: string,
     LastName: string,
     PhotoUrl: string,
-    SubscribePlan: Plan,
+    SubscribePlan: Plan|string,
     SubscriptionDay: Date,
     IsSubscribed: boolean,
     ExpireDate: Date,
-    RegistrationDate: Date
+    RegistrationDate: Date,
+    EmailConfirmed: boolean
 }
 
 enum Plan{

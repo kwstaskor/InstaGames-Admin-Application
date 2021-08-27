@@ -25,6 +25,7 @@ import { MessageComponent } from './Components/MessageComponets/message/message.
 import { UserComponent } from './Components/UserComponents/user/user.component';
 import { MessageDetailsComponent } from './Components/MessageComponets/message-details/message-details.component';
 import { UserDetailsComponent } from './Components/UserComponents/user-details/user-details.component';
+import { RatingComponent } from './Components/RatingComponents/rating/rating.component';
 import { InputComponent } from './Components/SharedComponents/input/input.component';
 import { TextAreaComponent } from './Components/SharedComponents/text-area/text-area.component';
 
@@ -49,9 +50,10 @@ import { TextAreaComponent } from './Components/SharedComponents/text-area/text-
     MessageComponent,
     UserComponent,
     MessageDetailsComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
     InputComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

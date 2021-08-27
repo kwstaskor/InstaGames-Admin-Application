@@ -22,6 +22,11 @@
                 <span>{{user.RegistrationDate | date : 'short'}}</span>
                 <br>
 
+                <span class="text-primary">E-mail confirmed: </span>
+                <i *ngIf="user.EmailConfirmed" class="fa fa-check text-success"></i>
+                <i *ngIf="!user.EmailConfirmed" class="fa fa-times text-primary"></i>
+                <br>
+
                 <span class="text-primary">Subscription Plan: </span>
                 <span *ngIf="!user.SubscribePlan">No active plan</span>
                 <span *ngIf="user.SubscribePlan">{{user.SubscribePlan}}</span>
@@ -34,7 +39,7 @@
                 <span *ngIf="user.ExpireDate" class="text-primary">Subscription Expiration: </span>
                 <span *ngIf="user.ExpireDate">{{user.ExpireDate | date : 'short'}}</span>
                 
-                <div class="text-center">
+                <div class="text-center mt-4">
                     <a routerLink='/Dashboard' class="card-link">Home</a>
                     <a routerLink='/Users' class="card-link">Back</a>
                 </div>

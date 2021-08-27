@@ -15,6 +15,7 @@ import { MessageComponent } from './Components/MessageComponets/message/message.
 import { UserComponent } from './Components/UserComponents/user/user.component';
 import { UserDetailsComponent } from './Components/UserComponents/user-details/user-details.component';
 import { MessageDetailsComponent } from './Components/MessageComponets/message-details/message-details.component';
+import { RatingComponent } from './Components/RatingComponents/rating/rating.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: "MessageDetails/" + ":id", component: MessageDetailsComponent },
   { path: "Users", component: UserComponent },
   { path: "Users/" + ":id", component: UserDetailsComponent },
+  { path: "UserGameRatings", component: RatingComponent },
   { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
   { path: "**", component: ErrorComponent }
 ];
