@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-lg-12">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title">Game Rating Details</h4>
+                    </div>
+                </div>
+                <div class="iq-card-body" *ngIf="Rating;else Loader">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <ul id="top-tabbar-vertical" class="p-0">
+                                <li id="personal">
+                                    <a routerLink="UserGameRatings/ + {{Rating.GameId}}" (click)='ViewRatingDetails(Rating)' class="card-link">
+                                        <i class="las la-star text-primary"></i><span>Game Rating Info</span>
+                                    </a>
+                                </li>
+                                <li class="active" id="contact">
+                                    <a routerLink="UserRatings/ + {{Rating.GameId}}">
+                                        <i class="ri-user-fill text-danger"></i><span>User Ratings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="container align-content-lg-center">
+                            <div class="text-center col-md-9">
+                                <!-- tab content -->
+                                <table class="table movie_table" style="width:100%">
+                                    <thead>
+                                       <tr>
+                                          <th (click)="sort('UserGameRatingsId')">User Rating Id&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                                          <th (click)="sort('UserName')">Username&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                                          <th (click)="sort('Rating')">Rating&nbsp;<i
+                                                class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                                       </tr>
+                                    </thead>
+                                    <tbody *ngIf="Rating.UserGameRatings && Rating.UserGameRatings.length ; else noData;">
+                                       <tr *ngFor="let userRating of Rating.UserGameRatings | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
+                                          <td>{{userRating.UserGameRatingsId}}</td>
+                                          <td>{{userRating.UserName}}</td>
+                                          <td>{{userRating.Rating}}</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #Loader>
+    <img src="../../../../assets/Images/page-load-loader.gif">
+</ng-template>
+
+<!--IF no Data-->
+<ng-template #noData>
+    <tbody>
+       <tr>
+          <td colspan="8">
+             No data availabe in this table
+          </td>
+       </tr>
+    </tbody>
+ </ng-template>

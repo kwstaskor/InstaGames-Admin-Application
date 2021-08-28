@@ -1,11 +1,13 @@
 <div class="iq-card">
-    <div class="iq-card-header d-flex justify-content-between align-items-center">
-        <div class="iq-header-title">
-            <h4 class="card-title">Games Rated</h4>
-        </div>
-        <div id="top-rated-item-slick-arrow" class="slick-aerrow-block"></div>
-    </div>
+    
     <div class="iq-card-body">
+        <!-- <div class="iq-card-header d-flex justify-content-between align-items-center">
+            <div class="iq-header-title">
+                <h4 class="card-title">Games Rated</h4>
+            </div>
+            <div id="top-rated-item-slick-arrow" class="slick-aerrow-block"></div>
+        </div> -->
+        
         <div class="iq-search-bar ml-auto mb-4">
             <div class="searchbox">
                 <input type="text" class="text search-input" placeholder="Search By Game Title..." name="GameTitle"
@@ -13,8 +15,8 @@
                 <span class="search-link" href="#"><i class="ri-search-line"></i></span>
             </div>
         </div>
-        <ul class="list-unstyled row top-rated-item mb-0">
-            <li *ngFor="let game of Games" class="col-sm-6 col-lg-4 col-xl-3 mb-2 iq-rated-box">
+        <ul class="list-unstyled row mb-0">
+            <li *ngFor="let game of Games | orderBy:key | paginate:{itemsPerPage:12,currentPage:p}" class="col-sm-6 col-lg-4 col-xl-3 mb-2 iq-rated-box">
                 <div class="iq-card mb-0">
                     <div class="iq-card-body p-0">
                         <a (click)='ViewRatingDetails(game)' routerLink='/UserGameRatings/?id={{game.GameId}}' class="iq-thumb">
@@ -34,6 +36,9 @@
                 </div>
             </li>
         </ul>
+        <div class="pull-right mt-5">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+         </div>
     </div>
 </div>
 

@@ -5,13 +5,13 @@ import { Rating } from '../rating/rating';
 import { RatingService } from '../rating/rating.service';
 
 @Component({
-  selector: 'app-rating-details',
-  templateUrl: './rating-details.component.html',
-  styleUrls: ['./rating-details.component.css']
+  selector: 'app-rating-user-ratings',
+  templateUrl: './rating-user-ratings.component.html',
+  styleUrls: ['./rating-user-ratings.component.css']
 })
+export class RatingUserRatingsComponent implements OnInit {
 
-export class RatingDetailsComponent implements OnInit {
-
+  p: number = 1;
   Rating!: Rating;
   GameId!: number;
 
@@ -22,12 +22,19 @@ export class RatingDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.ReadRatingDetails();
   }
-
+  
   ReadRatingDetails(){
     this.ratingService.GetRatingDetails(this.GameId).subscribe(data => this.Rating = data);
   }
 
-  ViewUserRatings(userRatings: Rating){
-    this.router.navigate(["/UserRatings", userRatings.GameId]);
+  ViewRatingDetails(userDetails: Rating){
+    this.router.navigate(["/UserGameRatings", userDetails.GameId]);
+  }
+
+  key: any;
+  reverse: boolean = false;
+  sort(key: any) {
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 }

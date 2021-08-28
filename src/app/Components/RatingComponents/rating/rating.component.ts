@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Rating, UserGameRatings } from './rating';
+import { Rating } from './rating';
 import { RatingService } from './rating.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { RatingService } from './rating.service';
 
 export class RatingComponent implements OnInit {
 
+  p: number = 1;
   Games!: Rating[];
   GameTitle!: string;
 
@@ -28,6 +29,13 @@ export class RatingComponent implements OnInit {
 
   ViewRatingDetails(ratingDetails: Rating){
     this.router.navigate(["/UserGameRatings", ratingDetails.GameId]);
+  }
+
+  key: any;
+  reverse: boolean = false;
+  sort(key: any) {
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 
   Search() {
