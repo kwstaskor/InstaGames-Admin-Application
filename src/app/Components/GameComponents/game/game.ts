@@ -2,7 +2,7 @@ export interface Game {
     GameId:number,
     Title :string,
     Photo :string,
-    Trailer :string,
+    Trailer :string|any,
     Description :string,
     Pegi :Pegi|number,
     ReleaseDate :Date,

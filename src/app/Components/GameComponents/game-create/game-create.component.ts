@@ -59,16 +59,14 @@ export class GameCreateComponent implements OnInit {
     isEarlyAccess!: new FormControl('')
   });
 
-
   Categories!: Category[];
   Developers!: Developer[];
   Pegilist!: Pegi[];
 
-  constructor(private GameService: GameService, 
+  constructor(private GameService: GameService,
     private CategoryService: CategoryService,
-     private DeveloperService: DeveloperService, 
-     private router: Router) 
-     { }
+    private DeveloperService: DeveloperService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.ReadCategories();
@@ -88,7 +86,11 @@ export class GameCreateComponent implements OnInit {
     this.GameService.getPegi().subscribe((data) => this.Pegilist = data);
   }
 
-  isCreated:boolean=true
+  public uploadFinished = (event: any) => {
+    this.gameForm.controls.photo.setValue("/Content/images/Games/"+event);
+  }
+
+  isCreated: boolean = true
   saveGame() {
 
     let game = <Game>{};
@@ -96,38 +98,50 @@ export class GameCreateComponent implements OnInit {
     game.Description = this.gameForm.controls.description.value;
     game.Photo = this.gameForm.controls.photo.value;
     game.ReleaseDate = this.gameForm.controls.releaseDate.value;
-    game.Trailer = this.gameForm.controls.trailer.value;
 
-    if(this.gameForm.controls.isEarlyAccess){
-      game.IsEarlyAccess = this.gameForm.controls.isEarlyAccess.value;
+    if(this.gameForm.controls.trailer){
+      game.Trailer = this.gameForm.controls.trailer.value;
     }else{
+      game.Trailer = null;
+    }
+    
+
+    if (this.gameForm.controls.isEarlyAccess) {
+      game.IsEarlyAccess = this.gameForm.controls.isEarlyAccess.value;
+    } else {
       game.IsEarlyAccess = false;
     }
 
-    if(this.gameForm.controls.isReleased){
+    if (this.gameForm.controls.isReleased) {
       game.IsReleased = this.gameForm.controls.isReleased.value;
-    }else{
+    } else {
       game.IsReleased = false;
     }
 
-    game.Tag =  this.gameForm.controls.tag.value;
+    game.Tag = this.gameForm.controls.tag.value;
 
     game.GameCategories = new Array;
     for (const cat of this.gameForm.controls.categories.value) {
-      game.GameCategories.push(<Category>{CategoryId:cat})
+      game.GameCategories.push(<Category>{ CategoryId: cat })
     }
 
     game.GameDevelopers = new Array;
     for (const dev of this.gameForm.controls.developers.value) {
-      game.GameDevelopers.push(<Developer>{DeveloperId:dev})
+      game.GameDevelopers.push(<Developer>{ DeveloperId: dev })
     }
-  
-    game.Pegi = <Pegi>{PegiId: this.gameForm.controls.pegi.value};
-    game.GameUrl =  this.gameForm.controls.gameUrl.value;
+
+    game.Pegi = <Pegi>{ PegiId: this.gameForm.controls.pegi.value };
+    game.GameUrl = this.gameForm.controls.gameUrl.value;
 
     this.GameService.createGame(game).subscribe(() => {
-      this.router.navigate(["/Game",this.isCreated]);
+      this.router.navigate(['/Games', this.isCreated]);
     });
   }
+
+  showErrors() {
+    return this.gameForm.errors && (this.gameForm.touched || this.gameForm.dirty)
+  }
+
+
 
 }

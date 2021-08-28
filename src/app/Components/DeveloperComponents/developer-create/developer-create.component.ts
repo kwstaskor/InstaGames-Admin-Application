@@ -46,8 +46,7 @@ export class DeveloperCreateComponent implements OnInit {
      }else{
        developer.IsInstaGamesDev = false;
      }
-    
-  
+     
     this.developerService.createDeveloper(developer).subscribe(()=>{
       this.router.navigate(['/Developers',this.isCreated]);
     });

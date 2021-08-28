@@ -33,9 +33,9 @@
               "src/styles.css"
             ],
             "scripts": [
-             "src/js/chart-custom.js",
-             "src/js/custom.js"
-              ]
+              "src/js/chart-custom.js",
+              "src/js/custom.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -113,4 +113,3 @@
   },
   "defaultProject": "application"
 }
-

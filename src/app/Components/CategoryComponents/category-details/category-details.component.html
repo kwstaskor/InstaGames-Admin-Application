@@ -5,7 +5,7 @@
                 <h4 class="card-title">{{category.Type}}</h4>
                 <p class="card-text">{{category.Description}} </p>
 
-              <a class="card-link" routerLink="/Games">Games:</a>
+                <a class="card-link" routerLink="/Games">Games:</a>
                 <ul class="list-unstyled">
                     <li *ngFor="let game of category.Games">{{game.Title}}</li>
                 </ul>
@@ -20,4 +20,4 @@
 
 <ng-template #Loader>
     <img src="../../../../assets/Images/page-load-loader.gif">
-    </ng-template>
+</ng-template>

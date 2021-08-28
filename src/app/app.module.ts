@@ -28,6 +28,7 @@ import { UserDetailsComponent } from './Components/UserComponents/user-details/u
 import { RatingComponent } from './Components/RatingComponents/rating/rating.component';
 import { InputComponent } from './Components/SharedComponents/input/input.component';
 import { TextAreaComponent } from './Components/SharedComponents/text-area/text-area.component';
+import { UploadComponent } from './Components/SharedComponents/upload/upload.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { TextAreaComponent } from './Components/SharedComponents/text-area/text-
     UserDetailsComponent,
     InputComponent,
     TextAreaComponent,
-    RatingComponent
+    RatingComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,

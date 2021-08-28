@@ -9,13 +9,16 @@
     <div *ngIf="Control.errors.required" class="invalid-feedback">
         Value is required.
     </div>
+
     <div *ngIf="Control.errors.minlength" class="invalid-feedback">
         Value you entered is: {{Control.errors.minlength.actualLength}} characters long, but it cannot be
         less than: {{Control.errors.minlength.requiredLength}}.
     </div>
+
     <div *ngIf="Control.errors.maxlength" class="invalid-feedback">
         (20) characters maximum.
     </div>
+    
     <div *ngIf="Control.errors.pattern" class="invalid-feedback">
         Only letters accepted.
     </div>

@@ -28,8 +28,7 @@ export class CategoryCreateComponent implements OnInit {
         Validators.maxLength(10000),
       ])
   });
-
-  category!: Category;
+  
   constructor(private router: Router, private CategoryService: CategoryService, private fb: FormBuilder) {
   }
 

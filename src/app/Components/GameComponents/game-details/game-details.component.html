@@ -1,7 +1,7 @@
 <div class="container align-content-lg-center">
     <div class="container-fluid">
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="game;else Loader">
-            <img src="https://localhost:44384/{{game.Photo}}" class="card-img-top" alt="">
+            <img src="https://localhost:44369/{{game.Photo}}" class="card-img-top" alt="">
             <div class="iq-card-body">
                 <h4 class="card-title">{{game.Title}}</h4>
                 <p class="card-text">{{game.Description}} </p>
@@ -10,7 +10,7 @@
                     <a class="btn-link text-primary crudBtn" (click)='WatchTrailer()'>Watch Trailer&nbsp;<i class="las la-play"></i></a>
                     <section *ngIf="showTrailerField" class="height-100-vh iq-main-slider">
                         <video class="video d-block" width="100%" height="100%" controls>
-                            <source src="https://localhost:44384/{{game.Trailer}}" type="video/mp4">
+                            <source src="https://localhost:44369/{{game.Trailer}}" type="video/mp4">
                         </video>
                     </section>
                 </div>
