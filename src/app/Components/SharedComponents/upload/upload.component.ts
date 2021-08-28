@@ -36,9 +36,10 @@ export class UploadComponent implements OnInit {
 
           this.fileName = fileToUpload.name;
           const formData = new FormData();
-          formData.append('file', fileToUpload, fileToUpload.name);
+          formData.append('file', fileToUpload, "/Content/images/Games/"+fileToUpload.name);
           this.hasFile = true;
-          this.uploadService.post('https://localhost:44369/api/game/uploadimage', formData, { reportProgress: true, observe: 'events' })
+
+          this.uploadService.post('https://localhost:44369/api/game/UploadGameFiles', formData, { reportProgress: true, observe: 'events' })
             .subscribe(event => {
               if (event.type === HttpEventType.UploadProgress)
                 this.progress = Math.round(100 * event.loaded / event.total!);
