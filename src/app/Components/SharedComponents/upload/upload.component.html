@@ -1,20 +1,15 @@
-<div class="col-12 photo_upload form-group">
-
-    <input type="file" #file (change)="uploadFile((file.files)!)" class="photo_upload-upload"
+    
+    <input type="file" #file (change)="uploadFile((file.files)!)" class="form_gallery-upload"
         accept="image/png, image/jpeg , image/jpg">
    
-    <label *ngIf="hasFile else Upload" (click)="file.click()">{{fileName}}</label>
+    <label *ngIf="hasFile else Upload" (click)="file.click()"> {{fileName  }}
+        <small class="upload" *ngIf="progress > 0">
+        {{progress}}%
+    </small><span class="upload" *ngIf="message">
+        {{message}}
+    </span> </label>
     <ng-template #Upload>
         <label class="invalidPhoto" (click)="file.click()">Upload Image</label>
     </ng-template>
 
-</div>
 
-<div class="col-md-12">
-    <small class="upload" *ngIf="progress > 0">
-        {{progress}}%
-    </small>
-    <span class="upload" *ngIf="message">
-        {{message}}
-    </span>
-</div>

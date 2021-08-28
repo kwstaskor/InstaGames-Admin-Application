@@ -29,6 +29,7 @@ import { RatingComponent } from './Components/RatingComponents/rating/rating.com
 import { InputComponent } from './Components/SharedComponents/input/input.component';
 import { TextAreaComponent } from './Components/SharedComponents/text-area/text-area.component';
 import { UploadComponent } from './Components/SharedComponents/upload/upload.component';
+import { UploadVideoComponent } from './Components/SharedComponents/upload-video/upload-video.component'
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { UploadComponent } from './Components/SharedComponents/upload/upload.com
     InputComponent,
     TextAreaComponent,
     RatingComponent,
-    UploadComponent
+    UploadComponent,
+    UploadVideoComponent
   ],
   imports: [
     BrowserModule,

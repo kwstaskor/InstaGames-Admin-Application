@@ -48,7 +48,9 @@ export class GameCreateComponent implements OnInit {
       ]),
     releaseDate: new FormControl('',
       [
-        Validators.required
+        Validators.required,
+        Validators.min(1950),
+        Validators.max(2100)
       ]),
     developers: new FormControl('',
       [
@@ -90,6 +92,10 @@ export class GameCreateComponent implements OnInit {
     this.gameForm.controls.photo.setValue("/Content/images/Games/"+event);
   }
 
+  trailerUploadFinished =(event:any) =>{
+    this.gameForm.controls.trailer.setValue("/Content/video/"+event)
+  }
+
   isCreated: boolean = true
   saveGame() {
 
@@ -99,20 +105,20 @@ export class GameCreateComponent implements OnInit {
     game.Photo = this.gameForm.controls.photo.value;
     game.ReleaseDate = this.gameForm.controls.releaseDate.value;
 
-    if(this.gameForm.controls.trailer){
+    if(this.gameForm.controls.trailer.value){
       game.Trailer = this.gameForm.controls.trailer.value;
     }else{
       game.Trailer = null;
     }
     
 
-    if (this.gameForm.controls.isEarlyAccess) {
+    if (this.gameForm.controls.isEarlyAccess.value) {
       game.IsEarlyAccess = this.gameForm.controls.isEarlyAccess.value;
     } else {
       game.IsEarlyAccess = false;
     }
 
-    if (this.gameForm.controls.isReleased) {
+    if (this.gameForm.controls.isReleased.value) {
       game.IsReleased = this.gameForm.controls.isReleased.value;
     } else {
       game.IsReleased = false;

@@ -13,27 +13,34 @@
                <form [formGroup]='gameForm' (ngSubmit)='saveGame()'>
 
                   <div class="row">
+
                      <div class="col-lg-7">
 
                         <div class="row">
+
                            <div class="col-12 form-group">
                               <app-input PlaceHolder='Title' [Control]="gameForm.get('title')"></app-input>
                            </div>
-                        
+
+                           <div class="col-12 form_gallery form-group">
+                              <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+                           </div>
+
                            <div class="col-md-6 form-group">
-                              <select formControlName="categories" class="form-control" multiple [ngClass]="{'is-invalid':gameForm.controls.categories.errors &&
-                              (gameForm.controls.categories.touched || gameForm.controls.categories.dirty)}">
-                                 <option disabled="">Game Category</option>
-                                 <option [ngValue]="cat.CategoryId" *ngFor="let cat of Categories">{{cat.Type}}</option>
+                              <label for="pegiId">PEGI</label>
+                              <select formControlName='pegi' class="form-control" id="pegiId" name="pegiId" [ngClass]="{'is-invalid':gameForm.controls.pegi.errors &&
+                              (gameForm.controls.pegi.touched || gameForm.controls.pegi.dirty)}">
+                                 <option selected disabled="">PEGI</option>
+                                 <option [ngValue]="pegi.PegiId" *ngFor="let pegi of Pegilist">{{pegi.PegiAge}}</option>
                               </select>
-                              <ng-container *ngIf="gameForm.controls.categories.errors">
-                                 <div *ngIf="gameForm.controls.categories.errors.required" class="invalid-feedback">
+                              <ng-container *ngIf="gameForm.controls.pegi.errors">
+                                 <div *ngIf="gameForm.controls.pegi.errors.required" class="invalid-feedback">
                                     Value is required.
                                  </div>
                               </ng-container>
                            </div>
 
-                           <div class="col-sm-6 form-group">
+                           <div class="col-md-6 form-group">
                               <label for="tag">Tag</label>
                               <select formControlName='tag' class="form-control" id="tag" [ngClass]="{'is-invalid':gameForm.controls.tag.errors &&
                               (gameForm.controls.tag.touched || gameForm.controls.tag.dirty)}">
@@ -52,19 +59,16 @@
                               <app-text-area PlaceHolder='Descripiton' [Control]="gameForm.get('description')">
                               </app-text-area>
                            </div>
-                        </div>
 
+                        </div>
                      </div>
 
                      <div class="col-lg-5">
-                        <div class="d-block position-relative">
-                           <div class="form_video-upload">
-                              <input formControlName='trailer' type="file" name="trailer" accept="video/mp4" multiple>
-                              <p>Upload video</p>
-                           </div>
-                        </div>
+                        <app-upload-video (onTrailerUploadFinished)='trailerUploadFinished($event)'></app-upload-video>
                      </div>
+
                   </div>
+
                   <div class="row">
 
                      <div class="col-sm-6 form-group">
@@ -76,6 +80,14 @@
                            <div *ngIf="gameForm.controls.releaseDate.errors.required" class="invalid-feedback">
                               Value is required.
                            </div>
+                           <div *ngIf="gameForm.controls.releaseDate.errors.min" class="invalid-feedback">
+                             Dude what the fuck? {{gameForm.controls.releaseDate.errors.min.actual}} ? 
+                             Seriously?
+                           </div>
+                           <div *ngIf="gameForm.controls.releaseDate.errors.max" class="invalid-feedback">
+                              Dude what the fuck? {{gameForm.controls.releaseDate.errors.max.actual}} ? 
+                             Seriously?
+                           </div>
                         </ng-container>
                      </div>
 
@@ -85,10 +97,23 @@
                      </div>
 
                      <div class="col-sm-6 form-group">
+                        <select formControlName="categories" class="form-control" multiple [ngClass]="{'is-invalid':gameForm.controls.categories.errors &&
+                        (gameForm.controls.categories.touched || gameForm.controls.categories.dirty)}">
+                           <option disabled="">Choose Categories</option>
+                           <option [ngValue]="cat.CategoryId" *ngFor="let cat of Categories">{{cat.Type}}</option>
+                        </select>
+                        <ng-container *ngIf="gameForm.controls.categories.errors">
+                           <div *ngIf="gameForm.controls.categories.errors.required" class="invalid-feedback">
+                              Value is required.
+                           </div>
+                        </ng-container>
+                     </div>
+
+                     <div class="col-sm-6 form-group">
                         <select formControlName="developers" class="form-control" id="exampleFormControlSelect3"
                            [ngClass]="{'is-invalid':gameForm.controls.developers.errors &&
                         (gameForm.controls.developers.touched || gameForm.controls.developers.dirty)}" multiple>
-                           <option disabled="">Choose Developer</option>
+                           <option disabled="">Choose Developers</option>
                            <option [ngValue]="dev.DeveloperId" *ngFor="let dev of Developers">{{dev.FirstName}}</option>
                         </select>
                         <ng-container *ngIf="gameForm.controls.developers.errors">
@@ -98,28 +123,16 @@
                         </ng-container>
                      </div>
 
-                     <div class="col-sm-6 form-group">
-                        <label for="pegiId">PEGI</label>
-                        <select formControlName='pegi' class="form-control" id="pegiId" name="pegiId" [ngClass]="{'is-invalid':gameForm.controls.pegi.errors &&
-                        (gameForm.controls.pegi.touched || gameForm.controls.pegi.dirty)}">
-                           <option selected disabled="">PEGI</option>
-                           <option [ngValue]="pegi.PegiId" *ngFor="let pegi of Pegilist">{{pegi.PegiAge}}</option>
-                        </select>
-                        <ng-container *ngIf="gameForm.controls.pegi.errors">
-                           <div *ngIf="gameForm.controls.pegi.errors.required" class="invalid-feedback">
-                              Value is required.
-                           </div>
-                        </ng-container>
-                     </div>
+                  </div>
 
-                     <app-upload  (onUploadFinished)="uploadFinished($event)" ></app-upload>
-                 
-                     <div class="col-sm-6 form-group mt-2">
+                  <div class="row">
+
+                     <div class="col-sm-12 form-group mt-2">
 
                         <div class="custom-control custom-checkbox d-inline-block">
                            <input formControlName='isReleased' type="checkbox" class="custom-control-input"
-                              id="exampleInputdate">
-                           <label class="custom-control-label" for="exampleInputdate"> Is game released?</label>
+                              id="isReleased">
+                           <label class="custom-control-label" for="isReleased"> Is game released?</label>
                         </div>
 
                         <div class="custom-control custom-checkbox d-inline-block ml-5">
@@ -129,9 +142,11 @@
                         </div>
 
                      </div>
-                       
-                     <div class="col-12 form-group">
 
+                  </div>
+                  <div class="row">
+
+                     <div class="col-sm-12 form-group">
                         <div *ngIf="gameForm.invalid" class="text-primary mt-5">
                            <small>
                               <i class="las la-image"></i>
@@ -142,17 +157,23 @@
                               <br>
                               <i class="las la-video"></i>
                               Trailer is not required.
+                              <br>
+                              <i class="las la-video"></i>
+                              Trailer size can't be over 40<span style="font-size: 80%;">(mb)</span>.
                            </small>
                         </div>
+                     </div>
 
+                  </div>
+
+                  <div class="row">
+                     <div class="col-sm-12 form-group">
                         <button [disabled]='gameForm.invalid' type="submit" [ngClass]="{'btn-danger':gameForm.invalid}"
                            class="btn btn-primary m-2">Create Game
                         </button>
                         <button routerLink='/Games' type="button" class="btn btn-danger m-2 card-link">Cancel</button>
                      </div>
-
                   </div>
-
                </form>
 
             </div>
@@ -164,4 +185,4 @@
 
 <div>Form Contents:{{gameForm.value|json}}</div>
 <div>Form Contents:{{gameForm.valid}}</div>
-<div>Errors arround First Name:{{gameForm.controls.photo.errors|json}}</div>
+<div>Errors arround First Name:{{gameForm.controls.releaseDate.errors|json}}</div>

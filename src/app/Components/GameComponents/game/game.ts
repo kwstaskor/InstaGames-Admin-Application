@@ -10,7 +10,7 @@ export interface Game {
     IsEarlyAccess :boolean,
     Rating:number,
     Tag :string,
-    GameUrl :string,
+    GameUrl :string|any,
     Categories:Category[],
     Developers:Developer[],
     GameDevelopers:Developer[]|any,

@@ -1,0 +1,28 @@
+<div class="d-block position-relative">
+    <div class="form_video-upload">
+        <input #file (change)="uploadFile((file.files)!)" type="file" name="trailer"
+            accept=".mp4 , .mkv , .avi">
+        <p (click)="file.click()">Upload Video</p>
+    </div>
+</div>
+
+<div *ngIf="uploadedTrailer" class="d-block position-relative">
+
+    <section class="height-100-vh iq-main-slider">
+        <video class="video d-block" width="100%" height="100%" controls>
+            <source [src]="uploadedTrailer" type="video/mp4">
+        </video>
+    </section>
+
+    <div class="col-md-12">
+        <input #file (change)="uploadFile((file.files)!)" type="file" name="trailer"
+        accept="video/mp4 , video/MKV  , video/avi" style="display: none;">
+        <a class="crudBtn text-primary" (click)="file.click()">{{fileName}}</a>
+        <small class="upload" *ngIf="progress > 0">
+            {{progress}}%
+        </small>
+        <span class="upload" *ngIf="message">
+            {{message}}
+        </span>
+    </div>
+</div>
