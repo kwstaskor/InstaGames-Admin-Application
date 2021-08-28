@@ -35,6 +35,13 @@
                             </button>
                         </div>
 
+                        <div *ngIf="isEdited" class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <strong>Success!&nbsp;</strong>Category edited successfully.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
                         <table class="table movie_table " style="width:100%">
                             <thead>
                                 <tr>
@@ -58,7 +65,7 @@
                                     <td>
                                         <div class="flex align-items-center list-user-action">
                                             <a (click)="ViewCategories(category)" class="iq-bg-warning crudBtn" title="Info"><i class="lar la-eye"></i></a>
-                                            <a class="iq-bg-success crudBtn" title="Edit"><i class="ri-pencil-line"></i></a>
+                                            <a (click)="EditCategory(category)" class="iq-bg-success crudBtn" title="Edit"><i class="ri-pencil-line"></i></a>
                                             <a (click)="DeleteCategory(category)" class="iq-bg-primary crudBtn"
                                                 title="Delete"><i class="ri-delete-bin-line"></i></a>
                                         </div>
@@ -92,3 +99,7 @@
         this.router.navigateByUrl('/CategoryDetails');
     };
 </script>
+
+<ng-template #Loader>
+    <img src="../../../../assets/Images/page-load-loader.gif">
+ </ng-template>

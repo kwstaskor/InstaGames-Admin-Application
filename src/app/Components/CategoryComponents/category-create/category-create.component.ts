@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Category } from '../category/category';
 import { CategoryService } from '../category/category.service';
@@ -28,8 +27,9 @@ export class CategoryCreateComponent implements OnInit {
         Validators.maxLength(10000),
       ])
   });
-  
-  constructor(private router: Router, private CategoryService: CategoryService, private fb: FormBuilder) {
+
+  category!: Category;
+  constructor(private router: Router, private CategoryService: CategoryService) {
   }
 
   ngOnInit(): void {

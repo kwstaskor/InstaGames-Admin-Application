@@ -16,6 +16,7 @@ import { UserComponent } from './Components/UserComponents/user/user.component';
 import { UserDetailsComponent } from './Components/UserComponents/user-details/user-details.component';
 import { MessageDetailsComponent } from './Components/MessageComponets/message-details/message-details.component';
 import { RatingComponent } from './Components/RatingComponents/rating/rating.component';
+import { CategoryEditComponent } from './Components/CategoryComponents/category-edit/category-edit.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: "Categories", component: CategoryComponent },
   { path: "Categories/" + ":isCreated", component: CategoryComponent },
   { path: "CategoryDetails/" + ":id", component: CategoryDetailsComponent },
+  { path: "CategoryEdit/"+ ":id", component: CategoryEditComponent },
   { path: "Developers", component: DeveloperComponent },
   { path: "Developers/"+ ":isCreated", component: DeveloperComponent },
   { path: "DeveloperDetails/" + ":id", component: DeveloperDetailsComponent },

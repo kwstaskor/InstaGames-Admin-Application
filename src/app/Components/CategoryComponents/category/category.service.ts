@@ -36,9 +36,9 @@ export class CategoryService {
     return this.httpService.delete<Category>(url, this.httpOptions)
   }
   
-  updateCategory(category:Category){
+  updateCategory(category:Category):Observable<Category>{
     const url = `${this.URL}/${category.CategoryId}`;
-    return this.httpService.put(url, category, this.httpOptions);
+    return this.httpService.put<Category>(url , category, this.httpOptions);
   }
   
 

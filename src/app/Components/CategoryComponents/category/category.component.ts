@@ -17,9 +17,11 @@ export class CategoryComponent implements OnInit {
   categories!: Category[];
   Type: any;
   isCreated: boolean = false;
+  isEdited: boolean = false;
 
   constructor(private actRoute: ActivatedRoute, private CategoryService: CategoryService, private router: Router) {
     this.CreateAlert();
+    this.EditAlert();
    }
 
   ngOnInit(): void {
@@ -32,6 +34,10 @@ export class CategoryComponent implements OnInit {
 
   ViewCategories(category: Category) {
     this.router.navigate(["/CategoryDetails", category.CategoryId]);
+  }
+
+  EditCategory(category: Category) {
+    this.router.navigate(["/CategoryEdit", category.CategoryId]);
   }
 
   DeleteCategory(category: Category) {
@@ -71,5 +77,15 @@ export class CategoryComponent implements OnInit {
       this.isDeleted = false
     }, 3000);
   }
+
+  
+  EditAlert() {
+    this.isEdited = this.actRoute.snapshot.params['isEdited'];
+    setTimeout(() => {
+      this.isEdited = false
+    }, 3000);
+  }
+
+  
   
 }

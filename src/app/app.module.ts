@@ -22,6 +22,7 @@ import { CategoryCreateComponent } from './Components/CategoryComponents/categor
 import { DeveloperDetailsComponent } from './Components/DeveloperComponents/developer-details/developer-details.component';
 import { DeveloperCreateComponent } from './Components/DeveloperComponents/developer-create/developer-create.component';
 import { MessageComponent } from './Components/MessageComponets/message/message.component';
+import { CategoryEditComponent } from './Components/CategoryComponents/category-edit/category-edit.component';
 import { UserComponent } from './Components/UserComponents/user/user.component';
 import { MessageDetailsComponent } from './Components/MessageComponets/message-details/message-details.component';
 import { UserDetailsComponent } from './Components/UserComponents/user-details/user-details.component';
@@ -54,8 +55,10 @@ import { UploadVideoComponent } from './Components/SharedComponents/upload-video
     MessageDetailsComponent,
     UserDetailsComponent,
     InputComponent,
+    RatingComponent,
     TextAreaComponent,
     RatingComponent,
+    CategoryEditComponent,
     UploadComponent,
     UploadVideoComponent
   ],

@@ -5,26 +5,27 @@
 
             <div class="iq-card-header d-flex justify-content-between">
                <div class="iq-header-title">
-                  <h4 class="card-title">Add Category</h4>
+                  <h4 class="card-title">Edit Category</h4>
                </div>
             </div>
 
             <div class="iq-card-body">
-               <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+               <form [formGroup]="categoryEdit" (ngSubmit)="editCategory()">
 
                   <div class="row">
                      <div class="col-lg-12">
 
                         <div class="row">
                            <div class="col-6 form-group">
-                              <app-input PlaceHolder='Type' [Control]="categoryForm.get('type')">
+                              <app-input PlaceHolder='Type' [Control]="categoryEdit.get('type')">
                               </app-input>
                            </div>
                         </div>
 
                         <div class="row">
                            <div class="col-6 form-group">
-                             <app-text-area PlaceHolder='Description' [Control]="categoryForm.get('description')" ></app-text-area>
+                              <app-text-area PlaceHolder='Description' [Control]="categoryEdit.get('description')">
+                              </app-text-area>
                            </div>
                         </div>
 
@@ -34,10 +35,10 @@
 
                   <div class="row">
                      <div class="col-12 form-group ">
-                        <button [disabled]='categoryForm.invalid' type="submit"
-                           [ngClass]="{'btn-danger':categoryForm.invalid}" class="btn btn-primary m-2">Create Category
+                        <button [disabled]='categoryEdit.invalid' type="submit"
+                           [ngClass]="{'btn-danger':categoryEdit.invalid}" class="btn btn-primary m-2">Save Changes
                         </button>
-                        <button routerLink='/Developers' type="button"
+                        <button routerLink='/Categories' type="button"
                            class="btn btn-danger m-2 card-link">Cancel</button>
                      </div>
                   </div>
@@ -48,3 +49,11 @@
       </div>
    </div>
 </div>
+
+<!--  
+<div>Form Contents:{{categoryEdit.value|json}}</div>
+<div>Form Contents:{{categoryEdit.valid}}</div> -->
+
+<ng-template #Loader>
+   <img src="../../../../assets/Images/page-load-loader.gif">
+</ng-template>
