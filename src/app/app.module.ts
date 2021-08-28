@@ -30,6 +30,7 @@ import { RatingComponent } from './Components/RatingComponents/rating/rating.com
 import { InputComponent } from './Components/SharedComponents/input/input.component';
 import { TextAreaComponent } from './Components/SharedComponents/text-area/text-area.component';
 import { UploadComponent } from './Components/SharedComponents/upload/upload.component';
+import { RatingDetailsComponent } from './Components/RatingComponents/rating-details/rating-details.component';
 import { UploadVideoComponent } from './Components/SharedComponents/upload-video/upload-video.component'
 
 
@@ -58,6 +59,7 @@ import { UploadVideoComponent } from './Components/SharedComponents/upload-video
     RatingComponent,
     TextAreaComponent,
     RatingComponent,
+    RatingDetailsComponent,
     CategoryEditComponent,
     UploadComponent,
     UploadVideoComponent

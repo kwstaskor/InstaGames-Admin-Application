@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Rating } from './rating';
+import { Rating, UserGameRatings } from './rating';
 import { RatingService } from './rating.service';
 
 @Component({
@@ -11,11 +11,8 @@ import { RatingService } from './rating.service';
 
 export class RatingComponent implements OnInit {
 
-  userGameRatings!: Rating[];
-  filteredGames!: Rating[];
-  GameId!: number;
+  Games!: Rating[];
   GameTitle!: string;
-  UserId!: string;
 
   constructor(private actRoute: ActivatedRoute, private UserGameRatingsService: RatingService, private router: Router) {
     
@@ -24,17 +21,18 @@ export class RatingComponent implements OnInit {
   ngOnInit(): void {
     this.ReadUserGameRatings();
   }
-  FilterGames() {
-  this.filteredGames = this.userGameRatings.filter(Rating => Rating.GameId === this.GameId && Rating.UserId === this.UserId);
-}
 
   ReadUserGameRatings(){
-    this.UserGameRatingsService.getUserGameRatings().subscribe(data => this.userGameRatings = data);
+    this.UserGameRatingsService.GetUserGameRatings().subscribe(data => this.Games = data);
+  }
+
+  ViewRatingDetails(ratingDetails: Rating){
+    this.router.navigate(["/UserGameRatings", ratingDetails.GameId]);
   }
 
   Search() {
     if (this.GameTitle) {
-      this.userGameRatings = this.userGameRatings.filter(d =>
+      this.Games = this.Games.filter(d =>
         d.GameTitle.toUpperCase().includes(this.GameTitle.toUpperCase())
       );
     } else {

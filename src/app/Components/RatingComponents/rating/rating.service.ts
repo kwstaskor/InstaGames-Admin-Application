@@ -16,7 +16,12 @@ export class RatingService {
     headers: new HttpHeaders({ 'content-Type': 'application/json' })
   }
 
-  getUserGameRatings(): Observable<Rating[]>{
+  GetUserGameRatings(): Observable<Rating[]>{
     return this.httpService.get<Rating[]>(this.URL)
+  }
+
+  GetRatingDetails(id: number): Observable<Rating> {
+    const url = `${this.URL}/${id}`;
+    return this.httpService.get<Rating>(url, this.httpOptions);
   }
 }

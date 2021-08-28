@@ -16,6 +16,7 @@ import { UserComponent } from './Components/UserComponents/user/user.component';
 import { UserDetailsComponent } from './Components/UserComponents/user-details/user-details.component';
 import { MessageDetailsComponent } from './Components/MessageComponets/message-details/message-details.component';
 import { RatingComponent } from './Components/RatingComponents/rating/rating.component';
+import { RatingDetailsComponent } from './Components/RatingComponents/rating-details/rating-details.component';
 import { CategoryEditComponent } from './Components/CategoryComponents/category-edit/category-edit.component';
 
 
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: "Users", component: UserComponent },
   { path: "Users/" + ":id", component: UserDetailsComponent },
   { path: "UserGameRatings", component: RatingComponent },
+  { path: "UserGameRatings/" + ":id", component: RatingDetailsComponent },
   { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
   { path: "**", component: ErrorComponent }
 ];
