@@ -33,6 +33,8 @@ import { UploadComponent } from './Components/SharedComponents/upload/upload.com
 import { RatingDetailsComponent } from './Components/RatingComponents/rating-details/rating-details.component';
 import { UploadVideoComponent } from './Components/SharedComponents/upload-video/upload-video.component';
 import { RatingUserRatingsComponent } from './Components/RatingComponents/rating-user-ratings/rating-user-ratings.component';
+import { DeveloperEditComponent } from './Components/DeveloperComponents/developer-edit/developer-edit.component';
+import { UsereditComponent } from './Components/UserComponents/useredit/useredit.component';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { RatingUserRatingsComponent } from './Components/RatingComponents/rating
     CategoryEditComponent,
     UploadComponent,
     UploadVideoComponent,
-    RatingUserRatingsComponent
+    RatingUserRatingsComponent,
+    DeveloperEditComponent,
+    UsereditComponent
   ],
   imports: [
     BrowserModule,

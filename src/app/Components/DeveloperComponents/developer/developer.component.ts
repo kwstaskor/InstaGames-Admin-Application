@@ -12,13 +12,11 @@ import { DeveloperService } from './developer.service';
 export class DeveloperComponent implements OnInit {
   p: number = 1;
   isDeleted: boolean = false;
-  isCreated: boolean = false;
   developers!: Developer[];
   FirstName: any;
 
 
   constructor(private actRoute: ActivatedRoute, private DeveloperService: DeveloperService, private router: Router) {
-    this.CreateAlert();
   }
 
   ngOnInit(): void {
@@ -31,6 +29,10 @@ export class DeveloperComponent implements OnInit {
 
   ViewDevs(developer: Developer) {
     this.router.navigate(["/DeveloperDetails", developer.DeveloperId]);
+  }
+
+  EditDevs(developer: Developer) {
+    this.router.navigate(["/DeveloperEdit", developer.DeveloperId]);
   }
 
   DeleteDev(developer: Developer) {
@@ -56,13 +58,6 @@ export class DeveloperComponent implements OnInit {
   sort(key: any) {
     this.key = key;
     this.reverse = !this.reverse;
-  }
-
-  CreateAlert() {
-    this.isCreated = this.actRoute.snapshot.params['isCreated'];
-    setTimeout(() => {
-      this.isCreated = false
-    }, 3000);
   }
 
   DeleteAlert() {

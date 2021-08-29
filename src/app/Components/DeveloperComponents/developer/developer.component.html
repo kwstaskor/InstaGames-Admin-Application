@@ -28,15 +28,7 @@
                          <span aria-hidden="true">&times;</span>
                       </button>
                    </div>
-
-                     <!--Create Alert-->
-                  <div *ngIf="isCreated" class="alert alert-success alert-dismissible fade show" role="alert">
-                     <strong>Success!&nbsp;</strong>Developer successfully created.
-                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                     </button>
-                  </div>
- 
+                  
                    <table class="table movie_table" style="width:100%">
                       <thead>
                          <tr>
@@ -67,7 +59,7 @@
                                <div class="flex align-items-center list-user-action">
                                   <a (click)='ViewDevs(dev)' class="iq-bg-warning crudBtn" title="Info"><i
                                         class="lar la-eye"></i></a>
-                                  <a class="iq-bg-success crudBtn" title="Edit Game"><i class="ri-pencil-line"></i></a>
+                                  <a (click)="EditDevs(dev)" class="iq-bg-success crudBtn" title="Edit Game"><i class="ri-pencil-line"></i></a>
                                   <a (click)='DeleteDev(dev)' class="iq-bg-primary crudBtn" title="Delete Game"><i
                                         class="ri-delete-bin-line"></i></a>
                                </div>

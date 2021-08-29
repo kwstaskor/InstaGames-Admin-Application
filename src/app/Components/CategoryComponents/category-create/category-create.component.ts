@@ -35,17 +35,18 @@ export class CategoryCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isCreated: boolean = true
+  isCreated: boolean = false;
   saveCategory(): void {
     let category = <Category>{}
     category.Type = this.categoryForm.controls.type.value;
     category.Description = this.categoryForm.controls.description.value;
 
     this.CategoryService.createCategory(category).subscribe(() => {
-
-      this.router.navigate(["/Categories", this.isCreated]);
+      this.isCreated = true;
+      setTimeout(() => {
+        this.router.navigate(["/Categories"]);
+      }, 1250);
     });
   }
-
 }
 

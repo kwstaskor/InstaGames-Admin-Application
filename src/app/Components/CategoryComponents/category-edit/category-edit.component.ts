@@ -33,37 +33,32 @@ export class CategoryEditComponent implements OnInit {
 
   constructor(private router: Router, private CategoryService: CategoryService, private actRoute: ActivatedRoute) {
     this.categoryId = this.actRoute.snapshot.params['id'];
-
     this.readCategory();
   }
 
   ngOnInit(): void {
-    
   }
 
   readCategory() {
     this.CategoryService.getCategory(this.categoryId).subscribe(data => {
-
-    this.categoryEdit.controls.type.setValue(data.Type)
-    this.categoryEdit.controls.description.setValue(data.Description)
+      this.categoryEdit.controls.type.setValue(data.Type)
+      this.categoryEdit.controls.description.setValue(data.Description)
     });
-    
-   
   }
 
-
-  isEdited: boolean = true;
+  isEdited: boolean = false;
   editCategory(): void {
-  
+
     let category = <Category>{}
     category.CategoryId = this.categoryId;
     category.Type = this.categoryEdit.controls.type.value;
     category.Description = this.categoryEdit.controls.description.value;
 
-
     this.CategoryService.updateCategory(category).subscribe(() => {
-      
-      this.router.navigate(["/Categories", this.isEdited]);
+      this.isEdited = true;
+      setTimeout(() => {
+        this.router.navigate(["/Categories"]);
+      }, 1250);
     });
   }
 }

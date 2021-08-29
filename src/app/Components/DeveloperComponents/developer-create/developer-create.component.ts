@@ -34,7 +34,7 @@ export class DeveloperCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isCreated: boolean = true
+  isCreated: boolean = false;
   saveDeveloper(): void {
 
     let developer = <Developer>{};
@@ -48,7 +48,11 @@ export class DeveloperCreateComponent implements OnInit {
      }
      
     this.developerService.createDeveloper(developer).subscribe(()=>{
-      this.router.navigate(['/Developers',this.isCreated]);
+      this.isCreated = true;
+      setTimeout(() => {
+        this.router.navigate(['/Developers']);
+      }, 1250);
+     
     });
 
   }

@@ -27,10 +27,8 @@
                              <app-text-area PlaceHolder='Description' [Control]="categoryForm.get('description')" ></app-text-area>
                            </div>
                         </div>
-
                      </div>
                   </div>
-
 
                   <div class="row">
                      <div class="col-12 form-group ">
@@ -41,10 +39,16 @@
                            class="btn btn-danger m-2 card-link">Cancel</button>
                      </div>
                   </div>
-
                </form>
             </div>
          </div>
       </div>
    </div>
+</div>
+
+<div *ngIf="isCreated" class="alert alert-success alert-dismissible fade show" role="alert">
+   <strong>Success!&nbsp;</strong>Category created successfully.
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+   </button>
 </div>

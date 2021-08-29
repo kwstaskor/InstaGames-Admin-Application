@@ -2,7 +2,9 @@ export interface User{
     Id:string,
     UserName: string,
     Email: string,
-    Role: string,
+    Role: string | Role,
+    Roles:any[],
+    DateOfBirth: Date,
     FirstName: string,
     LastName: string,
     PhotoUrl: string,
@@ -11,10 +13,15 @@ export interface User{
     IsSubscribed: boolean,
     ExpireDate: Date,
     RegistrationDate: Date,
-    EmailConfirmed: boolean
+    EmailConfirmed: boolean,
 }
 
 enum Plan{
     Basic = 'Basic',
     Premium = 'Premium'
+}
+
+export interface Role{
+    Id:string|any;
+    Name: string|any;
 }

@@ -22,7 +22,7 @@ export class MessageDetailsComponent implements OnInit {
 
   messageId!: number;
   message!: Message;
-  isReplied:boolean=true
+  isReplied:boolean=false;
 
   constructor(private router:Router ,private actRoute: ActivatedRoute, private MessageService: MessageService) {
     this.messageId = this.actRoute.snapshot.params['id'];
@@ -39,7 +39,15 @@ export class MessageDetailsComponent implements OnInit {
   setMessageStatusToAnswered(message:Message){
     message.Reply = this.messageForm.controls.reply.value;
     message.Answered = true;
-    this.MessageService.editMessage(message).subscribe( ()=> this.router.navigate(['/Messages',this.isReplied]));
+    this.MessageService.editMessage(message).subscribe( ()=> { 
+      this.isReplied = true;
+      setTimeout(() => {
+        this.router.navigate(['/Messages'])
+      }, 1250);
+    });
+
+    
+
   }
 
 }

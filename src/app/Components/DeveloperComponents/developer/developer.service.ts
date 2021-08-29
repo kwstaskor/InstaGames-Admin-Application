@@ -28,8 +28,9 @@ export class DeveloperService {
     return this.httpService.post<Developer>(this.URL, developer, this.httpOptions);
   }
 
-  editDeveloper() {
-
+  editDeveloper(developer:Developer):Observable<Developer>{
+    const url = `${this.URL}/${developer.DeveloperId}`;
+    return this.httpService.put<Developer>(url, developer, this.httpOptions);
   }
 
   deleteDeveloper(id: number) {

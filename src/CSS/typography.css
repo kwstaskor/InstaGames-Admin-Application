@@ -179,6 +179,7 @@ Background Color Opacity
 .iq-bg-warning { background: var(--iq-light-warning) !important; color: var(--iq-warning) !important; }
 .iq-bg-info { background: var(--iq-light-info) !important; color: var(--iq-info) !important; }
 .iq-bg-dark { background: var(--iq-light-dark) !important; color: var(--iq-dark1) !important; }
+.iq-bg-pink { background: var(--iq-pink) !important; color: var(--iq-dark1) !important; }
 
 /*--------------*/
 .iq-bg-primary-hover:hover { background: var(--iq-light-primary) !important; color: var(--iq-primary); }

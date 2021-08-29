@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from './user';
+import { User, Role } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +23,14 @@ export class UserService {
     return this.httpService.get<User>(url, this.httpOptions);
   }
 
-  editUser() {
+  getRoles(): Observable<Role[]>{
+    const url = 'https://localhost:44369/api/Account/GetRoles';
+    return this.httpService.get<Role[]>(url, this.httpOptions);
+  }
 
+  editUser(user:User):Observable<User> {
+    const url = `${this.URL}/${user.Id}`;
+    return this.httpService.put<User>(url, user, this.httpOptions);
   }
 
   deleteUser(id: string) {

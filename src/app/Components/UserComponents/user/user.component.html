@@ -47,10 +47,10 @@
                            <td>
                               <div class="media align-items-center">
                                  <div class="iq-movie">
-                                    <a *ngIf="user.PhotoUrl" (click)='ViewUsers(user)' class="crudBtn"
+                                    <a *ngIf="user.PhotoUrl" (click)='ViewUser(user)' class="crudBtn"
                                        title="{{user.UserName}}"><img src="https://localhost:44384/{{user.PhotoUrl}}"
                                           class="img-border-radius avatar-40 img-fluid" alt=""></a>
-                                    <a *ngIf="!user.PhotoUrl" (click)='ViewUsers(user)' class="crudBtn"
+                                    <a *ngIf="!user.PhotoUrl" (click)='ViewUser(user)' class="crudBtn"
                                        title="{{user.UserName}}"><img src="https://localhost:44384/Content/images/user/user.jpg"
                                           class="img-border-radius avatar-40 img-fluid" alt=""></a>
                                  </div>
@@ -69,13 +69,12 @@
                            <td>{{user.RegistrationDate | date : 'short'}}</td>
                            <td>
                               <div class="flex align-items-center list-user-action">
-                                 <a (click)='ViewUsers(user)' class="iq-bg-warning crudBtn" title="Info"><i
+                                 <a (click)='ViewUser(user)' title="info" class="iq-bg-warning crudBtn"><i
                                        class="lar la-eye"></i></a>
-                                 <a class="iq-bg-success" data-toggle="tooltip" data-placement="top" title=""
-                                    data-original-title="Edit" href="#"><i class="ri-pencil-line"></i></a>
-                                 <a *ngIf="user.Role !== 'Admin'" (click)='DeleteUser(user)'
-                                    class="iq-bg-primary crudBtn" title="Delete User"><i
-                                       class="ri-delete-bin-line"></i></a>
+                                 <a (click)='EditUser(user)' class="iq-bg-success crudBtn" title="Edit user" data-toggle="tooltip" data-placement="top"><i class="ri-pencil-line"></i></a>
+                                 <a *ngIf="user.Role !== 'Admin'" title="Delete user" (click)='DeleteUser(user)'
+                                    class="iq-bg-primary crudBtn"><i
+                                    class="ri-delete-bin-line"></i></a>
                               </div>
                            </td>
                         </tr>

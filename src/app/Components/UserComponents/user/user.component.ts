@@ -49,8 +49,12 @@ export class UserComponent implements OnInit {
     },(error)=>console.log(error));
   }
 
-  ViewUsers(user:User){
+  ViewUser(user:User){
     this.router.navigate(["/Users", user.Id]);
+  }
+
+  EditUser(user:User){
+    this.router.navigate(["/UserEdit", user.Id]);
   }
 
   key:any;
