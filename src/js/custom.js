@@ -274,7 +274,7 @@ Index Of Script
             prevArrow: '<a href="#" class="ri-arrow-right-s-line right"></a>',
         });
       
-        jQuery('.top-rated-item').slick({
+        jQuery('.topRated').children().slick({
             slidesToShow: 4,
             speed: 300,
             slidesToScroll: 1,
@@ -723,7 +723,6 @@ Index Of Script
             jQuery('#quantity').val(val+1);
           }
         });
-
         
     });
 

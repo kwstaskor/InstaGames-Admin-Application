@@ -1,9 +1,9 @@
 @import '../src/CSS/bootstrap.min.css';
+@import '../src/CSS/dataTables.bootstrap4.min.css';
 @import "../src/CSS/typography.css";
 @import '../src/CSS/style.css';
 @import '../src/CSS/responsive.css';
 @import "../src/CSS/dark.css";
-@import '../src/CSS/dataTables.bootstrap4.min.css';
 @import '../src/CSS/developer.css';
 @import '../src/CSS/dripicons.css';
 @import '../src/CSS/flatpickr.min.css';
