@@ -121,7 +121,7 @@
          <div class="iq-card iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-header">
                <div class="iq-header-title">
-                  <h4 class="card-title text-center">User's Of Product</h4>
+                  <h4 class="card-title text-center">Users</h4>
                </div>
             </div>
             <div class="iq-card-body pb-0">
@@ -135,8 +135,8 @@
                            <div class="media align-items-center">
                               <div class="iq-user-box bg-primary"></div>
                               <div class="media-body text-white">
-                                 <p class="mb-0 font-size-14 line-height">New <br>
-                                    Customer
+                                 <p class="mb-0 font-size-14 line-height">
+                                    Unsubscribed
                                  </p>
                               </div>
                            </div>
@@ -149,9 +149,7 @@
                            <div class="media align-items-center">
                               <div class="iq-user-box bg-warning"></div>
                               <div class="media-body text-white">
-                                 <p class="mb-0 font-size-14 line-height">Exsisting <br>
-                                    Subscriber's
-                                 </p>
+                                 <p class="mb-0 font-size-14 line-height">Admins</p>
                               </div>
                            </div>
                         </div>
@@ -163,8 +161,8 @@
                            <div class="media align-items-center">
                               <div class="iq-user-box bg-info"></div>
                               <div class="media-body text-white">
-                                 <p class="mb-0 font-size-14 line-height">Daily<br>
-                                    Visitor's
+                                 <p class="mb-0 font-size-14 line-height">Premium<br>
+                                    Subscribers
                                  </p>
                               </div>
                            </div>
@@ -177,8 +175,8 @@
                            <div class="media align-items-center">
                               <div class="iq-user-box bg-danger"></div>
                               <div class="media-body text-white">
-                                 <p class="mb-0 font-size-14 line-height">Extented <br>
-                                    Subscriber's
+                                 <p class="mb-0 font-size-14 line-height">Basic <br>
+                                    Subscribers
                                  </p>
                               </div>
                            </div>
@@ -195,7 +193,7 @@
          <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-header d-flex align-items-center justify-content-between">
                <div class="iq-header-title">
-                  <h4 class="card-title">Categories</h4>
+                  <h4 class="card-title">Subscribers</h4>
                </div>
             </div>
             <div class="iq-card-body p-0">
@@ -216,7 +214,7 @@
                <div class="col-lg-7">
                   <div class="row list-unstyled mb-0 pb-0">
 
-                     <div *ngFor="let cat of Categories" class="col-sm-6 col-md-4 col-lg-6 mb-3">
+                     <div *ngFor="let cat of ChartCategories" class="col-sm-6 col-md-4 col-lg-6 mb-3">
                         <div class="iq-progress-bar progress-bar-vertical iq-bg-primary">
                            <span class="bg-primary" data-percent="100"
                               [style.height.%]="[findCategoryPercentage(cat.Games.length ,Games.length)]"
@@ -242,8 +240,7 @@
                            </div>
                            <div class="media-body text-white">
                               <h6 class="mb-0 font-size-14 line-height">{{cat.Type}}</h6>
-                              <small class="text-primary mb-0">{{findCategoryPercentage(cat.Games.length
-                                 ,Games.length)}}%</small>
+                              <small class="text-primary mb-0">{{findCategoryPercentage(cat.Games.length,Games.length)}}%</small>
                            </div>
                         </div>
                      </div>

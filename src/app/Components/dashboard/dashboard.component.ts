@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { RiLandscapeFill } from 'angular-remix-icon';
 import { Category } from '../CategoryComponents/category/category';
 import { CategoryService } from '../CategoryComponents/category/category.service';
 import { Rating } from '../RatingComponents/rating/rating';
 import { RatingService } from '../RatingComponents/rating/rating.service';
+import { UserService } from '../UserComponents/user/user.service';
 
 declare const jQuery: any
 declare const ApexCharts: any
@@ -20,8 +22,12 @@ export class DashboardComponent implements OnInit {
   Categories!: Category[];
   TopRatedGames!: Rating[];
   MostPopularGames!: Rating[];
+  ChartCategories!:Category[];
+  userChart: any;
+  categoryChart: any;
+  gamesChart: any;
 
-  constructor(private userRatingService: RatingService,private categoryService:CategoryService) { }
+  constructor(private userService:UserService,private userRatingService: RatingService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     //Get data from server
@@ -30,7 +36,7 @@ export class DashboardComponent implements OnInit {
 
     //charts
     this.firstChart();
-    this.secondChart();
+
     this.thirdChart()
   }
 
@@ -48,6 +54,22 @@ export class DashboardComponent implements OnInit {
   ReadCategories() {
     this.categoryService.getCategories().subscribe((data) => {
       this.Categories = data;
+
+      this.ChartCategories = this.Categories.filter(c=>c.Games.length > 0);
+      let arr = [];
+      let lab = [];
+      for (const cat of data) {
+        arr.push(this.findCategoryPercentage(cat.Games.length, this.Games.length))
+        lab.push(cat.Type);
+      }
+      this.secondChart(lab, arr);
+    })
+  }
+
+  ReadUsers(){
+    this.userService.getUsers().subscribe((data)=>{
+      let admins = data.filter(d=>d.Role=='admin');
+      console.log(admins)
     })
   }
 
@@ -58,6 +80,11 @@ export class DashboardComponent implements OnInit {
   filterMostPopular() {
     this.MostPopularGames = this.Games.filter(g => g.TotalRatingFloat);
   }
+
+  findCategoryPercentage(catGameslength: any, gamesLength: any) {
+    return Math.floor(catGameslength * 100 / gamesLength);
+  }
+
 
   Search() {
     if (this.GameTitle) {
@@ -75,10 +102,6 @@ export class DashboardComponent implements OnInit {
   sort(key: any) {
     this.key = key;
     this.reverse = !this.reverse;
-  }
-
-  findCategoryPercentage(catGameslength:any , gamesLength:any){
-     return Math.floor(catGameslength * 100 / gamesLength);
   }
 
   slider() {
@@ -123,7 +146,7 @@ export class DashboardComponent implements OnInit {
           type: 'donut',
         },
         colors: ['#e20e02', '#f68a04', '#007aff', '#545e75'],
-        labels: ["New Customer", "Exsisting Subscriber's", "Daily Visitor's", "Extented Subscriber's"],
+        labels: ["Unsubscribed", "Admins", "Premium Subscribers", "Basic Subscribers"],
         dataLabels: {
           enabled: false
         },
@@ -147,21 +170,22 @@ export class DashboardComponent implements OnInit {
         }]
       };
 
-      var chart = new ApexCharts(document.querySelector("#view-chart-01"), options);
-      chart.render();
+      this.userChart = new ApexCharts(document.querySelector("#view-chart-01"), options);
+      this.userChart.render();
     }
   }
 
-  secondChart() {
+  secondChart(labels: any, series: any) {
+
     if (jQuery('#view-chart-02').length) {
       var options = {
-        series: [44, 30, 20, 43, 22, 20],
+        series: series,
         chart: {
-          width: 250,
+          width: 300,
           type: 'donut',
         },
-        colors: ['#e20e02', '#83878a', '#007aff', '#f68a04', '#14e788', '#545e75'],
-        labels: ['Actions', 'Comedy', 'Harror', 'Drama', 'Kids', 'Thrilled'],
+        colors: ['#007aff', '#14e788', '#a2a4af', '#e20e02', '#f68a04', '#ca139c', '#123123', '#000000'],
+        labels: labels,
         dataLabels: {
           enabled: false
         },
@@ -188,8 +212,8 @@ export class DashboardComponent implements OnInit {
         }]
       };
 
-      var chart = new ApexCharts(document.querySelector("#view-chart-02"), options);
-      chart.render();
+      this.categoryChart = new ApexCharts(document.querySelector("#view-chart-02"), options);
+      this.categoryChart.render();
     }
 
   }
@@ -198,10 +222,10 @@ export class DashboardComponent implements OnInit {
     if (jQuery('#view-chart-03').length) {
       var options = {
         series: [{
-          name: 'This Month',
+          name: 'Basic',
           data: [44, 55, 30, 60]
         }, {
-          name: 'Last Month',
+          name: 'Premium',
           data: [35, 41, 20, 40]
         }],
         colors: ['#e20e02', '#007aff'],
@@ -226,7 +250,7 @@ export class DashboardComponent implements OnInit {
           colors: ['transparent']
         },
         xaxis: {
-          categories: ['a', 'b', 'c', 'd'],
+          categories: ['June', 'July', 'August', 'September'],
         },
         yaxis: {
           title: {
@@ -246,8 +270,8 @@ export class DashboardComponent implements OnInit {
         }
       };
 
-      var chart = new ApexCharts(document.querySelector("#view-chart-03"), options);
-      chart.render();
+      this.gamesChart = new ApexCharts(document.querySelector("#view-chart-03"), options);
+      this.gamesChart.render();
     }
 
   }
