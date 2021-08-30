@@ -52,7 +52,6 @@ export class DeveloperCreateComponent implements OnInit {
       setTimeout(() => {
         this.router.navigate(['/Developers']);
       }, 1250);
-     
     });
 
   }

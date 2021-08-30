@@ -96,7 +96,7 @@ export class GameCreateComponent implements OnInit {
     this.gameForm.controls.trailer.setValue("/Content/video/"+event)
   }
 
-  isCreated: boolean = true
+  isCreated: boolean = false;
   saveGame() {
 
     let game = <Game>{};
@@ -140,7 +140,10 @@ export class GameCreateComponent implements OnInit {
     game.GameUrl = this.gameForm.controls.gameUrl.value;
 
     this.GameService.createGame(game).subscribe(() => {
-      this.router.navigate(['/Games', this.isCreated]);
+      this.isCreated = true;
+      setTimeout(() => {
+        this.router.navigate(['/Games']);
+      }, 1250);
     });
   }
 

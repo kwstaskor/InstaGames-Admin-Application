@@ -81,12 +81,12 @@
                               Value is required.
                            </div>
                            <div *ngIf="gameForm.controls.releaseDate.errors.min" class="invalid-feedback">
-                             Dude what the fuck? {{gameForm.controls.releaseDate.errors.min.actual}} ? 
-                             Seriously?
+                              Dude what the fuck? {{gameForm.controls.releaseDate.errors.min.actual}} ?
+                              Seriously?
                            </div>
                            <div *ngIf="gameForm.controls.releaseDate.errors.max" class="invalid-feedback">
-                              Dude what the fuck? {{gameForm.controls.releaseDate.errors.max.actual}} ? 
-                             Seriously?
+                              Dude what the fuck? {{gameForm.controls.releaseDate.errors.max.actual}} ?
+                              Seriously?
                            </div>
                         </ng-container>
                      </div>
@@ -180,4 +180,12 @@
          </div>
       </div>
    </div>
+</div>
+
+<!--Create Alert-->
+<div *ngIf="isCreated" class="alert alert-success alert-dismissible fade show" role="alert">
+   <strong>Success!&nbsp;</strong>Game successfully created.
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+   </button>
 </div>

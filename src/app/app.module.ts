@@ -76,7 +76,6 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

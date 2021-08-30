@@ -8,7 +8,6 @@ import { DeveloperService } from '../../DeveloperComponents/developer/developer.
 import { NamesFormControl } from '../../SharedComponents/input/custom-formControls';
 import { Game, Pegi } from '../game/game';
 import { GameService } from '../game/game.service';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-game-edit',
@@ -84,12 +83,12 @@ export class GameEditComponent implements OnInit {
     this.ReadCategories();
     this.ReadPegi();
     this.ReadDevelopers();
-   
-    
+
+
     this.selectedItems = [
-     
+
     ];
-    
+
   }
 
   onItemSelect(item: any) {
@@ -140,7 +139,7 @@ export class GameEditComponent implements OnInit {
     });
   }
 
-  isCreated: boolean = true
+  isEdited: boolean = false;
   editGame() {
 
     let game = <Game>{};
@@ -184,8 +183,10 @@ export class GameEditComponent implements OnInit {
     game.GameUrl = this.gameEdit.controls.gameUrl.value;
 
     this.GameService.updateGame(game).subscribe(() => {
-
-      this.router.navigate(['/Games', this.isCreated]);
+      this.isEdited=true;
+      setTimeout(() => {
+        this.router.navigate(['/Games']);
+      }, 1250);
     });
   }
 

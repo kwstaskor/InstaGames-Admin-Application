@@ -11,16 +11,13 @@ import { GameService } from './game.service';
   styleUrls: ['./game.component.css']
 })
 
-
 export class GameComponent implements OnInit {
   p: number = 1;
   isDeleted: boolean = false;
-  isCreated: boolean = false;
   games!: Game[];
   Title: any;
 
   constructor(private actRoute: ActivatedRoute, private GameService: GameService, private router: Router) {
-    this.CreateAlert();
   }
 
   ngOnInit(): void {
@@ -61,13 +58,6 @@ export class GameComponent implements OnInit {
   sort(key: any) {
     this.key = key;
     this.reverse = !this.reverse;
-  }
-
-  CreateAlert() {
-    this.isCreated = this.actRoute.snapshot.params['isCreated'];
-    setTimeout(() => {
-      this.isCreated = false
-    }, 3000);
   }
 
   DeleteAlert() {

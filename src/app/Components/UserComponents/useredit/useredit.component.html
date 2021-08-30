@@ -80,10 +80,6 @@
                                         </ng-container>
                                     </div>
 
-                                    <div class="col-12 form_gallery form-group">
-                                        <app-upload></app-upload>
-                                    </div>
-
                                 </div>
 
                             </div>
@@ -115,13 +111,8 @@
 
 <!--Edit Alert-->
 <div *ngIf="isEdited" class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Success!&nbsp;</strong>Developer successfully edited.
+    <strong>Success!&nbsp;</strong>User successfully edited.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
        <span aria-hidden="true">&times;</span>
     </button>
  </div>
-
-
-<div>Form Contents:{{userForm.value|json}}</div>
-<div>Form Contents:{{userForm.valid}}</div>
-<div>Errors arround First Name:{{userForm.controls.role.errors|json}}</div>

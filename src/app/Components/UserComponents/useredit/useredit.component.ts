@@ -43,7 +43,6 @@ export class UsereditComponent implements OnInit {
         Validators.maxLength(35),
         Validators.pattern("[a-zA-Z ]*")
       ]),
-    photoUrl: new FormControl(''),
     dateOfBirth: new FormControl('',
       [
         Validators.required,
@@ -74,9 +73,8 @@ export class UsereditComponent implements OnInit {
       this.userForm.controls.email.setValue(data.Email);
       this.userForm.controls.firstName.setValue(data.FirstName);
       this.userForm.controls.lastName.setValue(data.LastName);
-      this.userForm.controls.role.setValue(data.Role);
+      this.userForm.controls.role.setValue(data.RoleId);
       this.userForm.controls.dateOfBirth.setValue(data.DateOfBirth);
-      this.userForm.controls.photoUrl.setValue(data.PhotoUrl);
     });
   }
 

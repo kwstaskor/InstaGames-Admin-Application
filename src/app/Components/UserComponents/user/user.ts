@@ -3,6 +3,7 @@ export interface User{
     UserName: string,
     Email: string,
     Role: string | Role,
+    RoleId: string | Role,
     Roles:any[],
     DateOfBirth: Date,
     FirstName: string,

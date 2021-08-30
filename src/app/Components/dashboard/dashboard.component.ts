@@ -4,6 +4,7 @@ import { Category } from '../CategoryComponents/category/category';
 import { CategoryService } from '../CategoryComponents/category/category.service';
 import { Rating } from '../RatingComponents/rating/rating';
 import { RatingService } from '../RatingComponents/rating/rating.service';
+import { User } from '../UserComponents/user/user';
 import { UserService } from '../UserComponents/user/user.service';
 
 declare const jQuery: any
@@ -22,29 +23,30 @@ export class DashboardComponent implements OnInit {
   Categories!: Category[];
   TopRatedGames!: Rating[];
   MostPopularGames!: Rating[];
-  ChartCategories!:Category[];
+  ChartCategories!: Category[];
   userChart: any;
   categoryChart: any;
   gamesChart: any;
 
-  constructor(private userService:UserService,private userRatingService: RatingService, private categoryService: CategoryService) { }
+  constructor(private userService: UserService, private userRatingService: RatingService, private categoryService: CategoryService) {
+  }
 
   ngOnInit(): void {
     //Get data from server
     this.ReadRatings();
-    this.ReadCategories();
-
-    //charts
-    this.firstChart();
-
+    this.ReadUsers()
     this.thirdChart()
   }
 
   ReadRatings() {
     this.userRatingService.GetUserGameRatings().subscribe((data) => {
       this.Games = data;
+
+      this.ReadCategories();
+
       this.filterTopRated();
       this.filterMostPopular();
+      
       setTimeout(() => {
         this.slider();
       }, 10);
@@ -54,25 +56,43 @@ export class DashboardComponent implements OnInit {
   ReadCategories() {
     this.categoryService.getCategories().subscribe((data) => {
       this.Categories = data;
-
-      this.ChartCategories = this.Categories.filter(c=>c.Games.length > 0);
-      let arr = [];
-      let lab = [];
-      for (const cat of data) {
-        arr.push(this.findCategoryPercentage(cat.Games.length, this.Games.length))
-        lab.push(cat.Type);
-      }
-      this.secondChart(lab, arr);
+      this.InitCategoryChart(data);
     })
   }
 
-  ReadUsers(){
-    this.userService.getUsers().subscribe((data)=>{
-      let admins = data.filter(d=>d.Role=='admin');
-      console.log(admins)
+  ReadUsers() {
+    this.userService.getUsers().subscribe((data) => {
+      this.InitUsersChart(data);
     })
   }
 
+  //Charts
+  InitCategoryChart(data: any) {
+    this.ChartCategories = this.Categories.filter(c => c.Games.length > 0);
+    let arr = [];
+    let lab = [];
+    for (const cat of data) {
+      arr.push(this.findCategoryPercentage(cat.Games.length, this.Games.length))
+      lab.push(cat.Type);
+    }
+    this.secondChart(lab, arr);
+  }
+
+  InitUsersChart(data: User[]) {
+    let admins = data.filter(d => d.Role == 'Admin');
+    let basicSubscribers = data.filter(d => d.Role == 'Subscriber' && d.SubscribePlan == 'Basic');
+    let premiumSubscribers = data.filter(d => d.Role == 'Subscriber' && d.SubscribePlan == 'Premium');
+    let unsubscribed = data.filter(d => d.Role == 'Unsubscribed');
+    let arr = [];
+    arr.push(Math.round((unsubscribed.length / data.length) * 100))
+    arr.push(Math.round((admins.length / data.length) * 100))
+    arr.push(Math.round((premiumSubscribers.length / data.length) * 100))
+    arr.push(Math.round((basicSubscribers.length / data.length) * 100))
+
+    this.firstChart(arr);
+  }
+
+  //Helper Methods
   filterTopRated() {
     this.TopRatedGames = this.Games.filter(g => g.TotalRatingFloat >= 3);
   }
@@ -85,7 +105,6 @@ export class DashboardComponent implements OnInit {
     return Math.floor(catGameslength * 100 / gamesLength);
   }
 
-
   Search() {
     if (this.GameTitle) {
       this.Games = this.Games.filter(g =>
@@ -95,7 +114,6 @@ export class DashboardComponent implements OnInit {
       this.ReadRatings();
     }
   }
-
 
   key: any;
   reverse: boolean = false;
@@ -136,11 +154,11 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  //charts
-  firstChart() {
+  //charts Options
+  firstChart(series: any) {
     if (jQuery('#view-chart-01').length) {
       var options = {
-        series: [44, 55, 30, 30],
+        series: series,
         chart: {
           width: 250,
           type: 'donut',
