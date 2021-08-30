@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RiLandscapeFill } from 'angular-remix-icon';
 import { Category } from '../CategoryComponents/category/category';
 import { CategoryService } from '../CategoryComponents/category/category.service';
+import { DeveloperService } from '../DeveloperComponents/developer/developer.service';
 import { Rating } from '../RatingComponents/rating/rating';
 import { RatingService } from '../RatingComponents/rating/rating.service';
 import { User } from '../UserComponents/user/user';
@@ -28,14 +29,15 @@ export class DashboardComponent implements OnInit {
   categoryChart: any;
   gamesChart: any;
 
-  constructor(private userService: UserService, private userRatingService: RatingService, private categoryService: CategoryService) {
+  constructor(private developerService: DeveloperService, private userService: UserService, private userRatingService: RatingService, private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
     //Get data from server
     this.ReadRatings();
     this.ReadUsers()
-    this.thirdChart()
+    this.ReadDevelopers()
+
   }
 
   ReadRatings() {
@@ -46,7 +48,7 @@ export class DashboardComponent implements OnInit {
 
       this.filterTopRated();
       this.filterMostPopular();
-      
+
       setTimeout(() => {
         this.slider();
       }, 10);
@@ -63,6 +65,18 @@ export class DashboardComponent implements OnInit {
   ReadUsers() {
     this.userService.getUsers().subscribe((data) => {
       this.InitUsersChart(data);
+    })
+  }
+
+  ReadDevelopers() {
+    this.developerService.getDevelopers().subscribe((data) => {
+      let instagamesDevs = data.filter(d => d.IsInstaGamesDev);
+      let externalDevs = data.filter(d => !d.IsInstaGamesDev)
+      let arr = [];
+      arr.push((instagamesDevs.length / data.length) * 100);
+      arr.push((externalDevs.length / data.length) * 100);
+      this.thirdChart(arr);
+
     })
   }
 
@@ -236,60 +250,45 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  thirdChart() {
+  thirdChart(series: any) {
+
     if (jQuery('#view-chart-03').length) {
       var options = {
-        series: [{
-          name: 'Basic',
-          data: [44, 55, 30, 60]
-        }, {
-          name: 'Premium',
-          data: [35, 41, 20, 40]
-        }],
-        colors: ['#e20e02', '#007aff'],
+        series: series,
         chart: {
-          type: 'bar',
-          height: 230,
-          foreColor: '#D1D0CF'
+          width: 350,
+          type: 'donut',
         },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: '55%',
-            endingShape: 'rounded'
-          },
-        },
+        colors: ['#e20e02','#14e788'],
+        labels: ['Instagames Developers' , 'External Partners'],
         dataLabels: {
           enabled: false
         },
         stroke: {
-          show: true,
-          width: 2,
-          colors: ['transparent']
+          show: false,
+          width: 0
         },
-        xaxis: {
-          categories: ['June', 'July', 'August', 'September'],
-        },
-        yaxis: {
-          title: {
-            text: ''
+        legend: {
+          show: false,
+          formatter: function (val: any, opts: any) {
+            return val + " - " + opts.w.globals.series[opts.seriesIndex]
           }
         },
-        fill: {
-          opacity: 1
-        },
-        tooltip: {
-          enabled: false,
-          y: {
-            formatter: function (val: any) {
-              return "$ " + val + " thousands"
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
             }
           }
-        }
+        }]
       };
 
-      this.gamesChart = new ApexCharts(document.querySelector("#view-chart-03"), options);
-      this.gamesChart.render();
+      this.categoryChart = new ApexCharts(document.querySelector("#view-chart-03"), options);
+      this.categoryChart.render();
     }
 
   }
