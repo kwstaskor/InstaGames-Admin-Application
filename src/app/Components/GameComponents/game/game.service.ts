@@ -30,12 +30,13 @@ export class GameService {
     return this.httpService.get<Game>(url, this.httpOptions);
   }
 
-  createGame(game: Game):Observable<Game> {
+  createGame(game: Game): Observable<Game> {
     return this.httpService.post<Game>(this.URL, game, this.httpOptions);
   }
 
-  editGame() {
-
+  updateGame(game: Game): Observable<Game> {
+    const url = `${this.URL}/${game.GameId}`;
+    return this.httpService.put<Game>(url, game, this.httpOptions);
   }
 
   deleteGame(id: number) {

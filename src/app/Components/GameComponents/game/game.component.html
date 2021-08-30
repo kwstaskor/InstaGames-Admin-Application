@@ -91,7 +91,7 @@
                               <div class="flex align-items-center list-user-action">
                                  <a (click)='ViewGames(game)' class="iq-bg-warning crudBtn" title="Info"><i
                                        class="lar la-eye"></i></a>
-                                 <a class="iq-bg-success crudBtn" title="Edit Game"><i class="ri-pencil-line"></i></a>
+                                 <a (click)='EditGame(game)' class="iq-bg-success crudBtn" title="Edit Game"><i class="ri-pencil-line"></i></a>
                                  <a (click)='DeleteGame(game)' class="iq-bg-primary crudBtn" title="Delete Game"><i
                                        class="ri-delete-bin-line"></i></a>
                               </div>
@@ -118,4 +118,8 @@
          </td>
       </tr>
    </tbody>
+</ng-template>
+
+<ng-template #Loader>
+   <img src="../../../../assets/Images/page-load-loader.gif">
 </ng-template>

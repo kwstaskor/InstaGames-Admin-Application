@@ -35,6 +35,8 @@ import { UploadVideoComponent } from './Components/SharedComponents/upload-video
 import { RatingUserRatingsComponent } from './Components/RatingComponents/rating-user-ratings/rating-user-ratings.component';
 import { DeveloperEditComponent } from './Components/DeveloperComponents/developer-edit/developer-edit.component';
 import { UsereditComponent } from './Components/UserComponents/useredit/useredit.component';
+import { GameEditComponent } from './Components/GameComponents/game-edit/game-edit.component';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -68,7 +70,8 @@ import { UsereditComponent } from './Components/UserComponents/useredit/useredit
     UploadVideoComponent,
     RatingUserRatingsComponent,
     DeveloperEditComponent,
-    UsereditComponent
+    UsereditComponent,
+    GameEditComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import { UsereditComponent } from './Components/UserComponents/useredit/useredit
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

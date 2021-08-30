@@ -4,6 +4,7 @@ export interface Game {
     Photo :string,
     Trailer :string|any,
     Description :string,
+    PegiId:number,
     Pegi :Pegi|number,
     ReleaseDate :Date,
     IsReleased :boolean,
@@ -12,7 +13,9 @@ export interface Game {
     Tag :string,
     GameUrl :string|any,
     Categories:Category[],
+    SelectedCategories:number[]|any,
     Developers:Developer[],
+    SelectedDevelopers:number[]|any,
     GameDevelopers:Developer[]|any,
     GameCategories:Category[]
 }

@@ -21,6 +21,8 @@ import { RatingDetailsComponent } from './Components/RatingComponents/rating-det
 import { RatingUserRatingsComponent } from './Components/RatingComponents/rating-user-ratings/rating-user-ratings.component';
 import { CategoryEditComponent } from './Components/CategoryComponents/category-edit/category-edit.component';
 import { DeveloperEditComponent } from './Components/DeveloperComponents/developer-edit/developer-edit.component';
+import { GameEditComponent } from './Components/GameComponents/game-edit/game-edit.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 
 
@@ -29,6 +31,7 @@ const routes: Routes = [
   { path: "Games", component: GameComponent },
   { path: "GameDetails/" + ":id", component: GameDetailsComponent },
   { path: "GameCreate", component: GameCreateComponent },
+  { path: "GameEdit/"+ ":id", component: GameEditComponent },
   { path: "CategoryCreate", component: CategoryCreateComponent },
   { path: "Categories", component: CategoryComponent },
   { path: "CategoryDetails/" + ":id", component: CategoryDetailsComponent },
@@ -46,6 +49,8 @@ const routes: Routes = [
   { path: "UserGameRatings/" + ":id", component: RatingDetailsComponent },
   { path: "UserRatings/" + ":id", component: RatingUserRatingsComponent },
   { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
+  { path: "signin", component: SigninComponent },
+  { path: "", redirectTo: "signin", pathMatch: "full" },
   { path: "**", component: ErrorComponent }
 ];
 

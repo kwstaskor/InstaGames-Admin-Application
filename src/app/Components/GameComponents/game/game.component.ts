@@ -31,6 +31,10 @@ export class GameComponent implements OnInit {
     this.GameService.getGames().subscribe(data => this.games = data);
   }
 
+  EditGame(game: Game) {
+    this.router.navigate(["/GameEdit", game.GameId]);
+  }
+
   DeleteGame(game: Game) {
     this.GameService.deleteGame(game.GameId).subscribe(() => {
       this.DeleteAlert();

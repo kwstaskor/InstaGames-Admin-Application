@@ -21,7 +21,7 @@ export class GameCreateComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(20),
+        Validators.maxLength(50),
         Validators.pattern("[a-zA-Z ]*")
       ]),
     description!: new NamesFormControl('',
