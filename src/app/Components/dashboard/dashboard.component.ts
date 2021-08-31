@@ -174,7 +174,7 @@ export class DashboardComponent implements OnInit {
       var options = {
         series: series,
         chart: {
-          width: 250,
+          width: 300,
           type: 'donut',
         },
         colors: ['#e20e02', '#f68a04', '#007aff', '#545e75'],

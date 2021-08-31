@@ -137,7 +137,13 @@ export class GameCreateComponent implements OnInit {
     }
 
     game.Pegi = <Pegi>{ PegiId: this.gameForm.controls.pegi.value };
-    game.GameUrl = this.gameForm.controls.gameUrl.value;
+    
+    if(this.gameForm.controls.gameUrl.value){
+      game.GameUrl = this.gameForm.controls.gameUrl.value;
+    }else{
+      game.GameUrl = null;
+    }
+    
 
     this.GameService.createGame(game).subscribe(() => {
       this.isCreated = true;

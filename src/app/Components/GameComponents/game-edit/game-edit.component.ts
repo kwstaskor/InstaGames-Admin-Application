@@ -18,10 +18,6 @@ export class GameEditComponent implements OnInit {
 
   gameId!: number;
 
-  dropdownList = [];
-  selectedItems = [];
-  dropdownSettings = {};
-
   gameEdit = new FormGroup({
     title: new NamesFormControl('',
       [
@@ -83,19 +79,6 @@ export class GameEditComponent implements OnInit {
     this.ReadCategories();
     this.ReadPegi();
     this.ReadDevelopers();
-
-
-    this.selectedItems = [
-
-    ];
-
-  }
-
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
   }
 
   ReadCategories() {
@@ -133,9 +116,6 @@ export class GameEditComponent implements OnInit {
       this.gameEdit.controls.gameUrl.setValue(data.GameUrl)
       this.gameEdit.controls.categories.setValue(data.SelectedCategories)
       this.gameEdit.controls.developers.setValue(data.SelectedDevelopers)
-      console.log(data);
-      console.log(this.gameEdit.controls.categories);
-
     });
   }
 
@@ -180,10 +160,15 @@ export class GameEditComponent implements OnInit {
     }
 
     game.Pegi = <Pegi>{ PegiId: this.gameEdit.controls.pegi.value };
-    game.GameUrl = this.gameEdit.controls.gameUrl.value;
+
+    if (this.gameEdit.controls.gameUrl.value) {
+      game.GameUrl = this.gameEdit.controls.gameUrl.value;
+    } else {
+      game.GameUrl = null;
+    }
 
     this.GameService.updateGame(game).subscribe(() => {
-      this.isEdited=true;
+      this.isEdited = true;
       setTimeout(() => {
         this.router.navigate(['/Games']);
       }, 1250);
@@ -193,8 +178,5 @@ export class GameEditComponent implements OnInit {
   showErrors() {
     return this.gameEdit.errors && (this.gameEdit.touched || this.gameEdit.dirty)
   }
-
-
-
 
 }
