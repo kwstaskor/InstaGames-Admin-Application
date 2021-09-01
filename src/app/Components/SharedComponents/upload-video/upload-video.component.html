@@ -6,11 +6,11 @@
     </div>
 </div>
 
-<div *ngIf="uploadedTrailer" class="d-block position-relative">
+<div *ngIf="hasFile" class="d-block position-relative">
 
     <section class="height-100-vh iq-main-slider">
-        <video class="video d-block" width="100%" height="100%" controls>
-            <source [src]="uploadedTrailer" type="video/mp4">
+        <video id="Video" class="video d-block" width="100%" height="100%" controls>
+            <source src="https://localhost:44369/{{uploadedTrailer}}" type="video/mp4">
         </video>
     </section>
 

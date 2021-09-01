@@ -17,6 +17,8 @@ import { GameService } from '../game/game.service';
 export class GameEditComponent implements OnInit {
 
   gameId!: number;
+  PhotoUrl!:string;
+  TrailerUrl!:string;
 
   gameEdit = new FormGroup({
     title: new NamesFormControl('',
@@ -116,6 +118,10 @@ export class GameEditComponent implements OnInit {
       this.gameEdit.controls.gameUrl.setValue(data.GameUrl)
       this.gameEdit.controls.categories.setValue(data.SelectedCategories)
       this.gameEdit.controls.developers.setValue(data.SelectedDevelopers)
+
+      this.PhotoUrl = data.Photo;
+      this.TrailerUrl = this.gameEdit.controls.trailer.value;
+     
     });
   }
 

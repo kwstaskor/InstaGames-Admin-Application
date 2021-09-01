@@ -23,7 +23,7 @@
                                     </div>
 
                                     <div class="col-12 form_gallery form-group">
-                                        <app-upload (onUploadFinished)="uploadFinished($event)" ></app-upload>
+                                        <app-upload [photoUrl]='PhotoUrl' (onUploadFinished)="uploadFinished($event)" ></app-upload>
                                     </div>
 
                                     <div class="col-md-6 form-group">
@@ -68,7 +68,7 @@
                             </div>
 
                             <div class="col-lg-5">
-                                <app-upload-video (onTrailerUploadFinished)='trailerUploadFinished($event)'>
+                                <app-upload-video [trailerUrl]='TrailerUrl' (onTrailerUploadFinished)='trailerUploadFinished($event)'>
                                 </app-upload-video>
                             </div>
 
@@ -147,8 +147,7 @@
                                 <div class="custom-control custom-checkbox d-inline-block ml-5">
                                     <input formControlName='isEarlyAccess' type="checkbox" class="custom-control-input"
                                         id="isEarlyAccess">
-                                    <label class="custom-control-label" for="isEarlyAccess"> Is game ealry
-                                        access?</label>
+                                    <label class="custom-control-label" for="isEarlyAccess"> Is game ealry access?</label>
                                 </div>
 
                             </div>
@@ -200,7 +199,3 @@
        <span aria-hidden="true">&times;</span>
     </button>
  </div>
-
-<div>Form Contents:{{gameEdit.value|json}}</div>
-<div>Form Contents:{{gameEdit.valid}}</div>
-<div>Errors arround First Name:{{gameEdit.controls.releaseDate.errors|json}}</div>

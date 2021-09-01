@@ -1,5 +1,5 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input ,OnChanges } from '@angular/core';
 
 
 @Component({
@@ -7,10 +7,11 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class UploadComponent implements OnInit {
+export class UploadComponent implements OnInit ,OnChanges {
   public message!: any;
   public progress!: number;
   public files!: FileList;
+  @Input() photoUrl!:any;
   hasFile: boolean = false;
   fileName!: string
   @Output() public onUploadFinished = new EventEmitter();
@@ -18,6 +19,11 @@ export class UploadComponent implements OnInit {
   constructor(private uploadService: HttpClient) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges():void{
+    this.hasFile = true;
+    this.fileName = this.photoUrl
   }
 
 
@@ -32,7 +38,7 @@ export class UploadComponent implements OnInit {
       fileToUpload.type === 'image/png' ||
       fileToUpload.type === 'image/jpg')) {
       
-        if(fileToUpload.size < 4066360){
+        if(fileToUpload.size < 5566360){
 
           this.fileName = fileToUpload.name;
           const formData = new FormData();
