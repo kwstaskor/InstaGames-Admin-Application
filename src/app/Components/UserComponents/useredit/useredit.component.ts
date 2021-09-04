@@ -91,7 +91,6 @@ export class UsereditComponent implements OnInit {
     user.Roles = new Array();
     user.Roles.push(<any>{RoleId:this.userForm.controls.role.value,UserId:this.userId})
     user.DateOfBirth = this.userForm.controls.dateOfBirth.value;
-    user.PhotoUrl = this.userForm.controls.photoUrl.value;
 
     this.userService.editUser(user).subscribe(() => {
       this.isEdited = true;

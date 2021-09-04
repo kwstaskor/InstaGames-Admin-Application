@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RiLandscapeFill } from 'angular-remix-icon';
 import { Category } from '../CategoryComponents/category/category';
 import { CategoryService } from '../CategoryComponents/category/category.service';
 import { DeveloperService } from '../DeveloperComponents/developer/developer.service';

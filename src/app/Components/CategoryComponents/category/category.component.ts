@@ -18,10 +18,10 @@ export class CategoryComponent implements OnInit {
   Type: any;
 
   constructor(private actRoute: ActivatedRoute, private CategoryService: CategoryService, private router: Router) {
+    this.ReadCategories();
    }
 
   ngOnInit(): void {
-    this.ReadCategories();
   }
 
   ReadCategories() {

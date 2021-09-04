@@ -19,7 +19,7 @@
                 <br>               
 
                 <span class="text-primary">Registration Date: </span>
-                <span>{{user.RegistrationDate | date : 'short'}}</span>
+                <span>{{user.RegistrationDate | date : 'medium'}}</span>
                 <br>
 
                 <span class="text-primary">E-mail confirmed: </span>
@@ -33,11 +33,11 @@
                 <br>
 
                 <span *ngIf="user.SubscriptionDay" class="text-primary">Subscription Date: </span>
-                <span *ngIf="user.SubscriptionDay">{{user.SubscriptionDay | date : 'short'}}</span>
+                <span *ngIf="user.SubscriptionDay">{{user.SubscriptionDay | date : 'medium'}}</span>
                 <br>
 
                 <span *ngIf="user.ExpireDate" class="text-primary">Subscription Expiration: </span>
-                <span *ngIf="user.ExpireDate">{{user.ExpireDate | date : 'short'}}</span>
+                <span *ngIf="user.ExpireDate">{{user.ExpireDate | date : 'medium'}}</span>
                 
                 <div class="text-center mt-4">
                     <a routerLink='/Dashboard' class="card-link">Home</a>
