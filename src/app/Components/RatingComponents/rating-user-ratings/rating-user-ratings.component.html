@@ -1,15 +1,15 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12 col-lg-12">
+        <div class="col-sm-12">
             <div class="iq-card">
-                <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-card-header d-flex justify-content-center">
                     <div class="iq-header-title">
                         <h4 class="card-title">Game Rating Details</h4>
                     </div>
                 </div>
                 <div class="iq-card-body" *ngIf="Rating;else Loader">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-lg-3 col-md-12 col-sm-12">
                             <ul id="top-tabbar-vertical" class="p-0">
                                 <li id="personal">
                                     <a routerLink="UserGameRatings/ + {{Rating.GameId}}" (click)='ViewRatingDetails(Rating)' class="card-link">
@@ -23,10 +23,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="container align-content-lg-center">
-                            <div class="text-center col-md-9">
+                        <div class="container col" style="width:max-content">
+                            <div class="text-center">
                                 <!-- tab content -->
-                                <table class="table movie_table" style="width:100%">
+                                <table class="table movie_table">
                                     <thead>
                                        <tr>
                                           <th (click)="sort('UserGameRatingsId')">User Rating Id&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i></th>
@@ -43,6 +43,11 @@
                                        </tr>
                                     </tbody>
                                  </table>
+                                 <br>
+                                 <div class="text-center">
+                                    <a routerLink='/Dashboard' class="card-link">Home</a>
+                                    <a routerLink='/UserGameRatings' class="card-link">Back</a>
+                                 </div>
                             </div>
                         </div>
                     </div>

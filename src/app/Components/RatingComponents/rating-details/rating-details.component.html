@@ -1,6 +1,6 @@
 <div class="container-fluid">
    <div class="row">
-      <div class="col-sm-12 col-lg-12">
+      <div class="">
          <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
                <div class="iq-header-title">
@@ -9,7 +9,7 @@
             </div>
             <div class="iq-card-body" *ngIf="Rating;else Loader">
                <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-lg-3 col-md-12 col-sm-12">
                      <ul id="top-tabbar-vertical" class="p-0">
                         <li class="active" id="personal">
                            <a href="javascript:void();">
@@ -23,8 +23,8 @@
                         </li>
                      </ul>
                   </div>
-                  <div class="container align-content-lg-center">
-                     <div class="text-center col-md-9">
+                  <div class="container col align-content-lg-center" style="width:fit-content">
+                     <div class="text-center">
                            <!-- tab content -->
                            <fieldset>
                               <div class="form-card">
