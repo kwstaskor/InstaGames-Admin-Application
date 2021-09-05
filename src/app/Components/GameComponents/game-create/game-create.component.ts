@@ -97,6 +97,7 @@ export class GameCreateComponent implements OnInit {
   }
 
   isCreated: boolean = false;
+  createdGameName:string|null=null;
   saveGame() {
 
     let game = <Game>{};
@@ -145,8 +146,9 @@ export class GameCreateComponent implements OnInit {
     }
     
 
-    this.GameService.createGame(game).subscribe(() => {
+    this.GameService.createGame(game).subscribe((data) => {
       this.isCreated = true;
+      this.createdGameName = data.Title;
       setTimeout(() => {
         this.router.navigate(['/Games']);
       }, 1250);

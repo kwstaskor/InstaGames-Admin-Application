@@ -23,7 +23,7 @@
  
                     <!--Delete Alert-->
                    <div *ngIf="isDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
-                      <strong>Success!&nbsp;</strong>Developer deleted successfully.
+                      <strong>Success!&nbsp;</strong>{{deletedDevName}} deleted successfully.
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                          <span aria-hidden="true">&times;</span>
                       </button>
@@ -88,4 +88,3 @@
        </tr>
     </tbody>
  </ng-template>
- 

@@ -13,7 +13,6 @@ import { GameService } from './game.service';
 
 export class GameComponent implements OnInit {
   p: number = 1;
-  isDeleted: boolean = false;
   games!: Game[];
   Title: any;
 
@@ -32,9 +31,11 @@ export class GameComponent implements OnInit {
     this.router.navigate(["/GameEdit", game.GameId]);
   }
 
+  isDeleted: boolean = false;
+  deleteGameName: string|null = null;
   DeleteGame(game: Game) {
-    this.GameService.deleteGame(game.GameId).subscribe(() => {
-      this.DeleteAlert();
+    this.GameService.deleteGame(game.GameId).subscribe((data) => {
+      this.DeleteAlert(data);
       this.ReadGames();
     }, (error) => console.log(error));
   }
@@ -60,10 +61,12 @@ export class GameComponent implements OnInit {
     this.reverse = !this.reverse;
   }
 
-  DeleteAlert() {
+  DeleteAlert(data:Game) {
     this.isDeleted = true;
+    this.deleteGameName = data.Title;
     setTimeout(() => {
       this.isDeleted = false
+      this.deleteGameName = null;
     }, 3000);
   }
 

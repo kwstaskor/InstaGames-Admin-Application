@@ -126,6 +126,7 @@ export class GameEditComponent implements OnInit {
   }
 
   isEdited: boolean = false;
+  editedGameName: string |null = null;
   editGame() {
 
     let game = <Game>{};
@@ -173,8 +174,9 @@ export class GameEditComponent implements OnInit {
       game.GameUrl = null;
     }
 
-    this.GameService.updateGame(game).subscribe(() => {
+    this.GameService.updateGame(game).subscribe((data) => {
       this.isEdited = true;
+      this.editedGameName = data.Title;
       setTimeout(() => {
         this.router.navigate(['/Games']);
       }, 1250);

@@ -1,5 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { Game, Category } from './category';
+import { Category } from './category';
 import { CategoryService } from './category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -13,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CategoryComponent implements OnInit {
 
   p: number = 1;
-  isDeleted: boolean = false;
   categories!: Category[];
   Type: any;
 
@@ -37,8 +36,8 @@ export class CategoryComponent implements OnInit {
   }
 
   DeleteCategory(category: Category) {
-    this.CategoryService.deleteCategory(category.CategoryId).subscribe(() => {
-      this.DeleteAlert();
+    this.CategoryService.deleteCategory(category.CategoryId).subscribe((data) => {
+      this.DeleteAlert(data.Type);
       this.ReadCategories();
     });
   }
@@ -60,10 +59,14 @@ export class CategoryComponent implements OnInit {
     this.reverse = !this.reverse;
   }
 
-  DeleteAlert() {
+  isDeleted: boolean = false;
+  deletedCategoryName!:string|null
+  DeleteAlert(categoryType:string) {
     this.isDeleted = true;
+    this.deletedCategoryName = categoryType;
     setTimeout(() => {
       this.isDeleted = false
+      this.deletedCategoryName = null;
     }, 3000);
   }
 }

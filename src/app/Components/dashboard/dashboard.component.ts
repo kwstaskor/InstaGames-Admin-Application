@@ -72,8 +72,8 @@ export class DashboardComponent implements OnInit {
       let instagamesDevs = data.filter(d => d.IsInstaGamesDev);
       let externalDevs = data.filter(d => !d.IsInstaGamesDev)
       let arr = [];
-      arr.push((instagamesDevs.length / data.length) * 100);
-      arr.push((externalDevs.length / data.length) * 100);
+      arr.push(Math.floor((instagamesDevs.length / data.length) * 100));
+      arr.push(Math.floor((externalDevs.length / data.length) * 100));
       this.thirdChart(arr);
 
     })

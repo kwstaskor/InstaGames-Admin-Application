@@ -11,7 +11,6 @@ import { DeveloperService } from './developer.service';
 
 export class DeveloperComponent implements OnInit {
   p: number = 1;
-  isDeleted: boolean = false;
   developers!: Developer[];
   FirstName: any;
 
@@ -24,7 +23,7 @@ export class DeveloperComponent implements OnInit {
   }
 
   ReadDevelopers() {
-    this.DeveloperService.getDevelopers().subscribe(data => this.developers = data);
+    this.DeveloperService.getDevelopers().subscribe((data) => this.developers = data);
   }
 
   ViewDevs(developer: Developer) {
@@ -35,9 +34,11 @@ export class DeveloperComponent implements OnInit {
     this.router.navigate(["/DeveloperEdit", developer.DeveloperId]);
   }
 
+  isDeleted: boolean = false;
+  deletedDevName: string|null = null
   DeleteDev(developer: Developer) {
-    this.DeveloperService.deleteDeveloper(developer.DeveloperId).subscribe(() => {
-      this.DeleteAlert();
+    this.DeveloperService.deleteDeveloper(developer.DeveloperId).subscribe((data) => {
+      this.DeleteAlert(data);
       this.ReadDevelopers();
     },
       (error) => console.log(error));
@@ -60,8 +61,9 @@ export class DeveloperComponent implements OnInit {
     this.reverse = !this.reverse;
   }
 
-  DeleteAlert() {
+  DeleteAlert(data:any) {
     this.isDeleted = true;
+    this.deletedDevName =  `${data.FirstName} ${data.LastName}`;
     setTimeout(() => {
       this.isDeleted = false
     }, 3000);

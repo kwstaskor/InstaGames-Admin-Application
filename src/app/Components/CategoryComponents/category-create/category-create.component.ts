@@ -36,13 +36,15 @@ export class CategoryCreateComponent implements OnInit {
   }
 
   isCreated: boolean = false;
+  createdCategoryName:string|null = null
   saveCategory(): void {
     let category = <Category>{}
     category.Type = this.categoryForm.controls.type.value;
     category.Description = this.categoryForm.controls.description.value;
 
-    this.CategoryService.createCategory(category).subscribe(() => {
+    this.CategoryService.createCategory(category).subscribe((data) => {
       this.isCreated = true;
+      this.createdCategoryName = data.Type
       setTimeout(() => {
         this.router.navigate(["/Categories"]);
       }, 1250);

@@ -48,6 +48,7 @@ export class DeveloperEditComponent implements OnInit {
   }
 
   isEdited: boolean = false;
+  editedDevName:string|null = null
   editDeveloper() {
 
     let developer = <Developer>{};
@@ -62,12 +63,12 @@ export class DeveloperEditComponent implements OnInit {
       developer.IsInstaGamesDev = false;
     }
 
-    this.developerService.editDeveloper(developer).subscribe(() => {
+    this.developerService.editDeveloper(developer).subscribe((data) => {
       this.isEdited = true;
+      this.editedDevName = `${data.FirstName} ${data.LastName}`;
       setTimeout(() => {
         this.router.navigate(['/Developers']);
       }, 1250);
-
     });
   }
 }

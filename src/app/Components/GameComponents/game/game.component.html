@@ -23,7 +23,7 @@
 
                   <!--Delete Alert-->
                   <div *ngIf="isDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
-                     <strong>Success!&nbsp;</strong>Game deleted successfully.
+                     <strong>Success!&nbsp;</strong>{{deleteGameName}} deleted successfully.
                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                      </button>
@@ -110,8 +110,4 @@
          </td>
       </tr>
    </tbody>
-</ng-template>
-
-<ng-template #Loader>
-   <img src="../../../../assets/Images/page-load-loader.gif">
 </ng-template>

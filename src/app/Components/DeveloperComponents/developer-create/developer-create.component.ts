@@ -35,6 +35,7 @@ export class DeveloperCreateComponent implements OnInit {
   }
 
   isCreated: boolean = false;
+  createdDevName: string|null = null;
   saveDeveloper(): void {
 
     let developer = <Developer>{};
@@ -47,8 +48,9 @@ export class DeveloperCreateComponent implements OnInit {
        developer.IsInstaGamesDev = false;
      }
      
-    this.developerService.createDeveloper(developer).subscribe(()=>{
+    this.developerService.createDeveloper(developer).subscribe((data)=>{
       this.isCreated = true;
+      this.createdDevName = `${data.FirstName} ${data.LastName}`;
       setTimeout(() => {
         this.router.navigate(['/Developers']);
       }, 1250);

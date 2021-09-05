@@ -47,6 +47,7 @@ export class CategoryEditComponent implements OnInit {
   }
 
   isEdited: boolean = false;
+  editedCategoryName: string|null = null;
   editCategory(): void {
 
     let category = <Category>{}
@@ -54,8 +55,9 @@ export class CategoryEditComponent implements OnInit {
     category.Type = this.categoryEdit.controls.type.value;
     category.Description = this.categoryEdit.controls.description.value;
 
-    this.CategoryService.updateCategory(category).subscribe(() => {
+    this.CategoryService.updateCategory(category).subscribe((data) => {
       this.isEdited = true;
+      this.editedCategoryName = data.Type;
       setTimeout(() => {
         this.router.navigate(["/Categories"]);
       }, 1250);
