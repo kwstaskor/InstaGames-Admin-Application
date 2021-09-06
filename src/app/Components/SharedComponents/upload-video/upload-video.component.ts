@@ -1,4 +1,4 @@
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
@@ -15,6 +15,7 @@ export class UploadVideoComponent implements OnInit,OnChanges {
   fileName!: string
   uploadedTrailer!:any
   @Output() public onTrailerUploadFinished = new EventEmitter();
+  token:string|null = localStorage.getItem('userToken');
 
   constructor(private uploadService: HttpClient) { }
 
@@ -47,7 +48,7 @@ export class UploadVideoComponent implements OnInit,OnChanges {
           const formData = new FormData();
           formData.append('file', fileToUpload, "~/Content/video/"+fileToUpload.name);
           this.hasFile = true;
-          this.uploadService.post('https://localhost:44369/api/game/UploadGameFiles', formData, { reportProgress: true, observe: 'events' })
+          this.uploadService.post('https://localhost:44369/api/game/UploadGameFiles', formData, {headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}` }), reportProgress: true, observe: 'events' })
             .subscribe(event => {
               if (event.type === HttpEventType.UploadProgress)
                 this.progress = Math.round(100 * event.loaded / event.total!);
