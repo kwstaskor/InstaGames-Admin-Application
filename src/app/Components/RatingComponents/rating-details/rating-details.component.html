@@ -1,63 +1,64 @@
 <div class="content-page">
-<div class="container-fluid">
-   <div class="row">
-      <div class="">
-         <div class="iq-card">
-            <div class="iq-card-header d-flex justify-content-between">
-               <div class="iq-header-title">
-                  <h4 class="card-title">Game Rating Details</h4>
-               </div>
-            </div>
-            <div class="iq-card-body" *ngIf="Rating;else Loader">
-               <div class="row">
-                  <div class="col-lg-3 col-md-12 col-sm-12">
-                     <ul id="top-tabbar-vertical" class="p-0">
-                        <li class="active" id="personal">
-                           <a href="javascript:void();">
-                              <i class="las la-star text-primary"></i><span>Game Rating Info</span>
-                           </a>
-                        </li>
-                        <li id="contact">
-                           <a routerLink="" (click)='ViewUserRatings(Rating)' class="card-link">
-                              <i class="ri-user-fill text-danger"></i><span>User Ratings</span>
-                           </a>
-                        </li>
-                     </ul>
+   <div class="container-fluid">
+      <div class="row">
+         <div class="">
+            <div class="iq-card">
+               <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                     <h4 class="card-title">Game Rating Details</h4>
                   </div>
-                  <div class="container col align-content-lg-center" style="width:fit-content">
-                     <div class="text-center">
-                           <!-- tab content -->
-                           <fieldset>
-                              <div class="form-card">
-                                 <div class="row">
-                                    <div class="col-12">
-                                       <a  routerLink='/GameDetails/{{Rating.GameId}}' title="More Info" class="mb-4 font-size-36">{{Rating.GameTitle}}</a>
+               </div>
+               <div class="iq-card-body" *ngIf="Rating;else Loader">
+                  <div class="row">
+                     <div class="col-lg-3 col-md-12 col-sm-12">
+                        <ul id="top-tabbar-vertical" class="p-0">
+                           <li class="active" id="personal">
+                              <a href="javascript:void();">
+                                 <i class="las la-star text-primary"></i><span>Game Rating Info</span>
+                              </a>
+                           </li>
+                           <li id="contact">
+                              <a  (click)='ViewUserRatings(Rating)' class="card-link crudBtn">
+                                 <i class="ri-user-fill text-danger"></i><span>User Ratings</span>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="container col align-content-lg-center" style="width:fit-content">
+                        <div class="text-center">
+                              <!-- tab content -->
+                              <fieldset>
+                                 <div class="form-card">
+                                    <div class="row">
+                                       <div class="col-12">
+                                          <a routerLink='/GameDetails/{{Rating.GameId}}' class="mb-4 text-primary font-size-36" title="Game Info">{{Rating.GameTitle}}</a>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-12 align-self-center card-img-top">
+                                          <img src="https://localhost:44369/{{Rating.GamePhoto}}"
+                                             class="align-self-center card-img-top mt-3" alt="">
+                                       </div>
+                                       <div class="col-md-12 mt-3">
+                                          <h3 class="display-rating card-text">Total Rating: <i
+                                                class="text-primary mt-5"></i>
+                                             {{Rating.TotalRating}}&nbsp;</h3>
+                                          <app-game-rating [Rating]='Rating.TotalRatingFloat'></app-game-rating>
+                                       </div>
+                                       <div class="col-md-12 mt-0">
+                                          <p class="card-text">(Based on <b
+                                                class="text-primary">{{Rating.UserGameRatings.length}}</b> User Ratings)
+                                          </p>
+                                       </div>
+                                    </div>
+                                    <br>
+                                    <div class="text-center">
+                                       <a routerLink='/Dashboard' class="card-link">Home</a>
+                                       <a routerLink='/UserGameRatings' class="card-link">Back</a>
                                     </div>
                                  </div>
-                                 <div class="row">
-                                    <div class="col-md-12 align-self-center card-img-top">
-                                       <img src="https://localhost:44369/{{Rating.GamePhoto}}"
-                                          class="align-self-center card-img-top mt-3" alt="">
-                                    </div>
-                                    <div class="col-md-12 mt-3">
-                                       <h3 class="display-rating card-text">Total Rating: <i
-                                             class="text-primary mt-5"></i>
-                                          {{Rating.TotalRating}}&nbsp;</h3>
-                                       <app-game-rating [Rating]='Rating.TotalRatingFloat'></app-game-rating>
-                                    </div>
-                                    <div class="col-md-12 mt-0">
-                                       <p class="card-text">(Based on <b
-                                             class="text-primary">{{Rating.UserGameRatings.length}}</b> User Ratings)
-                                       </p>
-                                    </div>
-                                 </div>
-                                 <br>
-                                 <div class="text-center">
-                                    <a routerLink='/Dashboard' class="card-link">Home</a>
-                                    <a routerLink='/UserGameRatings' class="card-link">Back</a>
-                                 </div>
-                              </div>
-                           </fieldset>
+                              </fieldset>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -65,9 +66,8 @@
          </div>
       </div>
    </div>
-</div>
-
-<ng-template #Loader>
-   <img src="../../../../assets/Images/page-load-loader.gif">
-</ng-template>
+   
+   <ng-template #Loader>
+      <img src="../../../../assets/Images/page-load-loader.gif">
+   </ng-template>
 </div>
