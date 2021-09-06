@@ -10,13 +10,14 @@ export class MessageService {
 
   private URL = 'https://localhost:44369/api/Message';
   constructor(private httpService: HttpClient) { }
+  token:string|null = localStorage.getItem('userToken');
 
   httpOptions = {
-    headers: new HttpHeaders({ 'content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}` })
   }
 
   getMessages(): Observable<Message[]> {
-    return this.httpService.get<Message[]>(this.URL);
+    return this.httpService.get<Message[]>(this.URL,this.httpOptions);
   }
 
   getMessage(id: number): Observable<Message> {

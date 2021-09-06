@@ -72,141 +72,132 @@
                                 </div>
 
                                 <div class="col-lg-5">
-                                    <app-upload-video (onTrailerUploadFinished)='trailerUploadFinished($event)'>
-                                    </app-upload-video>
-                                </div>
-
-                                <div class="col-lg-5">
                                     <app-upload-video [trailerUrl]='TrailerUrl'
                                         (onTrailerUploadFinished)='trailerUploadFinished($event)'>
                                     </app-upload-video>
                                 </div>
 
-                                <div class="row">
-
-                                    <div class="col-sm-6 form-group">
-                                        <label for="releaseDate">Release Date</label>
-                                        <input [ngClass]="{'is-invalid':gameEdit.controls.releaseDate.errors &&
-                         (gameEdit.controls.releaseDate.touched || gameEdit.controls.releaseDate.dirty)}"
-                                            formControlName="releaseDate" type="date" class="form-control">
-                                        <ng-container *ngIf="gameEdit.controls.releaseDate.errors">
-                                            <div *ngIf="gameEdit.controls.releaseDate.errors.required"
-                                                class="invalid-feedback">
-                                                Value is required.
-                                            </div>
-                                            <div *ngIf="gameEdit.controls.releaseDate.errors.min"
-                                                class="invalid-feedback">
-                                                Dude what the fuck? {{gameEdit.controls.releaseDate.errors.min.actual}}
-                                                ?
-                                                Seriously?
-                                            </div>
-                                            <div *ngIf="gameEdit.controls.releaseDate.errors.max"
-                                                class="invalid-feedback">
-                                                Dude what the fuck? {{gameEdit.controls.releaseDate.errors.max.actual}}
-                                                ?
-                                                Seriously?
-                                            </div>
-                                        </ng-container>
-                                    </div>
-
-                                    <div class="col-sm-6 form-group">
-                                        <label for="gameUrl">Game Url</label>
-                                        <app-input PlaceHolder="" [Control]="gameEdit.get('gameUrl')"></app-input>
-                                    </div>
-
-                                    <div class="col-sm-6 form-group">
-                                        <select formControlName="categories" class="form-control" multiple [ngClass]="{'is-invalid':gameEdit.controls.categories.errors &&
-                         (gameEdit.controls.categories.touched || gameEdit.controls.categories.dirty)}">
-                                            <option disabled="">Choose Categories</option>
-                                            <option [ngValue]="cat.CategoryId" *ngFor="let cat of Categories">
-                                                {{cat.Type}}
-                                            </option>
-                                        </select>
-                                        <ng-container *ngIf="gameEdit.controls.categories.errors">
-                                            <div *ngIf="gameEdit.controls.categories.errors.required"
-                                                class="invalid-feedback">
-                                                Value is required.
-                                            </div>
-                                        </ng-container>
-                                    </div>
-
-                                    <div class="col-sm-6 form-group">
-                                        <select formControlName="developers" class="form-control"
-                                            id="exampleFormControlSelect3" [ngClass]="{'is-invalid':gameEdit.controls.developers.errors &&
-                         (gameEdit.controls.developers.touched || gameEdit.controls.developers.dirty)}" multiple>
-                                            <option disabled="">Choose Developers</option>
-                                            <option [selected]='dev.FirstName' [ngValue]="dev.DeveloperId"
-                                                *ngFor="let dev of Developers" selected>
-                                                {{dev.FirstName}}
-                                            </option>
-                                        </select>
-                                        <ng-container *ngIf="gameEdit.controls.developers.errors">
-                                            <div *ngIf="gameEdit.controls.developers.errors.required"
-                                                class="invalid-feedback">
-                                                Value is required.
-                                            </div>
-                                        </ng-container>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-sm-12 form-group mt-2">
-
-                                        <div class="custom-control custom-checkbox d-inline-block">
-                                            <input formControlName='isReleased' type="checkbox"
-                                                class="custom-control-input" id="isReleased">
-                                            <label class="custom-control-label" for="isReleased"> Is game
-                                                released?</label>
-                                        </div>
-
-                                        <div class="custom-control custom-checkbox d-inline-block ml-5">
-                                            <input formControlName='isEarlyAccess' type="checkbox"
-                                                class="custom-control-input" id="isEarlyAccess">
-                                            <label class="custom-control-label" for="isEarlyAccess"> Is game ealry
-                                                access?</label>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-
-                                        <div class="col-sm-12 form-group">
-                                            <div *ngIf="gameEdit.invalid" class="text-primary mt-5">
-                                                <small>
-                                                    <i class="las la-image"></i>
-                                                    Image is required.
-                                                    <br>
-                                                    <i class="las la-image"></i>
-                                                    Image size should be 1600x900 <span
-                                                        style="font-size: 80%;">(px)</span>
-                                                    <br>
-                                                    <i class="las la-video"></i>
-                                                    Trailer is not required.
-                                                    <br>
-                                                    <i class="las la-video"></i>
-                                                    Trailer size can't be over 40<span
-                                                        style="font-size: 80%;">(mb)</span>.
-                                                </small>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-12 form-group">
-                                            <button [disabled]='gameEdit.invalid' type="submit"
-                                                [ngClass]="{'btn-danger':gameEdit.invalid}"
-                                                class="btn btn-primary m-2">Save
-                                                Changes
-                                            </button>
-                                            <button routerLink='/Games' type="button"
-                                                class="btn btn-danger m-2 card-link">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
+                            <div class="row">
+
+                                <div class="col-sm-6 form-group">
+                                    <label for="releaseDate">Release Date</label>
+                                    <input [ngClass]="{'is-invalid':gameEdit.controls.releaseDate.errors &&
+                         (gameEdit.controls.releaseDate.touched || gameEdit.controls.releaseDate.dirty)}"
+                                        formControlName="releaseDate" type="date" class="form-control">
+                                    <ng-container *ngIf="gameEdit.controls.releaseDate.errors">
+                                        <div *ngIf="gameEdit.controls.releaseDate.errors.required"
+                                            class="invalid-feedback">
+                                            Value is required.
+                                        </div>
+                                        <div *ngIf="gameEdit.controls.releaseDate.errors.min" class="invalid-feedback">
+                                            Dude what the fuck? {{gameEdit.controls.releaseDate.errors.min.actual}}
+                                            ?
+                                            Seriously?
+                                        </div>
+                                        <div *ngIf="gameEdit.controls.releaseDate.errors.max" class="invalid-feedback">
+                                            Dude what the fuck? {{gameEdit.controls.releaseDate.errors.max.actual}}
+                                            ?
+                                            Seriously?
+                                        </div>
+                                    </ng-container>
+                                </div>
+
+                                <div class="col-sm-6 form-group">
+                                    <label for="gameUrl">Game Url</label>
+                                    <app-input PlaceHolder="" [Control]="gameEdit.get('gameUrl')"></app-input>
+                                </div>
+
+                                <div class="col-sm-6 form-group">
+                                    <select formControlName="categories" class="form-control" multiple [ngClass]="{'is-invalid':gameEdit.controls.categories.errors &&
+                         (gameEdit.controls.categories.touched || gameEdit.controls.categories.dirty)}">
+                                        <option disabled="">Choose Categories</option>
+                                        <option [ngValue]="cat.CategoryId" *ngFor="let cat of Categories">
+                                            {{cat.Type}}
+                                        </option>
+                                    </select>
+                                    <ng-container *ngIf="gameEdit.controls.categories.errors">
+                                        <div *ngIf="gameEdit.controls.categories.errors.required"
+                                            class="invalid-feedback">
+                                            Value is required.
+                                        </div>
+                                    </ng-container>
+                                </div>
+
+                                <div class="col-sm-6 form-group">
+                                    <select formControlName="developers" class="form-control"
+                                        id="exampleFormControlSelect3" [ngClass]="{'is-invalid':gameEdit.controls.developers.errors &&
+                         (gameEdit.controls.developers.touched || gameEdit.controls.developers.dirty)}" multiple>
+                                        <option disabled="">Choose Developers</option>
+                                        <option [selected]='dev.FirstName' [ngValue]="dev.DeveloperId"
+                                            *ngFor="let dev of Developers" selected>
+                                            {{dev.FirstName}}
+                                        </option>
+                                    </select>
+                                    <ng-container *ngIf="gameEdit.controls.developers.errors">
+                                        <div *ngIf="gameEdit.controls.developers.errors.required"
+                                            class="invalid-feedback">
+                                            Value is required.
+                                        </div>
+                                    </ng-container>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-12 form-group mt-2">
+
+                                    <div class="custom-control custom-checkbox d-inline-block">
+                                        <input formControlName='isReleased' type="checkbox" class="custom-control-input"
+                                            id="isReleased">
+                                        <label class="custom-control-label" for="isReleased"> Is game
+                                            released?</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox d-inline-block ml-5">
+                                        <input formControlName='isEarlyAccess' type="checkbox"
+                                            class="custom-control-input" id="isEarlyAccess">
+                                        <label class="custom-control-label" for="isEarlyAccess"> Is game ealry
+                                            access?</label>
+                                    </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-sm-12 form-group">
+                                        <div *ngIf="gameEdit.invalid" class="text-primary mt-5">
+                                            <small>
+                                                <i class="las la-image"></i>
+                                                Image is required.
+                                                <br>
+                                                <i class="las la-image"></i>
+                                                Image size should be 1600x900 <span style="font-size: 80%;">(px)</span>
+                                                <br>
+                                                <i class="las la-video"></i>
+                                                Trailer is not required.
+                                                <br>
+                                                <i class="las la-video"></i>
+                                                Trailer size can't be over 40<span style="font-size: 80%;">(mb)</span>.
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12 form-group">
+                                        <button [disabled]='gameEdit.invalid' type="submit"
+                                            [ngClass]="{'btn-danger':gameEdit.invalid}" class="btn btn-primary m-2">Save
+                                            Changes
+                                        </button>
+                                        <button routerLink='/Games' type="button"
+                                            class="btn btn-danger m-2 card-link">Cancel</button>
+                                    </div>
+                                </div>
+                            
                         </form>
 
                     </div>
@@ -214,7 +205,6 @@
             </div>
         </div>
     </div>
-
     <!--Edit Alert-->
     <div *ngIf="isEdited" class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Success!&nbsp;</strong>{{editedGameName}} successfully edited.

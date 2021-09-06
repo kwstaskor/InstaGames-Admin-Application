@@ -8,21 +8,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class GameService {
-
   private URL = 'https://localhost:44369/api/Game';
-  constructor(private httpService: HttpClient) { }
-
+  constructor(private httpService: HttpClient) {
+  }
+  
+  token:string|null = localStorage.getItem('userToken'); 
   httpOptions = {
-    headers: new HttpHeaders({ 'content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}` })
   }
 
   getGames(): Observable<Game[]> {
-    return this.httpService.get<Game[]>(this.URL);
+    return this.httpService.get<Game[]>(this.URL,this.httpOptions);
   }
 
   getPegi(): Observable<Pegi[]> {
     const pegiUrl = 'https://localhost:44369/api/Pegi';
-    return this.httpService.get<Pegi[]>(pegiUrl);
+    return this.httpService.get<Pegi[]>(pegiUrl,this.httpOptions);
   }
 
   getGame(id: number): Observable<Game> {

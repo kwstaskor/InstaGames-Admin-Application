@@ -9,13 +9,14 @@ import { User, Role } from './user';
 export class UserService {
   private URL = 'https://localhost:44369/api/Account';
   constructor(private httpService: HttpClient) { }
+  token:string|null = localStorage.getItem('userToken');
 
   httpOptions = {
-    headers: new HttpHeaders({ 'content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}` })
   }
 
   getUsers(): Observable<User[]> {
-    return this.httpService.get<User[]>(this.URL);
+    return this.httpService.get<User[]>(this.URL,this.httpOptions);
   }
 
   getUser(id: string): Observable<User> {

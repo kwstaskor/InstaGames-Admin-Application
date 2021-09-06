@@ -10,13 +10,14 @@ export class DeveloperService {
 
   private URL = 'https://localhost:44369/api/Developer';
   constructor(private httpService: HttpClient) { }
+  token:string|null = localStorage.getItem('userToken');
 
   httpOptions = {
-    headers: new HttpHeaders({ 'content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}` })
   }
-
+  
   getDevelopers(): Observable<Developer[]> {
-    return this.httpService.get<Developer[]>(this.URL);
+    return this.httpService.get<Developer[]>(this.URL,this.httpOptions);
   }
 
   getDeveloper(id: number): Observable<Developer> {

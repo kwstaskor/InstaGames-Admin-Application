@@ -11,13 +11,14 @@ export class RatingService {
 
   private URL = 'https://localhost:44369/api/UserGameRatings';
   constructor(private httpService: HttpClient) { }
+  token:string|null = localStorage.getItem('userToken');
 
   httpOptions = {
-    headers: new HttpHeaders({ 'content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}` })
   }
-
+  
   GetUserGameRatings(): Observable<Rating[]>{
-    return this.httpService.get<Rating[]>(this.URL)
+    return this.httpService.get<Rating[]>(this.URL,this.httpOptions)
   }
 
   GetRatingDetails(id: number): Observable<Rating> {

@@ -12,19 +12,19 @@ export class CategoryService {
 
   private URL = 'https://localhost:44369/api/category';
   constructor(private httpService: HttpClient) { }
-
+  token:string|null = localStorage.getItem('userToken');
 
   httpOptions = {
-    headers:new HttpHeaders({'content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}` })
   }
   
   getCategories(): Observable<Category[]> {
-    return this.httpService.get<Category[]>(this.URL);
+    return this.httpService.get<Category[]>(this.URL,this.httpOptions);
   }
   
   getCategory(id:number):Observable<Category>{
     const url = `${this.URL}/${id}`;
-    return this.httpService.get<Category>(url);
+    return this.httpService.get<Category>(url,this.httpOptions);
   }
 
   createCategory(category:Category){
