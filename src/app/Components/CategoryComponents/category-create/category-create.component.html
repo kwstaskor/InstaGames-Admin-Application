@@ -1,45 +1,49 @@
-<div class="container-fluid">
-   <div class="row">
-      <div class="col-sm-12">
-         <div class="iq-card">
+<div class="content-page">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-sm-12">
+            <div class="iq-card">
 
-            <div class="iq-card-header d-flex justify-content-between">
-               <div class="iq-header-title">
-                  <h4 class="card-title">Add Category</h4>
+               <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                     <h4 class="card-title">Add Category</h4>
+                  </div>
                </div>
-            </div>
 
-            <div class="iq-card-body">
-               <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+               <div class="iq-card-body">
+                  <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
 
-                  <div class="row">
-                     <div class="col-lg-12">
+                     <div class="row">
+                        <div class="col-lg-12">
 
-                        <div class="row">
-                           <div class="col-6 form-group">
-                              <app-input PlaceHolder='Type' [Control]="categoryForm.get('type')">
-                              </app-input>
+                           <div class="row">
+                              <div class="col-6 form-group">
+                                 <app-input PlaceHolder='Type' [Control]="categoryForm.get('type')">
+                                 </app-input>
+                              </div>
                            </div>
-                        </div>
 
-                        <div class="row">
-                           <div class="col-6 form-group">
-                             <app-text-area PlaceHolder='Description' [Control]="categoryForm.get('description')" ></app-text-area>
+                           <div class="row">
+                              <div class="col-6 form-group">
+                                 <app-text-area PlaceHolder='Description' [Control]="categoryForm.get('description')">
+                                 </app-text-area>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
 
-                  <div class="row">
-                     <div class="col-12 form-group ">
-                        <button [disabled]='categoryForm.invalid' type="submit"
-                           [ngClass]="{'btn-danger':categoryForm.invalid}" class="btn btn-primary m-2">Create Category
-                        </button>
-                        <button routerLink='/Developers' type="button"
-                           class="btn btn-danger m-2 card-link">Cancel</button>
+                     <div class="row">
+                        <div class="col-12 form-group ">
+                           <button [disabled]='categoryForm.invalid' type="submit"
+                              [ngClass]="{'btn-danger':categoryForm.invalid}" class="btn btn-primary m-2">Create
+                              Category
+                           </button>
+                           <button routerLink='/Developers' type="button"
+                              class="btn btn-danger m-2 card-link">Cancel</button>
+                        </div>
                      </div>
-                  </div>
-               </form>
+                  </form>
+               </div>
             </div>
          </div>
       </div>
@@ -49,6 +53,6 @@
 <div *ngIf="isCreated" class="alert alert-success alert-dismissible fade show" role="alert">
    <strong>Success!&nbsp;</strong>{{createdCategoryName}} created successfully.
    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-       <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true">&times;</span>
    </button>
 </div>

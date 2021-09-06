@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 import { SummarizeTextPipe } from './summarize-text.pipe';
@@ -37,7 +36,8 @@ import { DeveloperEditComponent } from './Components/DeveloperComponents/develop
 import { UsereditComponent } from './Components/UserComponents/useredit/useredit.component';
 import { GameEditComponent } from './Components/GameComponents/game-edit/game-edit.component';
 import { AuthModule } from './auth/auth.module';
-
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -83,7 +83,7 @@ import { AuthModule } from './auth/auth.module';
     OrderModule,
     AuthModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,7 +24,7 @@ export class CategoryService {
   
   getCategory(id:number):Observable<Category>{
     const url = `${this.URL}/${id}`;
-    return this.httpService.get<Category>(url, this.httpOptions);
+    return this.httpService.get<Category>(url);
   }
 
   createCategory(category:Category){

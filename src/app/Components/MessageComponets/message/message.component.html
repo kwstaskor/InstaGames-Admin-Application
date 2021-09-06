@@ -1,90 +1,97 @@
-<div class="container-fluid">
-    <div class="row">
-       <div class="col-sm-12">
-          <div class="iq-card">
-             <div class="iq-card-header d-flex justify-content-between">
-                <div class="iq-header-title">
-                   <h4 class="card-title">Message List</h4>
-                </div>
-             </div>
-             <div class="iq-card-body">
+<div class="content-page">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-sm-12">
+            <div class="iq-card">
+               <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                     <h4 class="card-title">Message List</h4>
+                  </div>
+               </div>
+               <div class="iq-card-body">
 
-                <div class="iq-search-bar ml-auto mb-4">
-                    <div class="searchbox">
-                       <input type="text" class="text search-input" placeholder="Search Creator..." name="Title"
-                          [(ngModel)]="CreatorUserName" (ngModelChange)="Search()">
-                       <span class="search-link" href="#"><i class="ri-search-line"></i></span>
-                    </div>
-                 </div>
+                  <div class="iq-search-bar ml-auto mb-4">
+                     <div class="searchbox">
+                        <input type="text" class="text search-input" placeholder="Search Creator..." name="Title"
+                           [(ngModel)]="CreatorUserName" (ngModelChange)="Search()">
+                        <span class="search-link" href="#"><i class="ri-search-line"></i></span>
+                     </div>
+                  </div>
 
                   <!--Delete Alert-->
                   <div *ngIf="isDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <strong>Success!&nbsp;</strong>Message deleted successfully.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                       <span aria-hidden="true">&times;</span>
-                    </button>
-                 </div>
+                     <strong>Success!&nbsp;</strong>Message deleted successfully.
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
 
-                <div class="table-responsive">
-                   <table class="table movie_table" style="width:100%">
-                      <thead>
-                         <tr>
-                            <th (click)="sort('MessageId')">No&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i>
-                            </th>
-                            <th (click)="sort('Creator.UserName')">Creator&nbsp;<i
-                                class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                                <th (click)="sort('Text')">Text&nbsp;<i
+                  <div class="table-responsive">
+                     <table class="table movie_table" style="width:100%">
+                        <thead>
+                           <tr>
+                              <th (click)="sort('MessageId')">No&nbsp;<i
+                                    class="btn-sm btn-outline-primary fa fa-sort"></i>
+                              </th>
+                              <th (click)="sort('Creator.UserName')">Creator&nbsp;<i
                                     class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                            <th (click)="sort('SubmitDate')">Date Created&nbsp;<i
-                                class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                                <th (click)="sort('Answered')">Status&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i>
-                            <th style="width: 10%;">Action</th>
-                         </tr>
-                      </thead>
-                      <tbody *ngIf="messages && messages.length ; else noData;">
-                        <tr *ngFor="let message of messages | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
-                            <td>{{message.MessageId}}</td>
-                            <td>{{message.Creator.UserName}}</td>
-                            <td>
-                               <p title="{{message.Text}}" class="mb-0">{{message.Text|summarizeText}}</p>
-                            </td>
-                            <td>
-                              {{message.SubmitDate | date}}
-                            </td>                                       
-                            <td *ngIf="!message.Answered else Replied;">
-                              <span class="badge iq-bg-primary">Unanswered</span>
-                            </td>  
-                            <ng-template #Replied>
+                              <th (click)="sort('Text')">Text&nbsp;<i class="btn-sm btn-outline-primary fa fa-sort"></i>
+                              </th>
+                              <th (click)="sort('SubmitDate')">Date Created&nbsp;<i
+                                    class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                              <th (click)="sort('Answered')">Status&nbsp;<i
+                                    class="btn-sm btn-outline-primary fa fa-sort"></i>
+                              <th style="width: 10%;">Action</th>
+                           </tr>
+                        </thead>
+                        <tbody *ngIf="messages && messages.length ; else noData;">
+                           <tr
+                              *ngFor="let message of messages | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
+                              <td>{{message.MessageId}}</td>
+                              <td>{{message.Creator.UserName}}</td>
                               <td>
-                                 <span class="badge iq-bg-success">Answered</span>
-                               </td>
-                            </ng-template>                                     
-                            <td>
-                               <div class="flex align-items-center list-user-action">
-                                  <a (click)="ViewMessage(message) " class="iq-bg-success crudBtn" data-placement="top" title="Reply"><i class="ri-message-line"></i></a>
-                                  <a (click)="DeleteMessage(message)" class="iq-bg-primary crudBtn" title="Delete"><i class="ri-delete-bin-line"></i></a>
-                               </div>
-                            </td>
-                         </tr>
-                      </tbody>
-                   </table>
-                   <div class="pull-right mt-5">
-                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                 </div>
-                </div>
-             </div>
-          </div>
-       </div>
-    </div>
- </div>
+                                 <p title="{{message.Text}}" class="mb-0">{{message.Text|summarizeText}}</p>
+                              </td>
+                              <td>
+                                 {{message.SubmitDate | date}}
+                              </td>
+                              <td *ngIf="!message.Answered else Replied;">
+                                 <span class="badge iq-bg-primary">Unanswered</span>
+                              </td>
+                              <ng-template #Replied>
+                                 <td>
+                                    <span class="badge iq-bg-success">Answered</span>
+                                 </td>
+                              </ng-template>
+                              <td>
+                                 <div class="flex align-items-center list-user-action">
+                                    <a (click)="ViewMessage(message) " class="iq-bg-success crudBtn"
+                                       data-placement="top" title="Reply"><i class="ri-message-line"></i></a>
+                                    <a (click)="DeleteMessage(message)" class="iq-bg-primary crudBtn" title="Delete"><i
+                                          class="ri-delete-bin-line"></i></a>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <div class="pull-right mt-5">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
-<!--IF no Data-->
-<ng-template #noData>
-    <tbody>
-       <tr>
-          <td colspan="8">
-             No data availabe in this table
-          </td>
-       </tr>
-    </tbody>
- </ng-template>
+   <!--IF no Data-->
+   <ng-template #noData>
+      <tbody>
+         <tr>
+            <td colspan="8">
+               No data availabe in this table
+            </td>
+         </tr>
+      </tbody>
+   </ng-template>
+</div>

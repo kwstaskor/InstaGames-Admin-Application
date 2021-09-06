@@ -1,3 +1,4 @@
+<div class="content-page">
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
@@ -49,25 +50,51 @@
                                     <a routerLink='/UserGameRatings' class="card-link">Back</a>
                                  </div>
                             </div>
+                            <div class="container align-content-lg-center">
+                                <div class="text-center col-md-9">
+                                    <!-- tab content -->
+                                    <table class="table movie_table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th (click)="sort('UserGameRatingsId')">User Rating Id&nbsp;<i
+                                                        class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                                                <th (click)="sort('UserName')">Username&nbsp;<i
+                                                        class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                                                <th (click)="sort('Rating')">Rating&nbsp;<i
+                                                        class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody
+                                            *ngIf="Rating.UserGameRatings && Rating.UserGameRatings.length ; else noData;">
+                                            <tr
+                                                *ngFor="let userRating of Rating.UserGameRatings | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
+                                                <td>{{userRating.UserGameRatingsId}}</td>
+                                                <td>{{userRating.UserName}}</td>
+                                                <td>{{userRating.Rating}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <ng-template #Loader>
+        <img src="../../../../assets/Images/page-load-loader.gif">
+    </ng-template>
+
+    <!--IF no Data-->
+    <ng-template #noData>
+        <tbody>
+            <tr>
+                <td colspan="8">
+                    No data availabe in this table
+                </td>
+            </tr>
+        </tbody>
+    </ng-template>
 </div>
-
-<ng-template #Loader>
-    <img src="../../../../assets/Images/page-load-loader.gif">
-</ng-template>
-
-<!--IF no Data-->
-<ng-template #noData>
-    <tbody>
-       <tr>
-          <td colspan="8">
-             No data availabe in this table
-          </td>
-       </tr>
-    </tbody>
- </ng-template>

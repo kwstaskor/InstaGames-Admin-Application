@@ -1,69 +1,71 @@
-<div class="container align-content-lg-center">
-    <div class="container-fluid">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="game;else Loader">
-            <img src="https://localhost:44369/{{game.Photo}}" class="card-img-top" alt="">
-            <div class="iq-card-body">
-                <h4 class="card-title">{{game.Title}}</h4>
-                <p class="card-text">{{game.Description}} </p>
+<div class="content-page">
+    <div class="container align-content-lg-center">
+        <div class="container-fluid">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="game;else Loader">
+                <img src="https://localhost:44369/{{game.Photo}}" class="card-img-top" alt="">
+                <div class="iq-card-body">
+                    <h4 class="card-title">{{game.Title}}</h4>
+                    <p class="card-text">{{game.Description}} </p>
 
-                <!--GameUrl Div-->
-                <div *ngIf="game.GameUrl">
-                    <a class="btn-link text-primary crudBtn" (click)='TryGame()'>Try Game&nbsp;<i
-                            class="las la-gamepad"></i></a>
-                    <ng-container *ngIf="tryGameField">
+                    <!--GameUrl Div-->
+                    <div *ngIf="game.GameUrl">
+                        <a class="btn-link text-primary crudBtn" (click)='TryGame()'>Try Game&nbsp;<i
+                                class="las la-gamepad"></i></a>
+                        <ng-container *ngIf="tryGameField">
 
-                        <section class="height-100-vh iq-main-slider mb-2">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe #fullScreen id="embededGame" class="embed-responsive-item" scrolling="no"
-                                    seamless="seamless" [src]="game.GameUrl"
-                                    style="width: 100%; height: 100%; border: 0"></iframe>
+                            <section class="height-100-vh iq-main-slider mb-2">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe #fullScreen id="embededGame" class="embed-responsive-item" scrolling="no"
+                                        seamless="seamless" [src]="game.GameUrl"
+                                        style="width: 100%; height: 100%; border: 0"></iframe>
+                                </div>
+                            </section>
+                            <div class="container">
+                                <a class="crudBtn pull-right" (click)="openFullscreen()" title="Full Screen"> <i
+                                        style="font-size: 200%;" class="fa fa-arrows-alt text-primary"></i></a>
                             </div>
+
+                        </ng-container>
+                    </div>
+
+                    <!--Trailer Div-->
+                    <div class="mt-4" *ngIf="game.Trailer">
+                        <a class="btn-link text-primary crudBtn" (click)='WatchTrailer()'>Watch Trailer&nbsp;<i
+                                class="las la-play"></i></a>
+                        <section *ngIf="showTrailerField" class="height-100-vh iq-main-slider">
+                            <video class="video d-block" width="100%" height="100%" controls>
+                                <source src="https://localhost:44369/{{game.Trailer}}" type="video/mp4">
+                            </video>
                         </section>
-                        <div class="container">
-                            <a class="crudBtn pull-right" (click)="openFullscreen()" title="Full Screen"> <i
-                                    style="font-size: 200%;" class="fa fa-arrows-alt text-primary"></i></a>
-                        </div>
-
-                    </ng-container>
-                </div>
-
-                <!--Trailer Div-->
-                <div class="mt-4" *ngIf="game.Trailer">
-                    <a class="btn-link text-primary crudBtn" (click)='WatchTrailer()'>Watch Trailer&nbsp;<i
-                            class="las la-play"></i></a>
-                    <section *ngIf="showTrailerField" class="height-100-vh iq-main-slider">
-                        <video class="video d-block" width="100%" height="100%" controls>
-                            <source src="https://localhost:44369/{{game.Trailer}}" type="video/mp4">
-                        </video>
-                    </section>
-                </div>
+                    </div>
 
 
 
-                <br>
-                <a class="card-link" routerLink="/Developers">Developed by:</a>
-                <ul class="list-unstyled">
-                    <li *ngFor="let dev of game.Developers">{{dev.Name}}</li>
-                </ul>
-                <a class="card-link" routerLink="/Categories">Categories:</a>
-                <ul class="list-unstyled">
-                    <li *ngFor="let category of game.Categories">{{category.Type}}</li>
-                </ul>
-                <h6 class="card-title">Rating:</h6>
-                <div class="pull-left">
-                    <app-game-rating [Rating]='game.Rating'></app-game-rating>
-                </div>
-                <br>
-                <br>
-                <div class="text-center">
-                    <a routerLink='/Dashboard' class="card-link">Home</a>
-                    <a routerLink='/Games' class="card-link">Back</a>
+                    <br>
+                    <a class="card-link" routerLink="/Developers">Developed by:</a>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let dev of game.Developers">{{dev.Name}}</li>
+                    </ul>
+                    <a class="card-link" routerLink="/Categories">Categories:</a>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let category of game.Categories">{{category.Type}}</li>
+                    </ul>
+                    <h6 class="card-title">Rating:</h6>
+                    <div class="pull-left">
+                        <app-game-rating [Rating]='game.Rating'></app-game-rating>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="text-center">
+                        <a routerLink='/Dashboard' class="card-link">Home</a>
+                        <a routerLink='/Games' class="card-link">Back</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<ng-template #Loader>
-    <img src="../../../../assets/Images/page-load-loader.gif">
-</ng-template>
+    <ng-template #Loader>
+        <img src="../../../../assets/Images/page-load-loader.gif">
+    </ng-template>
+</div>

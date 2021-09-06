@@ -1,23 +1,26 @@
-<div class="container align-content-lg-center">
-    <div class="container-fluid">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="category;else Loader">
-            <div class="iq-card-body">
-                <h4 class="card-title">{{category.Type}}</h4>
-                <p class="card-text">{{category.Description}} </p>
+<div class="content-page">
+    <div class="container align-content-lg-center">
+        <div class="container-fluid">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="category;else Loader">
+                <div class="iq-card-body">
+                    <h4 class="card-title">{{category.Type}}</h4>
+                    <p class="card-text">{{category.Description}} </p>
 
-                <a class="card-link" routerLink="/Games">Games:</a>
-                <ul class="list-unstyled">
-                    <li *ngFor="let game of category.Games">{{game.Title}}</li>
-                </ul>
-                <br>
-                <br>
-                <a routerLink='/Dashboard' class="card-link">Home</a>
-                <a routerLink='/Categories' class="card-link">Back</a>
+                    <a class="card-link" routerLink="/Games">Games:</a>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let game of category.Games">{{game.Title}}</li>
+                    </ul>
+                    <br>
+                    <br>
+                    <a routerLink='/Dashboard' class="card-link">Home</a>
+                    <a routerLink='/Categories' class="card-link">Back</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<ng-template #Loader>
-    <img src="../../../../assets/Images/page-load-loader.gif">
-</ng-template>
+
+    <ng-template #Loader>
+        <img src="../../../../assets/Images/page-load-loader.gif">
+    </ng-template>
+</div>

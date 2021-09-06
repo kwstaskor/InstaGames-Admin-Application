@@ -1,104 +1,110 @@
-<div class="container-fluid">
-   <div class="row">
-      <div class="col-sm-12">
-         <div class="iq-card">
-            <div class="iq-card-header d-flex justify-content-between">
-               <div class="iq-header-title">
-                  <h4 class="card-title">User Lists</h4>
+<div class="content-page">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-sm-12">
+            <div class="iq-card">
+               <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                     <h4 class="card-title">User Lists</h4>
+                  </div>
                </div>
-            </div>
-            <div class="iq-card-body">
-               <div class="table-view">
+               <div class="iq-card-body">
+                  <div class="table-view">
 
-                  <div class="iq-search-bar ml-auto mb-4">
-                     <div class="searchbox">
-                        <input type="text" class="text search-input" placeholder="Search User..." name="UserName"
-                           [(ngModel)]="UserName" (ngModelChange)="Search()">
-                        <span class="search-link" href="#"><i class="ri-search-line"></i></span>
+                     <div class="iq-search-bar ml-auto mb-4">
+                        <div class="searchbox">
+                           <input type="text" class="text search-input" placeholder="Search User..." name="UserName"
+                              [(ngModel)]="UserName" (ngModelChange)="Search()">
+                           <span class="search-link" href="#"><i class="ri-search-line"></i></span>
+                        </div>
                      </div>
-                  </div>
 
-                  <!--Delete Alert-->
-                  <div *ngIf="isDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
-                     <strong>Success!&nbsp;</strong>User deleted successfully.
-                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                     </button>
-                  </div>
+                     <!--Delete Alert-->
+                     <div *ngIf="isDeleted" class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <strong>Success!&nbsp;</strong>User deleted successfully.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
 
-                  <table class="table movie_table" style="width:100%">
-                     <thead>
-                        <tr>
-                           <th (click)="sort('UserName')">Username&nbsp;<i
-                                 class="btn-sm btn-outline-primary fa fa-sort"></i>
-                           </th>
-                           <th (click)="sort('FirstName')">Name&nbsp;<i
-                                 class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                           <th>Email</th>
-                           <th (click)="sort('Role')">Authorization&nbsp;<i
-                                 class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                           <th (click)="sort('RegistrationDate')">Join Date&nbsp;<i
-                                 class="btn-sm btn-outline-primary fa fa-sort"></i></th>
-                           <th>Action</th>
-                        </tr>
-                     </thead>
-                     <tbody *ngIf="users && users.length ; else noData">
-                        <tr *ngFor="let user of users | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
-                           <td>
-                              <div class="media align-items-center">
-                                 <div class="iq-movie">
-                                    <a *ngIf="user.PhotoUrl" (click)='ViewUser(user)' class="crudBtn"
-                                       title="{{user.UserName}}"><img src="https://localhost:44384/{{user.PhotoUrl}}"
-                                          class="img-border-radius avatar-40 img-fluid" alt=""></a>
-                                    <a *ngIf="!user.PhotoUrl" (click)='ViewUser(user)' class="crudBtn"
-                                       title="{{user.UserName}}"><img src="https://localhost:44384/Content/images/user/user.jpg"
-                                          class="img-border-radius avatar-40 img-fluid" alt=""></a>
+                     <table class="table movie_table" style="width:100%">
+                        <thead>
+                           <tr>
+                              <th (click)="sort('UserName')">Username&nbsp;<i
+                                    class="btn-sm btn-outline-primary fa fa-sort"></i>
+                              </th>
+                              <th (click)="sort('FirstName')">Name&nbsp;<i
+                                    class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                              <th>Email</th>
+                              <th (click)="sort('Role')">Authorization&nbsp;<i
+                                    class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                              <th (click)="sort('RegistrationDate')">Join Date&nbsp;<i
+                                    class="btn-sm btn-outline-primary fa fa-sort"></i></th>
+                              <th>Action</th>
+                           </tr>
+                        </thead>
+                        <tbody *ngIf="users && users.length ; else noData">
+                           <tr
+                              *ngFor="let user of users | orderBy:key:reverse | paginate:{itemsPerPage:10,currentPage:p}">
+                              <td>
+                                 <div class="media align-items-center">
+                                    <div class="iq-movie">
+                                       <a *ngIf="user.PhotoUrl" (click)='ViewUser(user)' class="crudBtn"
+                                          title="{{user.UserName}}"><img src="https://localhost:44384/{{user.PhotoUrl}}"
+                                             class="img-border-radius avatar-40 img-fluid" alt=""></a>
+                                       <a *ngIf="!user.PhotoUrl" (click)='ViewUser(user)' class="crudBtn"
+                                          title="{{user.UserName}}"><img
+                                             src="https://localhost:44384/Content/images/user/user.jpg"
+                                             class="img-border-radius avatar-40 img-fluid" alt=""></a>
+                                    </div>
+                                    <div class="media-body text-white text-left ml-3">
+                                       <p class="mb-0">{{user.UserName}}</p>
+                                    </div>
                                  </div>
-                                 <div class="media-body text-white text-left ml-3">
-                                    <p class="mb-0">{{user.UserName}}</p>
+                              </td>
+                              <td>{{user.FirstName}} {{user.LastName}}</td>
+                              <td>{{user.Email}}</td>
+                              <td *ngIf="user.Role == 'Admin'"><span class="badge iq-bg-warning">{{user.Role}}</span>
+                              </td>
+                              <td *ngIf="user.Role == 'Subscriber'"><span
+                                    class="badge iq-bg-success">{{user.Role}}</span>
+                              </td>
+                              <td *ngIf="user.Role == 'Unsubscribed'"><span
+                                    class="badge iq-bg-primary">{{user.Role}}</span></td>
+                              <td>{{user.RegistrationDate | date : 'short'}}</td>
+                              <td>
+                                 <div class="flex align-items-center list-user-action">
+                                    <a (click)='ViewUser(user)' title="info" class="iq-bg-warning crudBtn"><i
+                                          class="lar la-eye"></i></a>
+                                    <a (click)='EditUser(user)' class="iq-bg-success crudBtn" title="Edit user"
+                                       data-toggle="tooltip" data-placement="top"><i class="ri-pencil-line"></i></a>
+                                    <a *ngIf="user.Role !== 'Admin'" title="Delete user" (click)='DeleteUser(user)'
+                                       class="iq-bg-primary crudBtn"><i class="ri-delete-bin-line"></i></a>
                                  </div>
-                              </div>
-                           </td>
-                           <td>{{user.FirstName}} {{user.LastName}}</td>
-                           <td>{{user.Email}}</td>
-                           <td *ngIf="user.Role == 'Admin'"><span class="badge iq-bg-warning">{{user.Role}}</span></td>
-                           <td *ngIf="user.Role == 'Subscriber'"><span class="badge iq-bg-success">{{user.Role}}</span>
-                           </td>
-                           <td *ngIf="user.Role == 'Unsubscribed'"><span
-                                 class="badge iq-bg-primary">{{user.Role}}</span></td>
-                           <td>{{user.RegistrationDate | date : 'short'}}</td>
-                           <td>
-                              <div class="flex align-items-center list-user-action">
-                                 <a (click)='ViewUser(user)' title="info" class="iq-bg-warning crudBtn"><i
-                                       class="lar la-eye"></i></a>
-                                 <a (click)='EditUser(user)' class="iq-bg-success crudBtn" title="Edit user" data-toggle="tooltip" data-placement="top"><i class="ri-pencil-line"></i></a>
-                                 <a *ngIf="user.Role !== 'Admin'" title="Delete user" (click)='DeleteUser(user)'
-                                    class="iq-bg-primary crudBtn"><i
-                                    class="ri-delete-bin-line"></i></a>
-                              </div>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
 
-                  <div class="pull-right mt-5">
-                     <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                     <div class="pull-right mt-5">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                     </div>
+
                   </div>
-
                </div>
             </div>
          </div>
       </div>
    </div>
-</div>
 
-<!--IF no Data-->
-<ng-template #noData>
-   <tbody>
-      <tr>
-         <td colspan="8">
-            No data available in this table
-         </td>
-      </tr>
-   </tbody>
-</ng-template>
+   <!--IF no Data-->
+   <ng-template #noData>
+      <tbody>
+         <tr>
+            <td colspan="8">
+               No data available in this table
+            </td>
+         </tr>
+      </tbody>
+   </ng-template>
+</div>

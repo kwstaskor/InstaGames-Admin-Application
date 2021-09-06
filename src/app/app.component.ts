@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   title = 'InstaGames';
+  signedin = false;
+  
+  public loggedin = new EventEmitter();
 
-
-  constructor() {
-
+  constructor(private authService: AuthService) {
+    this.authService.signedin = this.signedin;
   }
 
   ngOnInit() {
-
   }
 }

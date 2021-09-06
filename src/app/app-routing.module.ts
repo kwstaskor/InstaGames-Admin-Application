@@ -23,32 +23,33 @@ import { CategoryEditComponent } from './Components/CategoryComponents/category-
 import { DeveloperEditComponent } from './Components/DeveloperComponents/developer-edit/developer-edit.component';
 import { GameEditComponent } from './Components/GameComponents/game-edit/game-edit.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 
-const routes: Routes = [
-  { path: "Dashboard", component: DashboardComponent },
-  { path: "Games", component: GameComponent },
-  { path: "GameDetails/" + ":id", component: GameDetailsComponent },
-  { path: "GameCreate", component: GameCreateComponent },
-  { path: "GameEdit/"+ ":id", component: GameEditComponent },
-  { path: "CategoryCreate", component: CategoryCreateComponent },
-  { path: "Categories", component: CategoryComponent },
-  { path: "CategoryDetails/" + ":id", component: CategoryDetailsComponent },
-  { path: "CategoryEdit/"+ ":id", component: CategoryEditComponent },
-  { path: "Developers", component: DeveloperComponent },
-  { path: "DeveloperDetails/" + ":id", component: DeveloperDetailsComponent },
-  { path: "DeveloperCreate", component: DeveloperCreateComponent },
-  { path: "DeveloperEdit/" + ":id", component: DeveloperEditComponent },
-  { path: "Messages", component: MessageComponent },
-  { path: "MessageDetails/" + ":id", component: MessageDetailsComponent },
-  { path: "Users", component: UserComponent },
-  { path: "Users/" + ":id", component: UserDetailsComponent },
-  { path: "UserEdit/" + ":id", component: UsereditComponent },
-  { path: "UserGameRatings", component: RatingComponent },
-  { path: "UserGameRatings/" + ":id", component: RatingDetailsComponent },
-  { path: "UserRatings/" + ":id", component: RatingUserRatingsComponent },
-  { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
+
+export const routes: Routes = [
+  { path: "Dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: "Games", component: GameComponent, canActivate: [AuthGuard] },
+  { path: "GameDetails/" + ":id", component: GameDetailsComponent, canActivate: [AuthGuard] },
+  { path: "GameCreate", component: GameCreateComponent, canActivate: [AuthGuard] },
+  { path: "GameEdit/" + ":id", component: GameEditComponent, canActivate: [AuthGuard] },
+  { path: "CategoryCreate", component: CategoryCreateComponent, canActivate: [AuthGuard] },
+  { path: "Categories", component: CategoryComponent, canActivate: [AuthGuard] },
+  { path: "CategoryDetails/" + ":id", component: CategoryDetailsComponent, canActivate: [AuthGuard] },
+  { path: "CategoryEdit/" + ":id", component: CategoryEditComponent, canActivate: [AuthGuard] },
+  { path: "Developers", component: DeveloperComponent, canActivate: [AuthGuard] },
+  { path: "DeveloperDetails/" + ":id", component: DeveloperDetailsComponent, canActivate: [AuthGuard] },
+  { path: "DeveloperCreate", component: DeveloperCreateComponent, canActivate: [AuthGuard] },
+  { path: "DeveloperEdit/" + ":id", component: DeveloperEditComponent, canActivate: [AuthGuard] },
+  { path: "Messages", component: MessageComponent, canActivate: [AuthGuard] },
+  { path: "MessageDetails/" + ":id", component: MessageDetailsComponent, canActivate: [AuthGuard] },
+  { path: "Users", component: UserComponent, canActivate: [AuthGuard] },
+  { path: "Users/" + ":id", component: UserDetailsComponent, canActivate: [AuthGuard] },
+  { path: "UserEdit/" + ":id", component: UsereditComponent, canActivate: [AuthGuard] },
+  { path: "UserGameRatings", component: RatingComponent, canActivate: [AuthGuard] },
+  { path: "UserGameRatings/" + ":id", component: RatingDetailsComponent, canActivate: [AuthGuard] },
+  { path: "UserRatings/" + ":id", component: RatingUserRatingsComponent, canActivate: [AuthGuard] },
   { path: "signin", component: SigninComponent },
   { path: "", redirectTo: "signin", pathMatch: "full" },
   { path: "**", component: ErrorComponent }

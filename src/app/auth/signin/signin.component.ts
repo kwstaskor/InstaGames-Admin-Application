@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl , Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NamesFormControl } from 'src/app/Components/SharedComponents/input/custom-formControls';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/Components/UserComponents/user/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signin',
@@ -11,32 +14,41 @@ import { AuthService } from '../auth.service';
 export class SigninComponent implements OnInit {
 
   authForm = new FormGroup({
-    email: new NamesFormControl('',[
-      Validators.required,
-      Validators.email
+    username: new FormControl('', [
+      Validators.required
     ]),
-    password: new NamesFormControl('',[
+    password: new FormControl('', [
       Validators.required
     ])
   });
 
-  constructor(private authService: AuthService) { }
+  isLoginError: boolean = false;
 
-  ngOnInit(): void {
+
+  constructor(private authService: AuthService, private router: Router) {
+  }
+
+  ngOnInit() {
 
   }
-  
-  onSubmit() {
-    if (this.authForm.invalid) {
-      return;
-    }
 
-    this.authService.signin(this.authForm.value).subscribe({
-      next: () => { },
-      error: err => {
-        console.log(err);
-      }
+  isUser: boolean = false;
+  userId!: string;
+
+
+  onSubmit(userName: any, password: any) {
+    this.authService.userAuthentication(userName, password).subscribe((data: any) => {
+      localStorage.setItem('userToken', data.access_token);
+      this.authService.getUser().subscribe((user:any) => {
+        if (user.Role == "Admin") {
+          console.log(user.Role);
+          this.router.navigate(['/Dashboard']);
+        }
+      })
+    }, (err: HttpErrorResponse) => {
+      this.isLoginError = true;
     });
   }
 
 }
+

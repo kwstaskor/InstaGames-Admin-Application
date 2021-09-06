@@ -1,60 +1,64 @@
-<div class="container align-content-lg-center">
-    <div class="container-fluid">
-        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="message;else Loader">
+<div class="content-page">
+    <div class="container align-content-lg-center">
+        <div class="container-fluid">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-mb-3" *ngIf="message;else Loader">
 
-            <div class="text-center" *ngIf="message.Creator.Photo else noPhoto">
-                <img class="avatar-130 rounded" src="https://localhost:44384/{{message.Creator.Photo}}" alt="">
-            </div>
-            <ng-template #noPhoto>
-                <div class="text-center">
-                    <img class="avatar-130 rounded" src="../../../assets/Images/user/user.jpg" alt="">
+                <div class="text-center" *ngIf="message.Creator.Photo else noPhoto">
+                    <img class="avatar-130 rounded" src="https://localhost:44384/{{message.Creator.Photo}}" alt="">
                 </div>
-            </ng-template>
-
-            <div class="iq-card-body text-center">
-                <h4 class="card-title text-primary">Username :</h4>
-                <h4 class="card-title">{{message.Creator.UserName}}</h4>
-                <h6 class="card-title text-primary">Name :</h6>
-                <h6 class="card-title">{{message.Creator.FirstName+" "+message.Creator.LastName}}</h6>
-                <h6 class="card-title text-primary">Message :</h6>
-                <p class="card-text">{{message.Text}} </p>
-
-                <form *ngIf="!message.Answered;else MessageIsAnswered" (ngSubmit)='setMessageStatusToAnswered(message)'>
-
-                    <div class="col-12 form-group">
-                        <app-text-area PlaceHolder="Reply....." [Control]="messageForm.controls.reply"></app-text-area>
+                <ng-template #noPhoto>
+                    <div class="text-center">
+                        <img class="avatar-130 rounded" src="../../../assets/Images/user/user.jpg" alt="">
                     </div>
-
-                    <button [disabled]='messageForm.invalid' type="submit"
-                        [ngClass]="{'btn-danger':messageForm.invalid}" class="btn btn-primary m-2">Answer Message
-                    </button>
-
-                </form>
-
-                <ng-template #MessageIsAnswered>
-                    <h6 class="card-title text-primary">Reply :</h6>
-                    <p class="card-text">{{message.Reply}} </p>
                 </ng-template>
 
-                <br>
-                <div class="text-center">
+                <div class="iq-card-body text-center">
+                    <h4 class="card-title text-primary">Username :</h4>
+                    <h4 class="card-title">{{message.Creator.UserName}}</h4>
+                    <h6 class="card-title text-primary">Name :</h6>
+                    <h6 class="card-title">{{message.Creator.FirstName+" "+message.Creator.LastName}}</h6>
+                    <h6 class="card-title text-primary">Message :</h6>
+                    <p class="card-text">{{message.Text}} </p>
+
+                    <form *ngIf="!message.Answered;else MessageIsAnswered"
+                        (ngSubmit)='setMessageStatusToAnswered(message)'>
+
+                        <div class="col-12 form-group">
+                            <app-text-area PlaceHolder="Reply....." [Control]="messageForm.controls.reply">
+                            </app-text-area>
+                        </div>
+
+                        <button [disabled]='messageForm.invalid' type="submit"
+                            [ngClass]="{'btn-danger':messageForm.invalid}" class="btn btn-primary m-2">Answer Message
+                        </button>
+
+                    </form>
+
+                    <ng-template #MessageIsAnswered>
+                        <h6 class="card-title text-primary">Reply :</h6>
+                        <p class="card-text">{{message.Reply}} </p>
+                    </ng-template>
+
                     <br>
-                    <a routerLink='/Dashboard' class="card-link">Home</a>
-                    <a routerLink='/Messages' class="card-link">Back</a>
+                    <div class="text-center">
+                        <br>
+                        <a routerLink='/Dashboard' class="card-link">Home</a>
+                        <a routerLink='/Messages' class="card-link">Back</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--Reply Alert-->
+    <div *ngIf="isReplied" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!&nbsp;</strong>Reply successfully sent.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <ng-template #Loader>
+        <img src="../../../../assets/Images/page-load-loader.gif">
+    </ng-template>
 </div>
-
-<!--Reply Alert-->
-<div *ngIf="isReplied" class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Success!&nbsp;</strong>Reply successfully sent.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-       <span aria-hidden="true">&times;</span>
-    </button>
- </div>
-
-<ng-template #Loader>
-    <img src="../../../../assets/Images/page-load-loader.gif">
-</ng-template>

@@ -1,4 +1,4 @@
-<!-- loader Start --> -->
+<!-- loader Start -->
 <div id="loading">
    <div id="loading-center">
    </div>
@@ -8,12 +8,13 @@
 <!-- Wrapper Start -->
 <div class="wrapper">
 
-   <app-navbar></app-navbar>
+   <ng-container >
+      <app-navbar></app-navbar>
+   </ng-container>
 
-   <div id="content-page" class="content-page">
 
-      <router-outlet></router-outlet>
-   </div>
+   <router-outlet></router-outlet>
+
 
 </div>
 
@@ -25,6 +26,6 @@
             Copyright 2021 <a href="#">InstaGames</a> All Rights Reserved.
          </div>
       </div>
-   </div>
-</footer>
-<!-- Footer END -->
+   </footer>
+   <!-- Footer END -->
+</ng-container>
