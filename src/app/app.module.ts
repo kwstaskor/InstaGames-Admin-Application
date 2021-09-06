@@ -71,7 +71,8 @@ import { AuthGuard } from './auth/auth.guard';
     RatingUserRatingsComponent,
     DeveloperEditComponent,
     UsereditComponent,
-    GameEditComponent
+    GameEditComponent,
+    
   ],
   imports: [
     BrowserModule,
