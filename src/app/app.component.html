@@ -8,18 +8,16 @@
 <!-- Wrapper Start -->
 <div class="wrapper">
 
-   <ng-container>
+   <ng-container *ngIf="signedin">
       <app-navbar></app-navbar>
    </ng-container>
 
-
    <router-outlet></router-outlet>
-
 
 </div>
 
 <!-- Footer -->
-<ng-container>
+<ng-container *ngIf="signedin">
    <footer class="iq-footer">
       <div class="container-fluid">
          <div class="row">

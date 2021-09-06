@@ -1,5 +1,5 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
-import { AuthService } from './auth/auth.service';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -7,17 +7,18 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
-
+export class AppComponent implements OnInit  {
   title = 'InstaGames';
   signedin = false;
-  
-  public loggedin = new EventEmitter();
-
-  constructor(private authService: AuthService) {
-    this.authService.signedin = this.signedin;
+ 
+  constructor() {
+   if(localStorage.getItem('userToken') != null){
+    this.signedin = true;
+   } 
   }
 
   ngOnInit() {
   }
+  
+
 }

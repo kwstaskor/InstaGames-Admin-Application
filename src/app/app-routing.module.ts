@@ -51,8 +51,8 @@ export const routes: Routes = [
   { path: "UserGameRatings", component: RatingComponent, canActivate: [AuthGuard] },
   { path: "UserGameRatings/" + ":id", component: RatingDetailsComponent, canActivate: [AuthGuard] },
   { path: "UserRatings/" + ":id", component: RatingUserRatingsComponent, canActivate: [AuthGuard] },
+  { path: "", redirectTo: "Dashboard", pathMatch: "full" },
   { path: "signin", component: SigninComponent },
-  { path: "", redirectTo: "signin", pathMatch: "full" },
   { path: "**", component: ErrorComponent }
 ];
 
