@@ -27,6 +27,4 @@ export class AuthService {
     let Url = "https://localhost:44369/api/Account/Claims";
     return this.http.get(Url, httpOptions);
   }
-
-
 }

@@ -33,16 +33,15 @@ export class SigninComponent implements OnInit {
   token!:string
   onSubmit(userName: any, password: any) {
     this.authService.userAuthentication(userName, password).subscribe((data: any) => {
-      localStorage.setItem('userToken', data.access_token);
       this.token = data.access_token;
       if(this.token){
         this.authService.getUser(this.token).subscribe((user:any) => {
           if (user.Role == "Admin") {
+            localStorage.setItem('userToken', this.token);
             this.router.navigate(['/Dashboard'])
             .then(() => {
               window.location.reload();
             });
-           
           }
         });
       }
