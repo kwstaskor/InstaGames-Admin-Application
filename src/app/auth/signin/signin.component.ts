@@ -49,5 +49,4 @@ export class SigninComponent implements OnInit {
       this.isLoginError = true;
     });
   }
-
 }

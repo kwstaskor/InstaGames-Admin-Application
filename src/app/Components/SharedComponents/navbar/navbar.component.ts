@@ -9,10 +9,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  userPhoto!: string;
 
   constructor(private router: Router, private authService: AuthService) { }
-  user!: any;
+ 
 
   ngOnInit(): void {
     if (localStorage.getItem('userToken')) {
@@ -21,6 +20,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  user!: any;
   Logout() {
     localStorage.removeItem('userToken');
     this.user = null;

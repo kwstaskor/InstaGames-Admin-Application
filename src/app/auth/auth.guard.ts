@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanLoad, RouterStateSnapshot, Router, Route, UrlSegment, UrlTree, CanActivate, ActivatedRoute } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -10,7 +9,8 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
 
   signedin!:boolean;
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private router: Router) { }
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -22,10 +22,4 @@ export class AuthGuard implements CanActivate {
     this.signedin = false;
     return false;
   }
-
-
-
-
-
-
 }

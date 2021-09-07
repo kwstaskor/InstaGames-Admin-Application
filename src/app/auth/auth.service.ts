@@ -24,7 +24,6 @@ export class AuthService {
    let httpOptions = {
       headers: new HttpHeaders({ 'Authorization': `Bearer ${token}` })
     }
-    let Url = "https://localhost:44369/api/Account/Claims";
-    return this.http.get(Url, httpOptions);
+    return this.http.get(this.Url, httpOptions);
   }
 }

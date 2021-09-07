@@ -25,10 +25,6 @@ import { GameEditComponent } from './Components/GameComponents/game-edit/game-ed
 import { SigninComponent } from './auth/signin/signin.component';
 import { AuthGuard } from './auth/auth.guard';
 
-
-
-
-
 export const routes: Routes = [
   { path: "Dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
   { path: "Games", component: GameComponent, canActivate: [AuthGuard] },
