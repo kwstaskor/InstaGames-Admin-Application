@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Game } from './game';
 import { GameService } from './game.service';
 
@@ -16,7 +16,7 @@ export class GameComponent implements OnInit {
   games!: Game[];
   Title: any;
 
-  constructor(private actRoute: ActivatedRoute, private GameService: GameService, private router: Router) {
+  constructor(private GameService: GameService, private router: Router) {
   }
 
   ngOnInit(): void {
