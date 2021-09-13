@@ -2,7 +2,7 @@
     <input type="file" #file (change)="uploadFile((file.files)!)" class="form_gallery-upload"
         accept="image/png, image/jpeg , image/jpg">
    
-    <label *ngIf="hasFile else Upload" (click)="file.click()"> {{fileName  }}
+    <label *ngIf="hasFile else Upload" (click)="file.click()"> {{fileName}}
         <small class="upload" *ngIf="progress > 0">
         {{progress}}%
     </small><span class="upload" *ngIf="message">

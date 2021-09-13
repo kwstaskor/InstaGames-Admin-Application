@@ -12,7 +12,7 @@ export class MessageComponent implements OnInit {
   p: number = 1;
   isDeleted: boolean = false;
   messages!: Message[];
-  CreatorUserName: any;
+  CreatorUserName!: string;
 
   constructor(private actRoute: ActivatedRoute, private MessageService: MessageService, private router: Router) {
   }

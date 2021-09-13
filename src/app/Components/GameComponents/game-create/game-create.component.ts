@@ -158,7 +158,4 @@ export class GameCreateComponent implements OnInit {
   showErrors() {
     return this.gameForm.errors && (this.gameForm.touched || this.gameForm.dirty)
   }
-
-
-
 }

@@ -32,9 +32,11 @@ export class SigninComponent implements OnInit {
   userId!: string;
   token!:string
   onSubmit(userName: any, password: any) {
+   
     this.authService.userAuthentication(userName, password).subscribe((data: any) => {
       this.token = data.access_token;
       if(this.token){
+       
         this.authService.getUser(this.token).subscribe((user:any) => {
           if (user.Role == "Admin") {
             localStorage.setItem('userToken', this.token);

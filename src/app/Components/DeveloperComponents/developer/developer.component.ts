@@ -15,7 +15,7 @@ export class DeveloperComponent implements OnInit {
   FirstName: any;
 
 
-  constructor(private actRoute: ActivatedRoute, private DeveloperService: DeveloperService, private router: Router) {
+  constructor(private DeveloperService: DeveloperService, private router: Router) {
   }
 
   ngOnInit(): void {

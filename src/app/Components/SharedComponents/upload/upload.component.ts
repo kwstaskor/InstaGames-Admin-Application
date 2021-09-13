@@ -28,7 +28,6 @@ export class UploadComponent implements OnInit ,OnChanges {
     this.fileName = this.photoUrl
   }
 
-
   public uploadFile = (files: FileList) => {
     if (files.length === 0) {
       return;
@@ -56,9 +55,7 @@ export class UploadComponent implements OnInit ,OnChanges {
                 this.onUploadFinished.emit(fileToUpload.name);
               }
             });
-
         }
-    
     }
     return;
   }
